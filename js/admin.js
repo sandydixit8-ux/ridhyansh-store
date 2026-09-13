@@ -4,7 +4,11 @@ var s = sett();
 
 function $(id) { return document.getElementById(id); }
 
-if (!authOk()) { location.href = "login.html"; }
+if (!authOk()) {
+  location.href = "login.html";
+} else {
+  init();
+}
 
 function init() {
   document.title = s.shopName + " — Admin";
