@@ -26,11 +26,11 @@ function lsSet(k, v) { localStorage.setItem(k, JSON.stringify(v)); }
 
 function sett() {
   var s = lsGet("rh_settings", {});
-  if (lsGet("rh_cred_v", 0) < 1) {
+  if (lsGet("rh_cred_v", 0) < 2) {
     s.rh_user = "ridhyansh007";
     s.rh_pass = "admin@123";
-    lsSet("rh_settings", s);
-    lsSet("rh_cred_v", 1);
+    saveSett(s);
+    lsSet("rh_cred_v", 2);
   }
   if (!s.shopName) s.shopName = "Ridhyansh";
   if (!s.rh_user) s.rh_user = "ridhyansh007";
