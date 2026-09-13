@@ -66,10 +66,13 @@
         <input type="number" id="pprice" min="1" placeholder="e.g. 899">
       </div>
       <div>
-        <label for="pimg">Image URL <span class="req">(optional)</span></label>
+        <label for="pimg">Ya image URL daalo <span class="req">(optional)</span></label>
         <input type="text" id="pimg" placeholder="https://... .jpg">
       </div>
     </div>
+    <label for="pfile">📷 Product photo — phone/computer se choose karo</label>
+    <input type="file" id="pfile" accept="image/*">
+    <div class="imgprev hidden" id="imgPrevWrap"><img id="imgPrev" alt="preview"></div>
     <label for="pdesc">Short description <span class="req">(optional)</span></label>
     <input type="text" id="pdesc" placeholder="e.g. Wireless, 12h battery">
     <button class="btn primary" id="addProd">＋ Add Product</button>

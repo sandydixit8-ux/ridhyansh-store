@@ -31,8 +31,43 @@ function init() {
   $("addProd").addEventListener("click", addProduct);
   $("genLink").addEventListener("click", genLink);
   $("logout").addEventListener("click", function () { authClear(); location.href = "login.html"; });
+  $("pfile").addEventListener("change", onPickPhoto);
 
   renderList();
+}
+
+var curImg = null;
+
+function onPickPhoto() {
+  var f = $("pfile").files[0];
+  if (!f) return;
+  if (f.size > 8 * 1024 * 1024) { toast("Photo 8 MB se chhota hona chahiye.", "bad"); return; }
+  var rd = new FileReader();
+  rd.onload = function () {
+    resizeImage(rd.result, 900, function (dataUrl) {
+      curImg = dataUrl;
+      $("imgPrev").src = dataUrl;
+      $("imgPrevWrap").classList.remove("hidden");
+      toast("Photo select ho gayi ✔");
+    });
+  };
+  rd.readAsDataURL(f);
+}
+
+function resizeImage(dataUrl, maxW, cb) {
+  var img = new Image();
+  img.onload = function () {
+    var scale = Math.min(1, maxW / img.width);
+    var cw = Math.round(img.width * scale);
+    var ch = Math.round(img.height * scale);
+    var cv = document.createElement("canvas");
+    cv.width = cw;
+    cv.height = ch;
+    var ctx = cv.getContext("2d");
+    ctx.drawImage(img, 0, 0, cw, ch);
+    cb(cv.toDataURL("image/jpeg", 0.82));
+  };
+  img.src = dataUrl;
 }
 
 function comboSubs() {
@@ -83,13 +118,17 @@ function addProduct() {
     name: n,
     cat: $("pcat").value,
     price: price,
-    img: $("pimg").value.trim(),
+    img: curImg || $("pimg").value.trim(),
     desc: $("pdesc").value.trim()
   };
   if (SUBS[prod.cat]) prod.sub = $("psub").value;
   p.push(prod);
   saveProds(p);
   $("pname").value = ""; $("pprice").value = ""; $("pimg").value = ""; $("pdesc").value = "";
+  $("pfile").value = "";
+  curImg = null;
+  $("imgPrevWrap").classList.add("hidden");
+  $("imgPrev").src = "";
   renderList();
   toast("Product add ho gaya ✔");
 }

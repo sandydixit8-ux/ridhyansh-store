@@ -303,6 +303,9 @@ textarea { resize: vertical; }
 .genrow { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
 .genbtns { display: flex; flex-direction: column; gap: 8px; }
 
+.imgprev { width: 92px; height: 92px; border-radius: 14px; object-fit: cover; border: 1px solid var(--line); margin-top: 10px; box-shadow: var(--sh1); }
+input[type="file"] { padding: 9px; font-size: 14px; cursor: pointer; }
+
 /* ---------- Empty state ---------- */
 
 .empty-box { text-align: center; padding: 44px 20px; background: #fff; border: 1px dashed var(--line); border-radius: var(--r); margin: 10px 0 30px; }
