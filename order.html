@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ridhyansh — Place Order</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap head">
+    <a class="logo" href="index.html">🛍️ <span id="brand">Ridhyansh</span></a>
+    <nav>
+      <a href="index.html">Store</a>
+      <a href="order.html" class="active">Order</a>
+      <a href="admin.html" class="nav-link-btn" title="Admin login">🔐 Admin</a>
+    </nav>
+  </div>
+</header>
+
+<div class="banner-prepaid">🚫 COD not available — Prepaid &amp; UPI only.</div>
+
+<div class="wrap page-top">
+  <div class="stepper">
+    <div class="step done"><span class="sn">1</span> Select product</div>
+    <div class="step active"><span class="sn">2</span> Your details</div>
+    <div class="step" id="st3"><span class="sn">3</span> Pay via UPI</div>
+  </div>
+</div>
+
+<main class="wrap two-col">
+  <div class="col-main">
+    <section class="card form-card">
+      <h2>Select product</h2>
+      <label for="product">Product</label>
+      <div class="select-wrap"><select id="product"></select></div>
+    </section>
+
+    <section class="card form-card">
+      <h2>Quantity &amp; details</h2>
+      <div class="inline2">
+        <div>
+          <label for="qty">Quantity</label>
+          <div class="qty-group">
+            <button class="qtybtn" data-q="-1">−</button>
+            <input type="number" id="qty" value="1" min="1">
+            <button class="qtybtn" data-q="1">+</button>
+          </div>
+        </div>
+      </div>
+      <label for="name">Full name</label>
+      <input type="text" id="name" placeholder="e.g. Rahul Sharma">
+      <label for="phone">Phone (WhatsApp)</label>
+      <input type="tel" id="phone" placeholder="10 digit mobile number">
+      <label for="addr">Delivery address</label>
+      <textarea id="addr" rows="3" placeholder="Full address with pincode"></textarea>
+    </section>
+
+    <div class="errbox hidden" id="err"></div>
+  </div>
+
+  <aside class="col-side">
+    <div class="card sticky">
+      <h3>Order Summary</h3>
+      <div class="summary-product">
+        <div class="simg" id="simg">🛍️</div>
+        <div class="sinfo"><b id="sname">Select a product</b><span id="sprice"></span></div>
+      </div>
+      <div class="srow"><span>Price × <b id="sqty">1</b></span><span id="stotal"></span></div>
+      <div class="divider"></div>
+      <div class="srow sgrand"><span>To pay</span><b id="grand"></b></div>
+      <div class="prepaid-badge">🔒 100% Prepaid · No COD</div>
+      <button class="btn primary full" id="pay">Generate UPI Payment Link →</button>
+    </div>
+  </aside>
+</main>
+
+<section class="successbox hidden" id="result">
+  <div class="wrap inner">
+    <div class="suc-head">✅ Payment link ready!</div>
+    <div class="suc-grid">
+      <div class="suc-left">
+        <div class="ordref">Order: <b id="ref"></b></div>
+        <div class="bigamnt" id="amnt">₹0</div>
+        <p class="hint">Yeh UPI link sirf ek baar ka hai — apne order ke liye:</p>
+        <div class="qrwrap"><img id="qr" alt="Payment QR"></div>
+        <button class="btn copy-btn" id="copy">Copy Payment Link</button>
+        <a class="btn primary full" id="uplink" href="#" target="_blank" rel="noopener">Open in UPI App →</a>
+        <a class="btn whatsapp full" id="wa" href="#" target="_blank" rel="noopener">Send order on WhatsApp ✔</a>
+      </div>
+      <div class="suc-right">
+        <h4>Payment steps</h4>
+        <ol class="paysteps">
+          <li><b>Link ya QR scan</b> karo — UPI app khulega</li>
+          <li><b>Amount verify</b> karo — sirf apna amount dekho</li>
+          <li><b>Pay</b> karo — PIN daalo</li>
+          <li><b>WhatsApp</b> pe seller ko screenshot ya order detail bhejo</li>
+        </ol>
+        <p class="warn">⚠️ COD available nahi hai. Dispatch sirf payment confirm hone ke baad hoga.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div class="logo">🛍️ <span>Ridhyansh</span></div>
+    <p class="muted">Prepaid / UPI only · No COD.</p>
+  </div>
+</footer>
+
+<script src="js/store.js"></script>
+<script src="js/order.js"></script>
+</body>
+</html>

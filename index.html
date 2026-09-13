@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ridhyansh — Online Store</title>
+<meta name="description" content="Ridhyansh — online store. 5 categories, prepaid & UPI only, no COD.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap head">
+    <a class="logo" href="index.html">🛍️ <span id="brand">Ridhyansh</span></a>
+    <nav>
+      <a href="index.html" class="active">Store</a>
+      <a href="order.html">Order</a>
+      <a href="admin.html" class="nav-link-btn" title="Admin login">🔐 Admin</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-txt">
+      <span class="eyebrow">✨ UPI Secure · Prepaid Only · No COD</span>
+      <h1>Shop smart with <span id="heroShopName">Ridhyansh</span>.</h1>
+      <p class="lead">Clothing, Electronics, Footwear &amp; more — ek hi jagah. Har order prepaid &amp; UPI-secure.</p>
+      <div class="searchbox">
+        <span class="sicon">🔍</span>
+        <input type="text" id="search" placeholder="Search products… (e.g. shoes, watch)">
+      </div>
+      <div class="hero-mini">
+        <span>⚡ 24h dispatch</span>
+        <span>🛡️ 100% secure UPI</span>
+        <span>💬 WhatsApp support</span>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="blob b1"></div>
+      <div class="blob b2"></div>
+      <div class="card3d">🛍️</div>
+      <div class="float f1">🔒 Prepaid only</div>
+      <div class="float f2">5 Categories</div>
+      <div class="float f3">UPI ✔</div>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap trust-in">
+    <div class="titem"><span>🚫</span><div><b>No COD</b><small>Prepaid / UPI only</small></div></div>
+    <div class="titem"><span>⚡</span><div><b>Instant link</b><small>UPI payment link</small></div></div>
+    <div class="titem"><span>🛡️</span><div><b>Secure pay</b><small>Direct UPI, no sharing</small></div></div>
+    <div class="titem"><span>💬</span><div><b>Chat support</b><small>WhatsApp pe ready</small></div></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="cats" id="cats"></div>
+  <div class="subs hidden" id="subs"></div>
+  <section class="grid" id="grid"></section>
+
+  <div class="empty-box hidden" id="empty">
+    <div class="empty-art">🔍</div>
+    <h3>No products found</h3>
+    <p>Sirf admin hi product add kar sakta hai.</p>
+    <a class="btn main" href="admin.html">Open Admin</a>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div>
+      <div class="logo">🛍️ <span id="footName">Ridhyansh</span></div>
+      <p class="muted">Simple. Prepaid. Trusted.</p>
+    </div>
+    <div class="foot-cols">
+      <div>
+        <h4>Shop</h4>
+        <a href="index.html">All products</a>
+        <a href="order.html">Place order</a>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <a href="order.html">How to pay</a>
+        <a href="admin.html">Admin</a>
+      </div>
+    </div>
+  </div>
+  <div class="wrap foot-legal">© <span id="yr"></span> Ridhyansh · COD available nahi — saare payments prepaid / UPI se.</div>
+</footer>
+
+<script src="js/store.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>
