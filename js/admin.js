@@ -62,6 +62,7 @@ function saveSettings() {
     s.rh_pass = $("pass").value.trim();
   }
   saveSett(s);
+  lsSet("rh_cred_v", 3);
   $("brand").textContent = s.shopName;
   $("pass").value = "";
   toast("Settings save ho gayi ✔");
