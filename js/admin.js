@@ -44,12 +44,11 @@ function onPickPhoto() {
   if (f.size > 8 * 1024 * 1024) { toast("Photo 8 MB se chhota hona chahiye.", "bad"); return; }
   var rd = new FileReader();
   rd.onload = function () {
-    resizeImage(rd.result, 900, function (dataUrl) {
-      curImg = dataUrl;
-      $("imgPrev").src = dataUrl;
-      $("imgPrevWrap").classList.remove("hidden");
-      toast("Photo select ho gayi ✔");
-    });
+    var raw = rd.result;
+    $("imgPrev").src = raw;
+    $("imgPrevWrap").classList.remove("hidden");
+    toast("Photo select ho gayi ✔");
+    resizeImage(raw, 900, function (small) { curImg = small || raw; });
   };
   rd.readAsDataURL(f);
 }
@@ -57,16 +56,19 @@ function onPickPhoto() {
 function resizeImage(dataUrl, maxW, cb) {
   var img = new Image();
   img.onload = function () {
-    var scale = Math.min(1, maxW / img.width);
-    var cw = Math.round(img.width * scale);
-    var ch = Math.round(img.height * scale);
-    var cv = document.createElement("canvas");
-    cv.width = cw;
-    cv.height = ch;
-    var ctx = cv.getContext("2d");
-    ctx.drawImage(img, 0, 0, cw, ch);
-    cb(cv.toDataURL("image/jpeg", 0.82));
+    try {
+      var scale = Math.min(1, maxW / img.width);
+      var cw = Math.round(img.width * scale);
+      var ch = Math.round(img.height * scale);
+      var cv = document.createElement("canvas");
+      cv.width = cw;
+      cv.height = ch;
+      var ctx = cv.getContext("2d");
+      ctx.drawImage(img, 0, 0, cw, ch);
+      cb(cv.toDataURL("image/jpeg", 0.82));
+    } catch (e) { cb(dataUrl); }
   };
+  img.onerror = function () { cb(dataUrl); };
   img.src = dataUrl;
 }
 
