@@ -28,12 +28,14 @@ function renderSubs() {
 }
 
 function card(p) {
-  var img = p.img
-    ? '<img class="ti" src="' + esc(p.img) + '" alt="" loading="lazy">'
+  var ims = imgsOf(p);
+  var img = ims.length
+    ? '<img class="ti' + (ims.length > 1 ? ' multi' : '') + '" src="' + esc(ims[0]) + '" alt="" loading="lazy">'
     : '<div class="ph">' + esc((p.name || "?").charAt(0).toUpperCase()) + "</div>";
+  var badge = ims.length > 1 ? '<span class="shot-count">📸 ' + ims.length + '</span>' : "";
   return (
     '<div class="product reveal">' +
-    '<div class="med imgbox">' + img + "</div>" +
+    '<div class="med imgbox" data-pid="' + p.id + '"' + (ims.length > 1 ? ' title="Photos dekho"' : "") + '>' + img + badge + "</div>" +
     '<div class="pbody">' +
     '<span class="ptag">' + catIcon(p.cat) + " " + esc(p.cat) + (p.sub ? ' <i>·</i> ' + esc(p.sub) : "") + "</span>" +
     "<h3>" + esc(p.name) + "</h3>" +
@@ -57,7 +59,32 @@ function grid() {
   document.body.classList.toggle("has-products", list.length > 0);
 }
 
+var galImg = [], gi = 0;
+function openGal(p) {
+  galImg = imgsOf(p);
+  gi = 0;
+  drawGal();
+  $("lb").classList.remove("hidden");
+  document.body.classList.add("lb-open");
+}
+function drawGal() {
+  $("lbImg").src = galImg[gi];
+  $("lbCount").textContent = (gi + 1) + " / " + galImg.length;
+  $("lbPrev").classList.toggle("hidden", gi === 0);
+  $("lbNext").classList.toggle("hidden", gi >= galImg.length - 1);
+}
+function closeGal() {
+  $("lb").classList.add("hidden");
+  document.body.classList.remove("lb-open");
+  galImg = [];
+}
+
 document.addEventListener("click", function (e) {
+  var im = e.target.closest(".imgbox[data-pid]");
+  if (im) {
+    var p = getProds().filter(function (x) { return x.id == +im.dataset.pid; })[0];
+    if (p && imgsOf(p).length > 1) { openGal(p); return; }
+  }
   var b = e.target.closest(".chip");
   if (!b) return;
   if (b.getAttribute("data-s")) {
@@ -70,6 +97,20 @@ document.addEventListener("click", function (e) {
   tabs();
   renderSubs();
   grid();
+});
+
+$("lbClose").addEventListener("click", closeGal);
+$("lbPrev").addEventListener("click", function () { if (gi > 0) { gi--; drawGal(); } });
+$("lbNext").addEventListener("click", function () { if (gi < galImg.length - 1) { gi++; drawGal(); } });
+$("lb").addEventListener("click", function (e) { if (e.target === $("lb")) closeGal(); });
+document.addEventListener("keydown", function (e) {
+  if (galImg.length) {
+    if (e.key === "ArrowRight") gi = Math.min(galImg.length - 1, gi + 1);
+    else if (e.key === "ArrowLeft") gi = Math.max(0, gi - 1);
+    else if (e.key === "Escape") closeGal();
+    else return;
+    drawGal();
+  }
 });
 
 var st;

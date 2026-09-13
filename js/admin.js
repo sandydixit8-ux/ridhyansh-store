@@ -32,44 +32,58 @@ function init() {
   $("genLink").addEventListener("click", genLink);
   $("logout").addEventListener("click", function () { authClear(); location.href = "login.html"; });
   $("pfile").addEventListener("change", onPickPhoto);
+  $("imgPrevs").addEventListener("click", function (ev) {
+    var b = ev.target;
+    if (b && b.dataset && b.dataset.rmprev !== undefined) rmPrevAt(+b.dataset.rmprev);
+    ev.stopPropagation();
+  });
 
   renderList();
 }
 
-var curImg = null;
+var curImgs = [];
 
 function onPickPhoto() {
-  var f = $("pfile").files[0];
-  if (!f) return;
-  if (f.size > 8 * 1024 * 1024) { toast("Photo 8 MB se chhota hona chahiye.", "bad"); return; }
+  var files = Array.prototype.slice.call($("pfile").files);
+  var room = 5 - curImgs.length;
+  if (files.length > room) { toast("Zyada se zyada 5 photos choose kar sakte ho.", "bad"); }
+  files = files.slice(0, room);
+  readNext(files, 0);
+}
+
+function readNext(files, i) {
+  if (i >= files.length) { renderPrev(); return; }
+  var f = files[i];
+  if (f.size > 8 * 1024 * 1024) { toast("Har photo 8 MB se chhota chahiye.", "bad"); readNext(files, i + 1); return; }
   var rd = new FileReader();
   rd.onload = function () {
-    var raw = rd.result;
-    $("imgPrev").src = raw;
-    $("imgPrevWrap").classList.remove("hidden");
-    toast("Photo select ho gayi ✔");
-    resizeImage(raw, 900, function (small) { curImg = small || raw; });
+    resizeImage(rd.result, 900, function (small) {
+      curImgs.push(small || rd.result);
+      renderPrev();
+      readNext(files, i + 1);
+    });
   };
   rd.readAsDataURL(f);
 }
 
-function resizeImage(dataUrl, maxW, cb) {
-  var img = new Image();
-  img.onload = function () {
-    try {
-      var scale = Math.min(1, maxW / img.width);
-      var cw = Math.round(img.width * scale);
-      var ch = Math.round(img.height * scale);
-      var cv = document.createElement("canvas");
-      cv.width = cw;
-      cv.height = ch;
-      var ctx = cv.getContext("2d");
-      ctx.drawImage(img, 0, 0, cw, ch);
-      cb(cv.toDataURL("image/jpeg", 0.82));
-    } catch (e) { cb(dataUrl); }
-  };
-  img.onerror = function () { cb(dataUrl); };
-  img.src = dataUrl;
+function renderPrev() {
+  var box = $("imgPrevs");
+  if (!curImgs.length) { box.classList.add("hidden"); box.innerHTML = ""; }
+  else {
+    box.classList.remove("hidden");
+    box.innerHTML = curImgs.map(function (d, ix) {
+      return '<div class="pv"><img src="' + d + '" alt="p' + ix + '"><button type="button" class="pvx" data-rmprev="' + ix + '" title="Remove">×</button></div>';
+    }).join("");
+  }
+  $("imgCount").textContent = curImgs.length + " / 5 photos";
+  if (curImgs.length < 3) { $("imgCount").className = "hint warn"; $("imgCount").textContent += " — kam se kam 3 chahiye"; }
+  else { $("imgCount").className = "hint ok"; }
+}
+
+function rmPrevAt(ix) {
+  curImgs.splice(ix, 1);
+  $("pfile").value = "";
+  renderPrev();
 }
 
 function comboSubs() {
@@ -114,25 +128,28 @@ function addProduct() {
   var n = $("pname").value.trim();
   var price = parseInt($("pprice").value, 10);
   if (!n || !price || price < 1) { toast("Naam aur sahi price dono chahiye.", "bad"); return; }
+  if (curImgs.length < 3) { toast("Kam se kam 3 photos choose karo.", "bad"); return; }
+  if (curImgs.length > 5) { toast("Zyada se zyada 5 photos ho sakti hain.", "bad"); return; }
   var p = getProds();
+  var imgs = curImgs.slice();
   var prod = {
     id: Date.now(),
     name: n,
     cat: $("pcat").value,
     price: price,
-    img: curImg || $("pimg").value.trim(),
+    images: imgs,
+    img: imgs[0],
     desc: $("pdesc").value.trim()
   };
   if (SUBS[prod.cat]) prod.sub = $("psub").value;
   p.push(prod);
   saveProds(p);
-  $("pname").value = ""; $("pprice").value = ""; $("pimg").value = ""; $("pdesc").value = "";
+  $("pname").value = ""; $("pprice").value = ""; $("pdesc").value = "";
   $("pfile").value = "";
-  curImg = null;
-  $("imgPrevWrap").classList.add("hidden");
-  $("imgPrev").src = "";
+  curImgs = [];
+  renderPrev();
   renderList();
-  toast("Product add ho gaya ✔");
+  toast("Product " + imgs.length + " photos ke saath add ho gaya ✔");
 }
 
 function thumb(p) {

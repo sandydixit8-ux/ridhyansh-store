@@ -114,6 +114,17 @@ function esc(s) {
   });
 }
 
+function imgsOf(p) {
+  if (p && Array.isArray(p.images)) return p.images.filter(Boolean);
+  if (p && p.img) return [p.img];
+  return [];
+}
+
+function firstImg(p) {
+  var i = imgsOf(p);
+  return i.length ? i[0] : "";
+}
+
 function toast(msg, type) {
   var box = document.getElementById("toasts");
   if (!box) {

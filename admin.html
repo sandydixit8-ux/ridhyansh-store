@@ -58,19 +58,12 @@
         <select id="psub"></select>
       </div>
     </div>
-    <div class="grid2f">
-      <div>
-        <label for="pprice">Price (₹)</label>
-        <input type="number" id="pprice" min="1" placeholder="e.g. 899">
-      </div>
-      <div>
-        <label for="pimg">Ya image URL daalo <span class="req">(optional)</span></label>
-        <input type="text" id="pimg" placeholder="https://... .jpg">
-      </div>
-    </div>
-    <label for="pfile">📷 Product photo — phone/computer se choose karo</label>
-    <input type="file" id="pfile" accept="image/*">
-    <div class="imgprev hidden" id="imgPrevWrap"><img id="imgPrev" alt="preview"></div>
+    <label for="pprice">Price (₹)</label>
+    <input type="number" id="pprice" min="1" placeholder="e.g. 899">
+    <label for="pfile">📷 Product photos — <b>kam se kam 3</b>, <b>zyada se zyada 5</b> (phone/computer se choose karo)</label>
+    <input type="file" id="pfile" accept="image/*" multiple>
+    <div class="imgprevs hidden" id="imgPrevs"></div>
+    <p class="hint" id="imgCount"></p>
     <label for="pdesc">Short description <span class="req">(optional)</span></label>
     <input type="text" id="pdesc" placeholder="e.g. Wireless, 12h battery">
     <button class="btn primary" id="addProd">＋ Add Product</button>

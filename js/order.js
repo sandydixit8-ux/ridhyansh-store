@@ -36,8 +36,8 @@ function refresh() {
   $("grand").textContent = inr(amt);
   if (picked) {
     $("sname").textContent = picked.name;
-    $("simg").textContent = picked.img ? "" : catIcon(picked.cat);
-    $("simg").style.backgroundImage = picked.img ? "url(" + esc(picked.img) + ")" : "none";
+    $("simg").textContent = firstImg(picked) ? "" : catIcon(picked.cat);
+    $("simg").style.backgroundImage = firstImg(picked) ? "url(" + esc(firstImg(picked)) + ")" : "none";
     $("simg").style.backgroundSize = "cover";
     $("simg").style.backgroundPosition = "center";
     $("sprice").textContent = inr(picked.price);
