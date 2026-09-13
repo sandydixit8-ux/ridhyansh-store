@@ -26,9 +26,15 @@ function lsSet(k, v) { localStorage.setItem(k, JSON.stringify(v)); }
 
 function sett() {
   var s = lsGet("rh_settings", {});
+  if (lsGet("rh_cred_v", 0) < 1) {
+    s.rh_user = "ridhyansh007";
+    s.rh_pass = "admin@123";
+    lsSet("rh_settings", s);
+    lsSet("rh_cred_v", 1);
+  }
   if (!s.shopName) s.shopName = "Ridhyansh";
-  if (!s.rh_user) s.rh_user = "admin";
-  if (!s.rh_pass) s.rh_pass = "ridhyansh";
+  if (!s.rh_user) s.rh_user = "ridhyansh007";
+  if (!s.rh_pass) s.rh_pass = "admin@123";
   if (!s.upiId) s.upiId = "6262072151@ybl";
   if (!s.whatsapp) s.whatsapp = "6262072151";
   return s;
