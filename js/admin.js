@@ -4,18 +4,14 @@ var s = sett();
 
 function $(id) { return document.getElementById(id); }
 
-var guess = prompt("Admin password:");
-if (guess !== s.rh_pass) {
-  document.body.innerHTML = '<main class="wrap admin"><section class="panel"><h2>🔒 Access denied</h2><p>Galat password likha hai. Wahin se dobara try karo — ya password remember karo (Settings &gt; Admin password).</p><a class="btn main" href="index.html">← Back to store</a></section></main>';
-} else {
-  init();
-}
+if (!authOk()) { location.href = "login.html"; }
 
 function init() {
   document.title = s.shopName + " — Admin";
   $("brand").textContent = s.shopName;
 
   $("shopName").value = s.shopName || "";
+  $("user").value = s.rh_user || "";
   $("upiId").value = s.upiId || "";
   $("whatsapp").value = s.whatsapp || "";
   $("addr").value = s.address || "";
@@ -30,6 +26,7 @@ function init() {
   $("saveSett").addEventListener("click", saveSettings);
   $("addProd").addEventListener("click", addProduct);
   $("genLink").addEventListener("click", genLink);
+  $("logout").addEventListener("click", function () { authClear(); location.href = "login.html"; });
 
   renderList();
 }
@@ -56,6 +53,7 @@ function syncSub() {
 
 function saveSettings() {
   s.shopName = $("shopName").value.trim() || "Ridhyansh";
+  s.rh_user = $("user").value.trim() || "admin";
   s.upiId = $("upiId").value.trim();
   s.whatsapp = $("whatsapp").value.trim();
   s.address = $("addr").value.trim();

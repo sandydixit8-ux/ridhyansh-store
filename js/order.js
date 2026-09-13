@@ -75,6 +75,20 @@ $("pay").addEventListener("click", function () {
   var note = "Order " + code;
   var link = upiLink(s, amount, note);
 
+  addOrder({
+    ref: code,
+    time: new Date().toISOString(),
+    product: picked.name,
+    cat: picked.cat,
+    sub: picked.sub || "",
+    qty: qty,
+    amount: amount,
+    name: name,
+    phone: phone,
+    addr: addr,
+    status: "pending"
+  });
+
   $("ref").textContent = code;
   $("amnt").textContent = inr(amount);
   $("uplink").href = link;

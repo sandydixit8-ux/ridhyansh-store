@@ -16,18 +16,22 @@
     <nav>
       <a href="index.html">Store</a>
       <a href="order.html">Order</a>
+      <a href="dashboard.html">📊 Dashboard</a>
       <a href="admin.html" class="active">🔐 Admin</a>
+      <button class="logout-btn" id="logout" title="Logout">Logout</button>
     </nav>
   </div>
 </header>
 
-<div class="banner-prepaid">🔒 Admin panel — sirf aap. COD available nahi.</div>
+<div class="banner-prepaid">🔒 Admin panel — sirf aap. COD available nahi. <a class="banner-link" href="login.html">Login</a></div>
 
 <main class="wrap admin">
   <section class="panel">
-    <div class="phead"><span class="picon">⚙️</span><div><h2>Shop Settings</h2><p>Payment link, WhatsApp aur admin password yahan se set karo.</p></div></div>
+    <div class="phead"><span class="picon">⚙️</span><div><h2>Shop Settings</h2><p>Payment link, WhatsApp aur admin login yahan se set karo.</p></div></div>
     <label for="shopName">Shop name</label>
     <input type="text" id="shopName" placeholder="Ridhyansh">
+    <label for="user">Admin username</label>
+    <input type="text" id="user" placeholder="admin">
     <label for="upiId">Your UPI ID <span class="req">(payment links isi se banenge)</span></label>
     <input type="text" id="upiId" placeholder="e.g. yourname@okhdfcbank">
     <label for="whatsapp">WhatsApp number <span class="req">(orders yahan aayenge)</span></label>

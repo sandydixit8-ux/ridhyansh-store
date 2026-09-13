@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ridhyansh — Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap head">
+    <a class="logo" href="index.html">🛍️ <span id="brand">Ridhyansh</span></a>
+    <nav>
+      <a href="index.html">Store</a>
+      <a href="order.html">Order</a>
+      <a href="dashboard.html" class="active">📊 Dashboard</a>
+      <a href="admin.html">🔐 Admin</a>
+      <button class="logout-btn" id="logout" title="Logout">Logout</button>
+    </nav>
+  </div>
+</header>
+
+<div class="banner-prepaid">📊 Sales dashboard — live report. COD available nahi.</div>
+
+<main class="wrap dash">
+  <div class="kpis" id="kpis"></div>
+
+  <div class="dash-grid">
+    <section class="panel">
+      <div class="phead"><span class="picon">🏆</span><div><h2>Top Products</h2><p>Kaunse product kitne bhe.</p></div></div>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>Product</th><th>Orders</th><th>Qty</th><th>Revenue</th></tr></thead>
+        <tbody id="prodRows"></tbody>
+      </table></div>
+      <p class="hint" id="prodEmpty" style="display:none">Abhi koi bhi order nahi hua.</p>
+    </section>
+
+    <section class="panel">
+      <div class="phead"><span class="picon">🗂️</span><div><h2>By Category</h2><p>Category ke hisaab se bech</p></div></div>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>Category</th><th>Qty</th><th>Revenue</th></tr></thead>
+        <tbody id="catRows"></tbody>
+      </table></div>
+      <p class="hint" id="catEmpty" style="display:none">Abhi koi order nahi.</p>
+    </section>
+  </div>
+
+  <section class="panel">
+    <div class="phead"><span class="picon">🧾</span><div><h2>Orders</h2><p>Payment confirm hone par "Mark Paid" dabao — revenue usi se banta hai.</p></div></div>
+    <div class="filters" id="filters"></div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Order</th><th>Product</th><th>Qty</th><th>Amount</th><th>Customer</th><th>Status</th><th></th></tr></thead>
+      <tbody id="orderRows"></tbody>
+    </table></div>
+    <p class="hint" id="orderEmpty" style="display:none">Abhi koi order nahi hua. Customer se payment link generate karne par yahan aa jayega.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div class="logo">🛍️ <span>Ridhyansh</span></div>
+    <p class="muted">Dashboard · Prepaid / UPI only</p>
+  </div>
+</footer>
+
+<script src="js/store.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

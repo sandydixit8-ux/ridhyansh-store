@@ -27,11 +27,20 @@ function lsSet(k, v) { localStorage.setItem(k, JSON.stringify(v)); }
 function sett() {
   var s = lsGet("rh_settings", {});
   if (!s.shopName) s.shopName = "Ridhyansh";
+  if (!s.rh_user) s.rh_user = "admin";
   if (!s.rh_pass) s.rh_pass = "ridhyansh";
   if (!s.upiId) s.upiId = "6262072151@ybl";
   if (!s.whatsapp) s.whatsapp = "6262072151";
   return s;
 }
+
+function getOrders() { return lsGet("rh_orders", []); }
+function saveOrders(o) { lsSet("rh_orders", o); }
+function addOrder(o) { var l = getOrders(); l.unshift(o); saveOrders(l); }
+
+function authOk() { return sessionStorage.getItem("rh_auth") === "1"; }
+function authSet() { sessionStorage.setItem("rh_auth", "1"); }
+function authClear() { sessionStorage.removeItem("rh_auth"); }
 
 function saveSett(s) { lsSet("rh_settings", s); }
 
