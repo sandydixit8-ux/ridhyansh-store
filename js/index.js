@@ -33,9 +33,14 @@ function card(p) {
     ? '<img class="ti' + (ims.length > 1 ? ' multi' : '') + '" src="' + esc(ims[0]) + '" alt="" loading="lazy">'
     : '<div class="ph">' + esc((p.name || "?").charAt(0).toUpperCase()) + "</div>";
   var badge = ims.length > 1 ? '<span class="shot-count">📸 ' + ims.length + '</span>' : "";
+  var strip = ims.length > 1
+    ? '<div class="card-strip">' + ims.map(function (d, ix) {
+        return '<img class="gthumb' + (ix === 0 ? " act" : "") + '" data-i="' + ix + '" src="' + esc(d) + '" alt="" loading="lazy">';
+      }).join("") + "</div>"
+    : "";
   return (
     '<div class="product reveal">' +
-    '<div class="med imgbox" data-pid="' + p.id + '"' + (ims.length > 1 ? ' title="Photos dekho"' : "") + '>' + img + badge + "</div>" +
+    '<div class="med imgbox" data-pid="' + p.id + '"' + (ims.length > 1 ? ' title="Photos dekho"' : "") + ">" + img + badge + strip + "</div>" +
     '<div class="pbody">' +
     '<span class="ptag">' + catIcon(p.cat) + " " + esc(p.cat) + (p.sub ? ' <i>·</i> ' + esc(p.sub) : "") + "</span>" +
     "<h3>" + esc(p.name) + "</h3>" +
@@ -60,9 +65,9 @@ function grid() {
 }
 
 var galImg = [], gi = 0;
-function openGal(p) {
+function openGal(p, ix) {
   galImg = imgsOf(p);
-  gi = 0;
+  gi = Math.min(Math.max(ix || 0, 0), galImg.length - 1);
   drawGal();
   $("lb").classList.remove("hidden");
   document.body.classList.add("lb-open");
@@ -72,6 +77,11 @@ function drawGal() {
   $("lbCount").textContent = (gi + 1) + " / " + galImg.length;
   $("lbPrev").classList.toggle("hidden", gi === 0);
   $("lbNext").classList.toggle("hidden", gi >= galImg.length - 1);
+  $("lbThumbs").innerHTML = galImg.map(function (d, i) {
+    return '<img class="lb-th' + (i === gi ? " act" : "") + '" data-go="' + i + '" src="' + d + '" alt="">';
+  }).join("");
+  var act = $("lbThumbs").querySelector(".lb-th.act");
+  if (act) act.scrollIntoView({ block: "nearest", inline: "center" });
 }
 function closeGal() {
   $("lb").classList.add("hidden");
@@ -82,8 +92,12 @@ function closeGal() {
 document.addEventListener("click", function (e) {
   var im = e.target.closest(".imgbox[data-pid]");
   if (im) {
-    var p = getProds().filter(function (x) { return x.id == +im.dataset.pid; })[0];
-    if (p && imgsOf(p).length > 1) { openGal(p); return; }
+    var p0 = getProds().filter(function (x) { return x.id == +im.dataset.pid; })[0];
+    if (p0 && imgsOf(p0).length > 1) {
+      var th = e.target.closest(".gthumb");
+      openGal(p0, th ? +th.dataset.i : 0);
+      return;
+    }
   }
   var b = e.target.closest(".chip");
   if (!b) return;
@@ -102,7 +116,11 @@ document.addEventListener("click", function (e) {
 $("lbClose").addEventListener("click", closeGal);
 $("lbPrev").addEventListener("click", function () { if (gi > 0) { gi--; drawGal(); } });
 $("lbNext").addEventListener("click", function () { if (gi < galImg.length - 1) { gi++; drawGal(); } });
-$("lb").addEventListener("click", function (e) { if (e.target === $("lb")) closeGal(); });
+$("lb").addEventListener("click", function (e) {
+  var go = e.target.closest(".lb-th");
+  if (go) { gi = +go.dataset.go; drawGal(); return; }
+  if (e.target === $("lb")) closeGal();
+});
 document.addEventListener("keydown", function (e) {
   if (galImg.length) {
     if (e.key === "ArrowRight") gi = Math.min(galImg.length - 1, gi + 1);

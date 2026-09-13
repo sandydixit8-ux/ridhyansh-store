@@ -314,6 +314,14 @@ textarea { resize: vertical; }
 .ti.multi { cursor: zoom-in; }
 .shot-count { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,.72); color: #fff; font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 999px; letter-spacing: .2px; pointer-events: none; }
 
+.card-strip { display: flex; gap: 6px; padding: 8px; overflow-x: auto; border-top: 1px solid var(--line); align-items: center; }
+.card-strip .gthumb { width: 44px; height: 44px; min-width: 44px; object-fit: cover; border-radius: 9px; cursor: pointer; border: 2px solid transparent; background: #fff; }
+.card-strip .gthumb.act { border-color: #fff; }
+
+.lb-thumbs { position: absolute; bottom: 54px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; max-width: 90vw; overflow-x: auto; padding: 8px; border-radius: 12px; background: rgba(0,0,0,.35); }
+.lb-thumbs .lb-th { width: 48px; height: 48px; min-width: 48px; object-fit: cover; border-radius: 8px; cursor: pointer; opacity: .55; border: 2px solid transparent; transition: opacity .15s; }
+.lb-thumbs .lb-th.act { opacity: 1; border-color: #fff; }
+
 .lb { position: fixed; inset: 0; background: rgba(0,0,0,.88); z-index: 9999; display: flex; align-items: center; justify-content: center; }
 .lb-x { position: absolute; top: 14px; right: 18px; font-size: 28px; color: #fff; background: none; border: none; cursor: pointer; z-index: 10; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
 .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); font-size: 40px; color: #fff; background: rgba(255,255,255,.12); border: none; cursor: pointer; width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(6px); }
