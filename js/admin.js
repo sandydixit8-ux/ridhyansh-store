@@ -13,6 +13,7 @@ if (!authOk()) {
 function init() {
   document.title = s.shopName + " — Admin";
   $("brand").textContent = s.shopName;
+  $("verBadge").textContent = "ver6";
 
   $("shopName").value = s.shopName || "";
   $("user").value = s.rh_user || "";
