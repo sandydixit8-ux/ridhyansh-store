@@ -108,7 +108,7 @@ function rmPrevAt(ix) {
   renderPrev();
 }
 
-function resizeImage(dataUrl, maxW, cb) {
+function resizeImage(dataUrl, maxW, cb, qual) {
   var img = new Image();
   img.onload = function () {
     try {
@@ -120,11 +120,27 @@ function resizeImage(dataUrl, maxW, cb) {
       cv.height = ch;
       var ctx = cv.getContext("2d");
       ctx.drawImage(img, 0, 0, cw, ch);
-      cb(cv.toDataURL("image/jpeg", 0.72));
+      cb(cv.toDataURL("image/jpeg", qual || 0.72));
     } catch (e) { cb(dataUrl); }
   };
   img.onerror = function () { cb(dataUrl); };
   img.src = dataUrl;
+}
+
+function cloudSlim(p, cb) {
+  if (!p.images || !p.images.length) { cb(p); return; }
+  var slim = JSON.parse(JSON.stringify(p));
+  var src = p.images.slice();
+  slim.images = [];
+  var total = src.length;
+  var done = 0;
+  src.forEach(function (srcImg) {
+    resizeImage(srcImg, 380, function (small) {
+      slim.images.push(small || srcImg);
+      done++;
+      if (done >= total) { slim.img = slim.images[0]; cb(slim); }
+    }, 0.5);
+  });
 }
 
 function storageUsed() {
@@ -214,19 +230,27 @@ function publishCloud() {
   var prods = getProds();
   if (!prods.length) { toast("Pehle products add karo phir publish karo.", "bad"); return; }
   fbLogin().then(function (au) {
-    var jobs = prods.map(function (p) { return cput("products/" + p.id, p, au.idToken); });
-    return cget("products", au.idToken).then(function (cloud) {
-      var localIds = prods.map(function (p) { return String(p.id); });
-      if (cloud && typeof cloud === "object") {
-        Object.keys(cloud).forEach(function (k) {
-          if (localIds.indexOf(k) === -1) jobs.push(cput("products/" + k, null, au.idToken));
-        });
-      }
-      return Promise.all(jobs);
+    return new Promise(function (resolve) {
+      var slimmed = [];
+      var left = prods.length;
+      prods.forEach(function (p) {
+        cloudSlim(p, function (sl) { slimmed.push(sl); if (--left === 0) resolve(slimmed); });
+      });
+    }).then(function (slimmed) {
+      var jobs = slimmed.map(function (p) { return cput("products/" + p.id, p, au.idToken); });
+      return cget("products", au.idToken).then(function (cloud) {
+        var localIds = prods.map(function (p) { return String(p.id); });
+        if (cloud && typeof cloud === "object") {
+          Object.keys(cloud).forEach(function (k) {
+            if (localIds.indexOf(k) === -1) jobs.push(cput("products/" + k, null, au.idToken));
+          });
+        }
+        return Promise.all(jobs);
+      });
     });
   }).then(function (oks) {
     var okAll = oks.every(Boolean);
-    toast(okAll ? "Catalog cloud par publish ho gaya — sabko dikhega ✔" : "Publish fail — ho sakta hai ek product ke photos bahut bade hain.", okAll ? "ok" : "bad");
+    toast(okAll ? "Catalog cloud par publish ho gaya — sabko dikhega ✔" : "Publish fail — ek product ki photos ab bhi bahut badi hain.", okAll ? "ok" : "bad");
   }).catch(function (e) { toast(fbErrMsg(e), "bad"); });
 }
 
