@@ -47,7 +47,7 @@ function card(p) {
     "<h3>" + esc(p.name) + "</h3>" +
     (p.desc ? "<p class=\"pdesc\">" + esc(p.desc) + "</p>" : "") +
     (p.rating ? '<div class="rate"><span class="stars">' + stars(p.rating) + '</span><span>' + esc(p.rating) + '</span></div>' : "") +
-    '<div class="prow"><b class="price">' + inr(p.price) + '</b><a class="btn main sm" href="order.html?p=' + p.id + '">Order</a></div>' +
+    '<div class="prow">' + mrpHtml(p) + '<a class="btn main sm" href="order.html?p=' + p.id + '">Order</a></div>' +
     "</div></div>"
   );
 }

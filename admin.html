@@ -72,8 +72,10 @@
         <input type="text" id="psizes" placeholder="e.g. 39,40,42,44 ya S,M,L,XL">
       </div>
     </div>
-    <label for="pprice">Price (₹)</label>
+    <label for="pprice">Selling Price (₹) <span class="req">(customer yehi pay karega)</span></label>
     <input type="number" id="pprice" min="1" placeholder="e.g. 899">
+    <label for="pmrp">MRP (₹) <span class="req">(optional — daaloge to discount % dikhega)</span></label>
+    <input type="number" id="pmrp" min="1" placeholder="e.g. 1299">
     <label for="pfile">📷 Product photos — <b>kam se kam 3</b>, <b>zyada se zyada 5</b> (phone/computer se choose karo)</label>
     <input type="file" id="pfile" accept="image/*" multiple>
     <div class="imgprevs hidden" id="imgPrevs"></div>
@@ -124,7 +126,7 @@
   </div>
 </footer>
 
-<script src="js/store.js?v=9"></script>
-<script src="js/admin.js?v=9"></script>
+<script src="js/store.js?v=10"></script>
+<script src="js/admin.js?v=10"></script>
 </body>
 </html>

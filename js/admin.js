@@ -271,7 +271,9 @@ function addProduct() {
   if (busy) { toast("Ruko, photos load ho rahi hain…", "bad"); return; }
   var n = $("pname").value.trim();
   var price = parseInt($("pprice").value, 10);
+  var mrp = parseInt($("pmrp").value, 10) || 0;
   if (!n || !price || price < 1) { toast("Naam aur sahi price dono chahiye.", "bad"); return; }
+  if (mrp && mrp <= price) { toast("MRP selling price se bada hona chahiye.", "bad"); return; }
   if (curImgs.length < 3) { toast("Kam se kam 3 photos choose karo.", "bad"); return; }
   if (curImgs.length > 5) { toast("Zyada se zyada 5 photos ho sakti hain.", "bad"); return; }
   var p = getProds();
@@ -281,6 +283,7 @@ function addProduct() {
     name: n,
     cat: $("pcat").value,
     price: price,
+    mrp: mrp || 0,
     images: imgs,
     img: imgs[0],
     desc: $("pdesc").value.trim()
@@ -297,7 +300,7 @@ function addProduct() {
     return;
   }
   $("prodMsg").textContent = "";
-  $("pname").value = ""; $("pprice").value = ""; $("pdesc").value = "";
+  $("pname").value = ""; $("pprice").value = ""; $("pmrp").value = ""; $("pdesc").value = "";
   $("pfile").value = "";
   curImgs = [];
   renderPrev();
@@ -319,7 +322,7 @@ function renderList() {
   p.forEach(function (pr) {
     h += '<div class="plist-row">' + thumb(pr) +
       '<div class="plist-info"><b>' + esc(pr.name) + "</b>" +
-      '<span>' + catIcon(pr.cat) + " " + esc(pr.cat) + (pr.sub ? " · " + esc(pr.sub) : "") + " · " + inr(pr.price) + (pr.sizes && pr.sizes.length ? " · Sizes: " + esc(pr.sizes.join(", ")) : "") + "</span></div>" +
+      '<span>' + catIcon(pr.cat) + " " + esc(pr.cat) + (pr.sub ? " · " + esc(pr.sub) : "") + " · " + mrpHtml(pr) + (pr.sizes && pr.sizes.length ? " · Sizes: " + esc(pr.sizes.join(", ")) : "") + "</span></div>" +
       '<div class="plist-actions">' +
       '<button class="btn sm link2" data-link="' + pr.id + '" title="Product URL copy karo (ad mein dalna)">🔗 Link</button>' +
       '<button class="btn danger sm" data-del="' + pr.id + '">Delete</button>' +

@@ -42,7 +42,7 @@ function refresh() {
     $("simg").style.backgroundImage = firstImg(picked) ? "url(" + esc(firstImg(picked)) + ")" : "none";
     $("simg").style.backgroundSize = "cover";
     $("simg").style.backgroundPosition = "center";
-    $("sprice").textContent = inr(picked.price);
+    $("sprice").innerHTML = mrpHtml(picked);
   }
   renderSizes();
 }

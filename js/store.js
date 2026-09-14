@@ -5,14 +5,14 @@ var CATS_ICON = { "Clothing": "👕", "Electronics": "🎧", "Footwear": "👟",
 function catIcon(c) { return CATS_ICON[c] || "🛍️"; }
 
 var SEED = [
-  { id: 1, cat: "Clothing", sub: "Women Top Wear", name: "Chenille Cotton Kurta (Women)", price: 499, desc: "Soft cotton, breathable, all sizes.", rating: 4.6 },
-  { id: 2, cat: "Clothing", sub: "Men Top Wear", name: "Casual Linen Shirt (Men)", price: 699, desc: "Premium linen, regular fit, full sleeves.", rating: 4.5 },
-  { id: 3, cat: "Clothing", sub: "Men Bottom Wear", name: "Stretch Joggers (Men)", price: 599, desc: "Flexible waist, side pockets.", rating: 4.4 },
-  { id: 4, cat: "Clothing", sub: "Women Bottom Wear", name: "Palazzo Pants (Women)", price: 549, desc: "Flowy fit, elastic waist, all sizes.", rating: 4.7 },
-  { id: 5, cat: "Electronics", name: "20W Type-C Fast Charger", price: 349, desc: "Fast charging, 2 pin, 1 yr warranty.", rating: 4.7 },
-  { id: 6, cat: "Footwear", name: "Sports Running Shoes", price: 1299, desc: "Cushioned sole, size 6-10.", rating: 4.5 },
-  { id: 7, cat: "Accessories", name: "Minimalist Analog Watch", price: 799, desc: "Stainless steel, water resistant.", rating: 4.8 },
-  { id: 8, cat: "Home & Kitchen", name: "Non-Stick Frying Pan 26cm", price: 599, desc: "Even heating, easy clean.", rating: 4.4 }
+  { id: 1, cat: "Clothing", sub: "Women Top Wear", name: "Chenille Cotton Kurta (Women)", price: 499, mrp: 799, desc: "Soft cotton, breathable, all sizes.", rating: 4.6 },
+  { id: 2, cat: "Clothing", sub: "Men Top Wear", name: "Casual Linen Shirt (Men)", price: 699, mrp: 999, desc: "Premium linen, regular fit, full sleeves.", rating: 4.5 },
+  { id: 3, cat: "Clothing", sub: "Men Bottom Wear", name: "Stretch Joggers (Men)", price: 599, mrp: 899, desc: "Flexible waist, side pockets.", rating: 4.4 },
+  { id: 4, cat: "Clothing", sub: "Women Bottom Wear", name: "Palazzo Pants (Women)", price: 549, mrp: 799, desc: "Flowy fit, elastic waist, all sizes.", rating: 4.7 },
+  { id: 5, cat: "Electronics", name: "20W Type-C Fast Charger", price: 349, mrp: 499, desc: "Fast charging, 2 pin, 1 yr warranty.", rating: 4.7 },
+  { id: 6, cat: "Footwear", name: "Sports Running Shoes", price: 1299, mrp: 1799, desc: "Cushioned sole, size 6-10.", rating: 4.5 },
+  { id: 7, cat: "Accessories", name: "Minimalist Analog Watch", price: 799, mrp: 1199, desc: "Stainless steel, water resistant.", rating: 4.8 },
+  { id: 8, cat: "Home & Kitchen", name: "Non-Stick Frying Pan 26cm", price: 599, mrp: 899, desc: "Even heating, easy clean.", rating: 4.4 }
 ];
 
 function lsGet(k, d) {
@@ -163,6 +163,22 @@ function saveOrderCloud(o) {
 }
 
 function inr(n) { return "₹" + Number(n || 0).toLocaleString("en-IN"); }
+
+function discInfo(p) {
+  var pr = p.price || 0;
+  var mrp = p.mrp || 0;
+  var off = 0;
+  if (mrp > pr && pr > 0) off = Math.round(((mrp - pr) / mrp) * 100);
+  return { mrp: mrp, price: pr, off: off };
+}
+
+function mrpHtml(p) {
+  var d = discInfo(p);
+  if (d.off) {
+    return '<s class="mrp">' + inr(d.mrp) + '</s> <b class="price">' + inr(d.price) + '</b> <span class="off">' + d.off + '% OFF</span>';
+  }
+  return '<b class="price">' + inr(d.price) + '</b>';
+}
 
 function stars(r) {
   var n = Number(r || 0);
