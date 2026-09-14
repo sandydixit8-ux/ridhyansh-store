@@ -204,9 +204,9 @@ function saveSettings() {
 }
 
 function fbErrMsg(e) {
-  if (e === "nokey") return "Pehle Firebase Auth API Key Settings mein daalo.";
-  if (e === "nocreds") return "Pehle Firebase Owner Email/Password Settings mein daalo.";
-  return "Firebase auth fail — API Key/Email/Password check karo.";
+  if (e === "nokey" || e === "nocreds") return "Pehle Firebase Owner Email + Password Settings mein daalo.";
+  if (e.message && e.message.indexOf("API key") !== -1) return "Firebase API Key galat hai — field KHAALI chhod do (default set hai), phir Save karo.";
+  return "Firebase auth fail — Email/Password check karo.";
 }
 
 function publishCloud() {

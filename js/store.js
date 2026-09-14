@@ -87,7 +87,7 @@ function fbLogin() {
     if (j.idToken) return j;
     return call("signUp").then(function (j2) {
       if (j2.idToken) return j2;
-      throw new Error("authfail");
+      throw new Error(j2.error ? j2.error.message : "authfail");
     });
   });
 }
