@@ -4,16 +4,39 @@ var s = sett();
 
 function $(id) { return document.getElementById(id); }
 
+function docClick(e) {
+  var link = e.target.closest("[data-link]");
+  if (link) {
+    var base = location.href.split("admin.html")[0] || location.href;
+    copyText(base + "order.html?p=" + link.getAttribute("data-link"), link);
+    toast("Product URL copy ho gaya — ad mein paste karo ✔", "ok");
+    return;
+  }
+  var ed = e.target.closest("[data-edit]");
+  if (ed) { startEdit(ed.getAttribute("data-edit")); return; }
+  var ce = e.target.closest("[data-cedit]");
+  if (ce) { cancelEdit(); return; }
+  var d = e.target.closest("[data-del]");
+  if (!d) return;
+  if (!confirm("Yeh product delete karna hai?")) return;
+  var p = getProds().filter(function (pr) { return String(pr.id) !== d.getAttribute("data-del"); });
+  saveProds(p);
+  renderList();
+  toast("Product delete ho gaya.");
+  publishCloud();
+}
+document.addEventListener("click", docClick);
+
 if (!authOk()) {
   location.href = "login.html";
 } else {
-  init();
+  try { init(); } catch (err) { console.error("init error", err); }
 }
 
 function init() {
   document.title = s.shopName + " — Admin";
   $("brand").textContent = s.shopName;
-  $("verBadge").textContent = "ver6";
+  $("verBadge").textContent = "ver7";
 
   $("shopName").value = s.shopName || "";
   $("user").value = s.rh_user || "";
@@ -316,6 +339,7 @@ function addProduct() {
     toast("Product " + imgs.length + " photos ke saath add ho gaya ✔");
   }
   $("prodMsg").textContent = "";
+  $("cancelEdit") && $("cancelEdit").classList.add("hidden");
   $("pname").value = ""; $("pprice").value = ""; $("pmrp").value = ""; $("pdesc").value = "";
   $("psizes").value = "";
   $("pfile").value = "";
@@ -348,29 +372,9 @@ function renderList() {
   $("plist").innerHTML = h || '<div class="plist-empty">📮 Abhi koi product nahi — upar "Add Product" se daalo.</div>';
 }
 
-document.addEventListener("click", function (e) {
-  var link = e.target.closest("[data-link]");
-  if (link) {
-    var base = location.href.split("admin.html")[0] || location.href;
-    copyText(base + "order.html?p=" + link.getAttribute("data-link"), link);
-    toast("Product URL copy ho gaya — ad mein paste karo ✔", "ok");
-    return;
-  }
-  var ed = e.target.closest("[data-edit]");
-  if (ed) { startEdit(ed.getAttribute("data-edit")); return; }
-  var d = e.target.closest("[data-del]");
-  if (!d) return;
-  if (!confirm("Yeh product delete karna hai?")) return;
-  var p = getProds().filter(function (pr) { return String(pr.id) !== d.getAttribute("data-del"); });
-  saveProds(p);
-  renderList();
-  toast("Product delete ho gaya.");
-  publishCloud();
-});
-
 function startEdit(id) {
   var p = getProds().filter(function (x) { return String(x.id) === String(id); })[0];
-  if (!p) return;
+  if (!p) { toast("Product nahi mila.", "bad"); return; }
   editId = id;
   $("pname").value = p.name || "";
   $("pprice").value = p.price || "";
@@ -382,8 +386,18 @@ function startEdit(id) {
   $("psizes").value = (p.sizes || []).join(", ");
   $("phead2").textContent = "✏️ Edit Product — " + (p.name || "");
   $("addProd").innerHTML = "💾 Save Changes";
+  $("cancelEdit").classList.remove("hidden");
   $("imgCount").textContent = "Photos wahi rahenge (nayi choose karoge to badal jayengi).";
-  $("addProd").scrollIntoView({ behavior: "smooth", block: "center" });
+  toast("✏️ Edit mode ON — save karne ke liye 'Save Changes' dabao");
+  $("pname").scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function cancelEdit() {
+  editId = null;
+  $("phead2").textContent = "Add Product";
+  $("addProd").innerHTML = "＋ Add Product";
+  $("cancelEdit").classList.add("hidden");
+  toast("Edit cancel ho gaya.");
 }
 
 function genLink() {
