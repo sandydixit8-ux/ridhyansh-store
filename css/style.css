@@ -334,7 +334,7 @@ body.lb-open { overflow: hidden; }
 .size-btns { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 2px; }
 .size-btn { min-width: 46px; height: 40px; padding: 0 12px; border-radius: 10px; border: 1.5px solid var(--line); background: #fff; font-size: 14px; font-weight: 600; cursor: pointer; transition: all .15s; }
 .size-btn:hover { border-color: #c7b3f5; }
-.size-btn.on { background: var(--grad); border-color: transparent; color: #fff; box-shadow: var(--sh1); }
+.size-btn.on { background: linear-gradient(90deg, var(--brand), var(--brand2)); border-color: transparent; color: #fff; box-shadow: var(--sh1); }
 .link-btn { background: none; border: none; color: #7c3aed; font-size: 13px; font-weight: 600; cursor: pointer; padding: 4px 2px; text-decoration: underline; }
 .size-chart { margin-top: 8px; background: #faf9ff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
 .size-chart table { width: 100%; border-collapse: collapse; font-size: 13px; }
