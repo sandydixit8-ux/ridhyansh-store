@@ -60,7 +60,7 @@ function seedIfEmpty() {
   if (v < 2) { lsSet("rh_products", SEED); lsSet("rh_seed_v", 2); }
 }
 
-var CDB = "";
+var CDB = "https://ridhyansh-18715-default-rtdb.asia-southeast1.firebasedatabase.app";
 function dbUrl() {
   var u = (sett().rh_cdb || "").trim();
   return u || CDB;
