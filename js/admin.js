@@ -217,7 +217,7 @@ function saveSettings() {
   $("pass").value = "";
   toast("Settings save ho gayi ✔");
   setTimeout(function () { $("settMsg").textContent = ""; }, 500);
-  if (s.rh_cdb && s.rh_fbkey && s.rh_fbemail && s.rh_fbpass) {
+  if (s.rh_cdb && s.rh_fbemail && s.rh_fbpass) {
     fbBootstrap().then(function (r) {
       if (r.ok) { toast("Firebase auth connected — owner verified ✔", "ok"); s.rh_fbuid = r.au.localId; saveSett(s); }
       else toast("config already set ya owner field check karo.", "bad");
@@ -225,7 +225,7 @@ function saveSettings() {
       toast("Firebase setup me galti — Email/Password check karo.", "bad");
     });
   } else if (s.rh_cdb) {
-    toast("Secure publish ke liye Firebase API Key + Email + Password bhi bharo.", "bad");
+    toast("Secure publish ke liye Firebase Email + Password bharo.", "bad");
   }
 }
 
