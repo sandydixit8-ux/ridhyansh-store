@@ -98,12 +98,13 @@ function comboSubs() {
 
 function syncSub() {
   var has = !!SUBS[$("pcat").value];
-  var w = $("psubWrap");
-  if (!has) { w.classList.add("hidden"); return; }
-  w.classList.remove("hidden");
-  var h = "";
-  comboSubs().forEach(function (s2) { h += '<option value="' + esc(s2) + '">' + esc(s2) + "</option>"; });
-  $("psub").innerHTML = h;
+  $("psubWrap").classList.toggle("hidden", !has);
+  $("psizesWrap").classList.toggle("hidden", !has);
+  if (has) {
+    var h = "";
+    comboSubs().forEach(function (s2) { h += '<option value="' + esc(s2) + '">' + esc(s2) + "</option>"; });
+    $("psub").innerHTML = h;
+  }
 }
 
 function saveSettings() {
@@ -141,7 +142,11 @@ function addProduct() {
     img: imgs[0],
     desc: $("pdesc").value.trim()
   };
-  if (SUBS[prod.cat]) prod.sub = $("psub").value;
+  if (SUBS[prod.cat]) {
+    prod.sub = $("psub").value;
+    var sz = $("psizes").value.trim();
+    if (sz) prod.sizes = sz.split(",").map(function (x) { return x.trim(); }).filter(Boolean);
+  }
   p.push(prod);
   saveProds(p);
   $("pname").value = ""; $("pprice").value = ""; $("pdesc").value = "";
@@ -165,7 +170,7 @@ function renderList() {
   p.forEach(function (pr) {
     h += '<div class="plist-row">' + thumb(pr) +
       '<div class="plist-info"><b>' + esc(pr.name) + "</b>" +
-      '<span>' + catIcon(pr.cat) + " " + esc(pr.cat) + (pr.sub ? " · " + esc(pr.sub) : "") + " · " + inr(pr.price) + "</span></div>" +
+      '<span>' + catIcon(pr.cat) + " " + esc(pr.cat) + (pr.sub ? " · " + esc(pr.sub) : "") + " · " + inr(pr.price) + (pr.sizes && pr.sizes.length ? " · Sizes: " + esc(pr.sizes.join(", ")) : "") + "</span></div>" +
       '<button class="btn danger sm" data-del="' + pr.id + '">Delete</button></div>';
   });
   $("plist").innerHTML = h || '<div class="plist-empty">📮 Abhi koi product nahi — upar "Add Product" se daalo.</div>';
@@ -191,8 +196,7 @@ function genLink() {
   $("gqr").src = "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent(link);
   $("gcopy").onclick = function () { copyText(link, this); };
   var msg = "*" + s.shopName + "* — Payment due\nAmount: " + inr(amount) + "\nNote: " + note +
-    "\nPayment link (UPI, prepaid): " + link +
-    "\nCOD available nahi hai — pehle payment, phir dispatch.";
+    "\nPayment link (UPI, prepaid): " + link;
   $("gsend").href = "https://wa.me/" + waDigits(s.whatsapp) + "?text=" + encodeURIComponent(msg);
   $("genOut").classList.remove("hidden");
   $("genOut").scrollIntoView({ behavior: "smooth", block: "center" });

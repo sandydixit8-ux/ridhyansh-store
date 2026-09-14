@@ -81,7 +81,7 @@ function orderTable() {
   });
   $("orderRows").innerHTML = list.map(function (o) {
     return '<tr><td><b>' + esc(o.ref) + "</b><br><small>" + fmtTime(o.time) + "</small></td>" +
-      "<td>" + esc(o.product) + (o.sub ? ' <small>· ' + esc(o.sub) + "</small>" : "") + "</td>" +
+      "<td>" + esc(o.product) + (o.sub ? ' <small>· ' + esc(o.sub) + "</small>" : "") + (o.size ? ' <small>· Size ' + esc(o.size) + "</small>" : "") + "</td>" +
       "<td>" + o.qty + "</td>" +
       "<td><b>" + inr(o.amount) + "</b></td>" +
       "<td><small>" + esc(o.name) + "<br>" + esc(o.phone) + "</small></td>" +

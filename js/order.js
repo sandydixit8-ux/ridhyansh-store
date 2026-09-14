@@ -4,6 +4,7 @@ var s = sett();
 var sel = document.getElementById("product");
 var prods = getProds();
 var picked = null;
+var selSize = "";
 
 function $(id) { return document.getElementById(id); }
 
@@ -30,6 +31,7 @@ function total() {
 
 function refresh() {
   pick();
+  selSize = "";
   var amt = total();
   $("sqty").textContent = qt();
   $("stotal").textContent = picked ? inr(picked.price) + " × " + qt() : "—";
@@ -42,7 +44,27 @@ function refresh() {
     $("simg").style.backgroundPosition = "center";
     $("sprice").textContent = inr(picked.price);
   }
+  renderSizes();
 }
+
+function renderSizes() {
+  var sw = $("sizeWrap");
+  if (!picked || !picked.sizes || !picked.sizes.length) { sw.classList.add("hidden"); return; }
+  sw.classList.remove("hidden");
+  $("sizeBtns").innerHTML = picked.sizes.map(function (sz) {
+    return '<button type="button" class="size-btn" data-sz="' + esc(sz) + '">' + esc(sz) + '</button>';
+  }).join("");
+}
+
+$("sizeBtns").addEventListener("click", function (e) {
+  var b = e.target.closest(".size-btn");
+  if (!b) return;
+  document.querySelectorAll(".size-btn").forEach(function (x) { x.classList.remove("on"); });
+  b.classList.add("on");
+  selSize = b.getAttribute("data-sz");
+});
+
+$("sizeChartBtn").addEventListener("click", function () { $("sizeChart").classList.toggle("hidden"); });
 
 document.title = (s.shopName || "Ridhyansh") + " — Place Order";
 $("brand").textContent = s.shopName;
@@ -69,6 +91,7 @@ $("pay").addEventListener("click", function () {
   if (!picked) { showErr("Pehle product chuniye."); return; }
   if (!name || !phone || phone.replace(/\D/g, "").length < 10) { showErr("Naam aur sahi 10-digit phone number likhiye."); return; }
   if (!addr) { showErr("Delivery address likhiye."); return; }
+  if (picked.sizes && picked.sizes.length && !selSize) { showErr("Pehle size select kijiye."); return; }
 
   var amount = Math.round(total());
   var code = refCode();
@@ -81,6 +104,7 @@ $("pay").addEventListener("click", function () {
     product: picked.name,
     cat: picked.cat,
     sub: picked.sub || "",
+    size: selSize || "",
     qty: qty,
     amount: amount,
     name: name,
@@ -97,12 +121,12 @@ $("pay").addEventListener("click", function () {
 
   var msg = "*" + s.shopName + "* — New Order\n" +
     "Order: *" + code + "*\n" +
-    "Product: " + picked.name + " × " + qty + "\n" +
+    "Product: " + picked.name + " × " + qty + (selSize ? " (Size: " + selSize + ")" : "") + "\n" +
     "Amount: " + inr(amount) + "\n" +
     "Name: " + name + "\n" +
     "Phone: " + phone + "\n" +
     "Address: " + addr + "\n" +
-    "Payment link (prepaid/UPI): " + link;
+    "Payment link (UPI, prepaid): " + link;
   $("wa").href = "https://wa.me/" + waDigits(s.whatsapp) + "?text=" + encodeURIComponent(msg);
 
   $("st3").classList.add("active");
