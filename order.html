@@ -1,23 +1,23 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ridhyansh — Place Order</title>
+<title>Ridhyansh â€” Place Order</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=2">
+<link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body>
 
 <header class="top">
   <div class="wrap head">
-    <a class="logo" href="index.html">🛍️ <span id="brand">Ridhyansh</span></a>
+    <a class="logo" href="index.html">ðŸ›ï¸ <span id="brand">Ridhyansh</span></a>
     <nav>
       <a href="index.html">Store</a>
       <a href="order.html" class="active">Order</a>
-      <a href="dashboard.html">📊 Dashboard</a>
-      <a href="login.html" class="nav-link-btn" title="Admin login">🔐 Admin</a>
+      <a href="dashboard.html">ðŸ“Š Dashboard</a>
+      <a href="login.html" class="nav-link-btn" title="Admin login">ðŸ” Admin</a>
     </nav>
   </div>
 </header>
@@ -39,15 +39,15 @@
       <div class="hidden" id="sizeWrap">
         <label>Select Size</label>
         <div class="size-btns" id="sizeBtns"></div>
-        <button type="button" class="link-btn" id="sizeChartBtn">📏 Size Chart</button>
+        <button type="button" class="link-btn" id="sizeChartBtn">ðŸ“ Size Chart</button>
         <div class="size-chart hidden" id="sizeChart">
           <table><thead><tr><th>Size</th><th>Chest (in.)</th><th>Shoulder</th><th>Sleeve</th></tr></thead>
           <tbody>
-            <tr><td>S</td><td>36–38</td><td>16</td><td>24</td></tr>
-            <tr><td>M</td><td>38–40</td><td>17</td><td>25</td></tr>
-            <tr><td>L</td><td>40–42</td><td>18</td><td>25.5</td></tr>
-            <tr><td>XL</td><td>42–44</td><td>19</td><td>26</td></tr>
-            <tr><td>XXL</td><td>44–46</td><td>20</td><td>26.5</td></tr>
+            <tr><td>S</td><td>36â€“38</td><td>16</td><td>24</td></tr>
+            <tr><td>M</td><td>38â€“40</td><td>17</td><td>25</td></tr>
+            <tr><td>L</td><td>40â€“42</td><td>18</td><td>25.5</td></tr>
+            <tr><td>XL</td><td>42â€“44</td><td>19</td><td>26</td></tr>
+            <tr><td>XXL</td><td>44â€“46</td><td>20</td><td>26.5</td></tr>
           </tbody></table>
         </div>
       </div>
@@ -59,7 +59,7 @@
         <div>
           <label for="qty">Quantity</label>
           <div class="qty-group">
-            <button class="qtybtn" data-q="-1">−</button>
+            <button class="qtybtn" data-q="-1">âˆ’</button>
             <input type="number" id="qty" value="1" min="1">
             <button class="qtybtn" data-q="1">+</button>
           </div>
@@ -80,40 +80,40 @@
     <div class="card sticky">
       <h3>Order Summary</h3>
       <div class="summary-product">
-        <div class="simg" id="simg">🛍️</div>
+        <div class="simg" id="simg">ðŸ›ï¸</div>
         <div class="sinfo"><b id="sname">Select a product</b><span id="sprice"></span></div>
       </div>
-      <div class="srow"><span>Price × <b id="sqty">1</b></span><span id="stotal"></span></div>
+      <div class="srow"><span>Price Ã— <b id="sqty">1</b></span><span id="stotal"></span></div>
       <div class="divider"></div>
       <div class="srow sgrand"><span>To pay</span><b id="grand"></b></div>
-      <div class="prepaid-badge">🔒 100% Prepaid</div>
-      <button class="btn primary full" id="pay">Generate UPI Payment Link →</button>
+      <div class="prepaid-badge">ðŸ”’ 100% Prepaid</div>
+      <button class="btn primary full" id="pay">Generate UPI Payment Link â†’</button>
     </div>
   </aside>
 </main>
 
 <section class="successbox hidden" id="result">
   <div class="wrap inner">
-    <div class="suc-head">✅ Payment link ready!</div>
+    <div class="suc-head">âœ… Payment link ready!</div>
     <div class="suc-grid">
       <div class="suc-left">
         <div class="ordref">Order: <b id="ref"></b></div>
-        <div class="bigamnt" id="amnt">₹0</div>
-        <p class="hint">Yeh UPI link sirf ek baar ka hai — apne order ke liye:</p>
+        <div class="bigamnt" id="amnt">â‚¹0</div>
+        <p class="hint">Yeh UPI link sirf ek baar ka hai â€” apne order ke liye:</p>
         <div class="qrwrap"><img id="qr" alt="Payment QR"></div>
         <button class="btn copy-btn" id="copy">Copy Payment Link</button>
-        <a class="btn primary full" id="uplink" href="#" target="_blank" rel="noopener">Open in UPI App →</a>
-        <a class="btn whatsapp full" id="wa" href="#" target="_blank" rel="noopener">Send order on WhatsApp ✔</a>
+        <a class="btn primary full" id="uplink" href="#" target="_blank" rel="noopener">Open in UPI App â†’</a>
+        <a class="btn whatsapp full" id="wa" href="#" target="_blank" rel="noopener">Send order on WhatsApp âœ”</a>
       </div>
       <div class="suc-right">
         <h4>Payment steps</h4>
         <ol class="paysteps">
-          <li><b>Link ya QR scan</b> karo — UPI app khulega</li>
-          <li><b>Amount verify</b> karo — sirf apna amount dekho</li>
-          <li><b>Pay</b> karo — PIN daalo</li>
+          <li><b>Link ya QR scan</b> karo â€” UPI app khulega</li>
+          <li><b>Amount verify</b> karo â€” sirf apna amount dekho</li>
+          <li><b>Pay</b> karo â€” PIN daalo</li>
           <li><b>WhatsApp</b> pe seller ko screenshot ya order detail bhejo</li>
         </ol>
-        <p class="warn">⚠️ Dispatch sirf payment confirm hone ke baad hoga.</p>
+        <p class="warn">âš ï¸ Dispatch sirf payment confirm hone ke baad hoga.</p>
       </div>
     </div>
   </div>
@@ -121,7 +121,7 @@
 
 <footer class="foot">
   <div class="wrap foot-in">
-    <div class="logo">🛍️ <span>Ridhyansh</span></div>
+    <div class="logo">ðŸ›ï¸ <span>Ridhyansh</span></div>
     <p class="muted">Prepaid / UPI only.</p>
   </div>
 </footer>
