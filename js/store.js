@@ -66,18 +66,56 @@ function dbUrl() {
   return u || CDB;
 }
 
-function cget(path) {
+function fbKey() { return (sett().rh_fbkey || "").trim(); }
+function fbCreds() {
+  return { email: (sett().rh_fbemail || "").trim(), pass: sett().rh_fbpass || "" };
+}
+
+function fbLogin() {
+  var k = fbKey();
+  if (!k) return Promise.reject("nokey");
+  var c = fbCreds();
+  if (!c.email || !c.pass) return Promise.reject("nocreds");
+  function call(ep) {
+    return fetch("https://identitytoolkit.googleapis.com/v1/accounts:" + ep + "?key=" + encodeURIComponent(k), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: c.email, password: c.pass, returnSecureToken: true })
+    }).then(function (r) { return r.json(); });
+  }
+  return call("signInWithPassword").then(function (j) {
+    if (j.idToken) return j;
+    return call("signUp").then(function (j2) {
+      if (j2.idToken) return j2;
+      throw new Error("authfail");
+    });
+  });
+}
+
+function ensureOwner() {
+  return fbLogin().then(function (au) {
+    return cget("config").then(function (cfg) {
+      if (cfg && cfg.ownerUid && cfg.ownerUid !== au.localId) return false;
+      if (!cfg || !cfg.ownerUid) return cput("config", { ownerUid: au.localId });
+      return true;
+    });
+  });
+}
+
+function cget(path, tok) {
   var u = dbUrl();
   if (!u) return Promise.resolve(null);
-  return fetch(u + "/" + path + ".json", { cache: "no-store" })
+  var q = tok ? "?auth=" + encodeURIComponent(tok) : "";
+  return fetch(u + "/" + path + ".json" + q, { cache: "no-store" })
     .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error("http")); })
     .catch(function () { return null; });
 }
 
-function cput(path, data) {
+function cput(path, data, tok) {
   var u = dbUrl();
   if (!u) return Promise.resolve(false);
-  return fetch(u + "/" + path + ".json", {
+  var q = tok ? "?auth=" + encodeURIComponent(tok) : "";
+  return fetch(u + "/" + path + ".json" + q, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
@@ -98,8 +136,8 @@ function loadProds() {
   });
 }
 
-function loadOrders() {
-  return cget("orders").then(function (obj) {
+function loadOrders(tok) {
+  return cget("orders", tok).then(function (obj) {
     var list = getOrders();
     if (obj && typeof obj === "object") {
       Object.keys(obj).forEach(function (k) {

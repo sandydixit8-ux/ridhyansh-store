@@ -40,6 +40,12 @@
     <input type="text" id="pass" placeholder="current: admin@123">
     <label for="cdb">Cloud DB URL <span class="req">(optional — Firebase free RTDB URL, catalog/orders sab jagah share honge)</span></label>
     <input type="text" id="cdb" placeholder="https://myapp-default-rtdb.firebaseio.com">
+    <label for="fbkey">Firebase Auth API Key <span class="req">(SETTINGS → General → Web API Key — products/orders kew tum hi write kar paoge)</span></label>
+    <input type="text" id="fbkey" placeholder="AIzaSy...">
+    <label for="fbemail">Firebase Owner Email <span class="req">(koi bhi email — pehli save par account khud ban jayega)</span></label>
+    <input type="email" id="fbemail" placeholder="your@gmail.com">
+    <label for="fbpass">Firebase Owner Password <span class="req">(kam se kam 6 characters)</span></label>
+    <input type="password" id="fbpass" placeholder="••••••••">
     <button class="btn primary" id="saveSett">💾 Save Settings</button>
     <button class="btn secondary" id="pubCloud">⬆️ Publish catalog to cloud</button>
     <p class="hint" id="settMsg"></p>

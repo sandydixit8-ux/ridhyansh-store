@@ -20,6 +20,9 @@ function init() {
   $("whatsapp").value = s.whatsapp || "";
   $("addr").value = s.address || "";
   $("cdb").value = s.rh_cdb || "";
+  $("fbkey").value = s.rh_fbkey || "";
+  $("fbemail").value = s.rh_fbemail || "";
+  $("fbpass").value = s.rh_fbpass || "";
 
   var opts = "";
   CATS.forEach(function (c) { opts += '<option value="' + esc(c) + '">' + catIcon(c) + " " + esc(c) + "</option>"; });
@@ -180,22 +183,51 @@ function saveSettings() {
     s.rh_pass = $("pass").value.trim();
   }
   s.rh_cdb = $("cdb").value.trim();
+  s.rh_fbkey = $("fbkey").value.trim();
+  s.rh_fbemail = $("fbemail").value.trim();
+  s.rh_fbpass = $("fbpass").value.trim();
   saveSett(s);
   lsSet("rh_cred_v", 3);
   $("brand").textContent = s.shopName;
   $("pass").value = "";
   toast("Settings save ho gayi ✔");
   setTimeout(function () { $("settMsg").textContent = ""; }, 500);
+  if (s.rh_cdb && s.rh_fbkey && s.rh_fbemail && s.rh_fbpass) {
+    ensureOwner().then(function (ok) {
+      toast(ok ? "Firebase auth connected — owner verified ✔" : "Firebase owner setup dhyan se check karo.", ok ? "ok" : "bad");
+    }).catch(function () {
+      toast("Firebase setup me galti — API Key/Email/Password check karo.", "bad");
+    });
+  } else if (s.rh_cdb) {
+    toast("Secure publish ke liye Firebase API Key + Email + Password bhi bharo.", "bad");
+  }
+}
+
+function fbErrMsg(e) {
+  if (e === "nokey") return "Pehle Firebase Auth API Key Settings mein daalo.";
+  if (e === "nocreds") return "Pehle Firebase Owner Email/Password Settings mein daalo.";
+  return "Firebase auth fail — API Key/Email/Password check karo.";
 }
 
 function publishCloud() {
   if (!dbUrl()) { toast("Pehle Cloud DB URL Settings mein daalo.", "bad"); return; }
   var prods = getProds();
   if (!prods.length) { toast("Pehle products add karo phir publish karo.", "bad"); return; }
-  Promise.all(prods.map(function (p) { return cput("products/" + p.id, p); })).then(function (oks) {
+  fbLogin().then(function (au) {
+    var jobs = prods.map(function (p) { return cput("products/" + p.id, p, au.idToken); });
+    return cget("products", au.idToken).then(function (cloud) {
+      var localIds = prods.map(function (p) { return String(p.id); });
+      if (cloud && typeof cloud === "object") {
+        Object.keys(cloud).forEach(function (k) {
+          if (localIds.indexOf(k) === -1) jobs.push(cput("products/" + k, null, au.idToken));
+        });
+      }
+      return Promise.all(jobs);
+    });
+  }).then(function (oks) {
     var okAll = oks.every(Boolean);
     toast(okAll ? "Catalog cloud par publish ho gaya — sabko dikhega ✔" : "Publish fail — ho sakta hai ek product ke photos bahut bade hain.", okAll ? "ok" : "bad");
-  });
+  }).catch(function (e) { toast(fbErrMsg(e), "bad"); });
 }
 
 function addProduct() {

@@ -1,0 +1,18 @@
+{
+  "rules": {
+    "config": {
+      ".read": false,
+      ".write": "!data.exists()"
+    },
+    "products": {
+      ".read": true,
+      ".write": "auth.uid != null && auth.uid == root.child('config').child('ownerUid').val()"
+    },
+    "orders": {
+      ".read": "auth.uid != null && auth.uid == root.child('config').child('ownerUid').val()",
+      "$ref": {
+        ".write": "auth.uid != null && auth.uid == root.child('config').child('ownerUid').val() ? true : (!data.exists() && newData.hasChildren(['ref','name','phone','amount']))"
+      }
+    }
+  }
+}

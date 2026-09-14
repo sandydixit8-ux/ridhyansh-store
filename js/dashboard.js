@@ -12,8 +12,14 @@ $("brand").textContent = s.shopName;
 $("logout").addEventListener("click", function () { authClear(); location.href = "login.html"; });
 
 var orders = [];
+var fbTok = null;
 
-loadOrders().then(function (list) {
+function getFbTok() {
+  if (fbTok) return Promise.resolve(fbTok);
+  return fbLogin().then(function (au) { fbTok = au.idToken; return au.idToken; }).catch(function () { return null; });
+}
+
+getFbTok().then(function (tok) { return loadOrders(tok); }).then(function (list) {
   orders = list;
   renderAll();
 });
@@ -119,7 +125,7 @@ document.addEventListener("click", function (e) {
     orders.forEach(function (x) { if (x.ref === r) x.status = "paid"; });
     saveOrders(orders);
     var paid = orders.filter(function (x) { return x.ref === r; })[0];
-    if (paid && dbUrl()) cput("orders/" + r, paid);
+    if (paid) getFbTok().then(function (tok) { cput("orders/" + r, paid, tok); });
     toast(r + " marked as PAID ✔");
     renderAll();
     return;
@@ -129,9 +135,10 @@ document.addEventListener("click", function (e) {
     if (!confirm("Yeh order delete karna hai?")) return;
     var r2 = d.getAttribute("data-delorder");
     saveOrders(orders.filter(function (x) { return x.ref !== r2; }));
-    if (dbUrl()) cput("orders/" + r2, null);
-    toast("Order delete ho gaya.");
-    loadOrders().then(function (l) { orders = l; renderAll(); });
+    getFbTok().then(function (tok) {
+      if (tok) cput("orders/" + r2, null, tok);
+      return loadOrders(tok);
+    }).then(function (l) { orders = l; renderAll(); });
   }
 });
 
