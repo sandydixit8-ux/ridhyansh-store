@@ -66,7 +66,7 @@ function dbUrl() {
   return u || CDB;
 }
 
-function fbKey() { return (sett().rh_fbkey || "").trim(); }
+function fbKey() { return (sett().rh_fbkey || "AIzaSyAl9TCiymhOVVgwwleS9C91s6nlUFoZW30").trim(); }
 function fbCreds() {
   return { email: (sett().rh_fbemail || "").trim(), pass: sett().rh_fbpass || "" };
 }
