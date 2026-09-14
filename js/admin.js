@@ -136,9 +136,17 @@ function cloudSlim(p, cb) {
   var done = 0;
   src.forEach(function (srcImg) {
     resizeImage(srcImg, 380, function (small) {
-      slim.images.push(small || srcImg);
-      done++;
-      if (done >= total) { slim.img = slim.images[0]; cb(slim); }
+      if (small && small.length > 180000) {
+        resizeImage(srcImg, 240, function (tiny) {
+          slim.images.push((tiny && tiny.length < small.length) ? tiny : small);
+          done++;
+          if (done >= total) { slim.img = slim.images[0]; cb(slim); }
+        }, 0.35);
+      } else {
+        slim.images.push(small || srcImg);
+        done++;
+        if (done >= total) { slim.img = slim.images[0]; cb(slim); }
+      }
     }, 0.5);
   });
 }
@@ -237,20 +245,23 @@ function publishCloud() {
         cloudSlim(p, function (sl) { slimmed.push(sl); if (--left === 0) resolve(slimmed); });
       });
     }).then(function (slimmed) {
-      var jobs = slimmed.map(function (p) { return cput("products/" + p.id, p, au.idToken); });
+      var jobs = slimmed.map(function (p) {
+        return cput("products/" + p.id, p, au.idToken).then(function (ok) { return { id: p.id, name: p.name, ok: ok }; });
+      });
       return cget("products", au.idToken).then(function (cloud) {
         var localIds = prods.map(function (p) { return String(p.id); });
         if (cloud && typeof cloud === "object") {
           Object.keys(cloud).forEach(function (k) {
-            if (localIds.indexOf(k) === -1) jobs.push(cput("products/" + k, null, au.idToken));
+            if (localIds.indexOf(k) === -1) jobs.push(cput("products/" + k, null, au.idToken).then(function (ok) { return { id: k, name: "(purana)", ok: ok }; }));
           });
         }
         return Promise.all(jobs);
       });
     });
   }).then(function (oks) {
-    var okAll = oks.every(Boolean);
-    toast(okAll ? "Catalog cloud par publish ho gaya — sabko dikhega ✔" : "Publish fail — ek product ki photos ab bhi bahut badi hain.", okAll ? "ok" : "bad");
+    var fails = oks.filter(function (x) { return !x.ok; });
+    if (!fails.length) { toast("Catalog cloud par publish ho gaya — sabko dikhega ✔", "ok"); return; }
+    toast("Publish fail: " + fails.map(function (f) { return f.name; }).join(", ") + " — photos bahut badi hain. Un product ko dubara (kam resolution) photos ke saath add karo.", "bad");
   }).catch(function (e) { toast(fbErrMsg(e), "bad"); });
 }
 
