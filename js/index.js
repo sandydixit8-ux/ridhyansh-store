@@ -61,8 +61,28 @@ function grid() {
     return inCat && inSub && inQ;
   });
   $("grid").innerHTML = list.map(card).join("");
+  $("resCount").textContent = list.length + (list.length === 1 ? " product" : " products");
   $("empty").classList.toggle("hidden", list.length > 0);
   document.body.classList.toggle("has-products", list.length > 0);
+}
+
+function heroArt() {
+  var imgs = PRODS.map(firstImg).filter(Boolean);
+  [["hcImg1", 0], ["hcImg2", 1], ["hcImg3", 2]].forEach(function (pair) {
+    var el = $(pair[0]);
+    if (el && imgs[pair[1]]) el.src = imgs[pair[1]];
+  });
+}
+
+function waFloat() {
+  var a = document.createElement("a");
+  a.className = "wa-float";
+  a.href = "https://wa.me/" + waDigits(s.whatsapp) + "?text=" + encodeURIComponent("Hi! Mujhe Ridhyansh par order karna hai.");
+  a.target = "_blank";
+  a.rel = "noopener";
+  a.innerHTML = "💬";
+  a.title = "WhatsApp se poochho";
+  document.body.appendChild(a);
 }
 
 var galImg = [], gi = 0;
@@ -147,5 +167,7 @@ tabs();
 renderSubs();
 loadProds().then(function (list) {
   PRODS = list;
+  heroArt();
   grid();
 });
+waFloat();

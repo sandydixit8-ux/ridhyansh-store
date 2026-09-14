@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ridhyansh — Online Store</title>
 <meta name="description" content="Ridhyansh — online store. 5 categories, UPI payment links, home delivery.">
 <meta property="og:type" content="website">
@@ -12,7 +12,7 @@
 <meta property="og:image" content="https://sandydixit8-ux.github.io/ridhyansh-store/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=4">
+<link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
 
@@ -47,8 +47,10 @@
     <div class="hero-art">
       <div class="blob b1"></div>
       <div class="blob b2"></div>
-      <div class="card3d">🛍️</div>
-      <div class="float f1">🔒 Prepaid only</div>
+      <div class="imgcard c1"><img id="hcImg1" alt=""></div>
+      <div class="imgcard c2"><img id="hcImg2" alt=""></div>
+      <div class="imgcard c3"><img id="hcImg3" alt=""></div>
+      <div class="float f1">⚡ 24h dispatch</div>
       <div class="float f2">5 Categories</div>
       <div class="float f3">UPI ✔</div>
     </div>
@@ -67,6 +69,7 @@
 <main class="wrap">
   <div class="cats" id="cats"></div>
   <div class="subs hidden" id="subs"></div>
+  <div class="catalog-head"><b>Products</b><span id="resCount"></span></div>
   <section class="grid" id="grid"></section>
 
   <div class="empty-box hidden" id="empty">
@@ -108,7 +111,7 @@
   <div class="lb-count" id="lbCount"></div>
 </div>
 
-<script src="js/store.js?v=10"></script>
-<script src="js/index.js?v=10"></script>
+<script src="js/store.js?v=11"></script>
+<script src="js/index.js?v=11"></script>
 </body>
 </html>
