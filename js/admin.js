@@ -39,6 +39,7 @@ function init() {
   });
 
   renderList();
+  showStorage();
 }
 
 var curImgs = [];
@@ -63,7 +64,7 @@ function readNext(files, i) {
   if (f.size > 8 * 1024 * 1024) { toast("Har photo 8 MB se chhota chahiye.", "bad"); readNext(files, i + 1); return; }
   var rd = new FileReader();
   rd.onload = function () {
-    resizeImage(rd.result, 900, function (small) {
+    resizeImage(rd.result, 640, function (small) {
       curImgs.push(small || rd.result);
       renderPrev();
       readNext(files, i + 1);
@@ -100,6 +101,49 @@ function rmPrevAt(ix) {
   curImgs.splice(ix, 1);
   $("pfile").value = "";
   renderPrev();
+}
+
+function resizeImage(dataUrl, maxW, cb) {
+  var img = new Image();
+  img.onload = function () {
+    try {
+      var scale = Math.min(1, maxW / img.width);
+      var cw = Math.round(img.width * scale);
+      var ch = Math.round(img.height * scale);
+      var cv = document.createElement("canvas");
+      cv.width = cw;
+      cv.height = ch;
+      var ctx = cv.getContext("2d");
+      ctx.drawImage(img, 0, 0, cw, ch);
+      cb(cv.toDataURL("image/jpeg", 0.72));
+    } catch (e) { cb(dataUrl); }
+  };
+  img.onerror = function () { cb(dataUrl); };
+  img.src = dataUrl;
+}
+
+function storageUsed() {
+  try {
+    var n = 0;
+    ["rh_products", "rh_orders", "rh_settings"].forEach(function (k) {
+      var v = localStorage.getItem(k);
+      if (v) n += v.length;
+    });
+    return (n / 1024 / 1024).toFixed(2) + " MB";
+  } catch (e) { return "?"; }
+}
+
+function showStorage() {
+  var el = $("storeMeter");
+  if (!el) return;
+  var n = 0;
+  var v = localStorage.getItem("rh_products");
+  if (v) n += v.length;
+  var pct = Math.min(100, Math.round((n / (4.5 * 1024 * 1024)) * 100));
+  el.innerHTML = "Storage: <b>" + storageUsed() + "</b> / ~5 MB";
+  if (pct > 70) el.className = "hint warn";
+  else if (pct > 45) el.className = "hint";
+  el.title = localStorage.getItem("rh_products") ? "Products data: " + (localStorage.getItem("rh_products").length / 1024).toFixed(0) + " KB" : "Products data: 0 KB";
 }
 
 function comboSubs() {
@@ -166,7 +210,7 @@ function addProduct() {
   }
   p.push(prod);
   if (!saveProds(p)) {
-    $("prodMsg").textContent = "Storage bhar gaya hai — purane products delete karo ya photos kam karo (छोटी photos).";
+    $("prodMsg").textContent = "Storage bhar gaya hai — purane products delete karo ya photos kam karo (chhoti photos milegi).";
     p.pop();
     return;
   }
