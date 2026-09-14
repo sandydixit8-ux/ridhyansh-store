@@ -6,7 +6,7 @@
 <title>Ridhyansh — Place Order</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=7">
+<link rel="stylesheet" href="css/style.css?v=8">
 </head>
 <body>
 
@@ -36,6 +36,10 @@
       <h2>Select product</h2>
       <label for="product">Product</label>
       <div class="select-wrap"><select id="product"></select></div>
+      <div class="order-gal hidden" id="orderGal">
+        <label>Photos <span class="req">(tap karke bada dekho)</span></label>
+        <div class="order-gal-strip" id="orderGalStrip"></div>
+      </div>
       <div class="hidden" id="sizeWrap">
         <label>Select Size</label>
         <div class="size-btns" id="sizeBtns"></div>
@@ -126,7 +130,16 @@
   </div>
 </footer>
 
-<script src="js/store.js?v=13"></script>
-<script src="js/order.js?v=13"></script>
+<div class="lb hidden" id="lb">
+  <button class="lb-x" id="lbClose" title="Close">✕</button>
+  <button class="lb-nav" id="lbPrev">‹</button>
+  <img id="lbImg" alt="product photo">
+  <button class="lb-nav" id="lbNext">›</button>
+  <div class="lb-thumbs" id="lbThumbs"></div>
+  <div class="lb-count" id="lbCount"></div>
+</div>
+
+<script src="js/store.js?v=14"></script>
+<script src="js/order.js?v=14"></script>
 </body>
 </html>

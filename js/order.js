@@ -44,8 +44,54 @@ function refresh() {
     $("simg").style.backgroundPosition = "center";
     $("sprice").innerHTML = mrpHtml(picked);
   }
+  renderGallery();
   renderSizes();
 }
+
+function renderGallery() {
+  var gal = $("orderGal");
+  var strip = $("orderGalStrip");
+  var ims = picked ? imgsOf(picked) : [];
+  if (!ims.length) { gal.classList.add("hidden"); strip.innerHTML = ""; return; }
+  gal.classList.remove("hidden");
+  strip.innerHTML = ims.map(function (d, i) {
+    return '<img class="og-th' + (i === 0 ? " act" : "") + '" data-g="' + i + '" src="' + esc(d) + '" alt="" loading="lazy">';
+  }).join("");
+}
+
+var galImg = [], gi = 0;
+function openGal(ix) {
+  galImg = picked ? imgsOf(picked) : [];
+  if (!galImg.length) return;
+  gi = Math.min(Math.max(ix || 0, 0), galImg.length - 1);
+  drawGal();
+  $("lb").classList.remove("hidden");
+  document.body.classList.add("lb-open");
+}
+function drawGal() {
+  $("lbImg").src = galImg[gi];
+  $("lbCount").textContent = (gi + 1) + " / " + galImg.length;
+  $("lbPrev").classList.toggle("hidden", gi === 0);
+  $("lbNext").classList.toggle("hidden", gi >= galImg.length - 1);
+  $("lbThumbs").innerHTML = galImg.map(function (d, i) {
+    return '<img class="lb-th' + (i === gi ? " act" : "") + '" data-go="' + i + '" src="' + d + '" alt="">';
+  }).join("");
+  var act = $("lbThumbs").querySelector(".lb-th.act");
+  if (act) act.scrollIntoView({ block: "nearest", inline: "center" });
+}
+function closeGal() {
+  $("lb").classList.add("hidden");
+  document.body.classList.remove("lb-open");
+  galImg = [];
+}
+$("lbClose").addEventListener("click", closeGal);
+$("lbPrev").addEventListener("click", function () { if (gi > 0) { gi--; drawGal(); } });
+$("lbNext").addEventListener("click", function () { if (gi < galImg.length - 1) { gi++; drawGal(); } });
+$("lb").addEventListener("click", function (e) {
+  var go = e.target.closest(".lb-th");
+  if (go) { gi = +go.dataset.go; drawGal(); return; }
+  if (e.target === $("lb")) closeGal();
+});
 
 function renderSizes() {
   var sw = $("sizeWrap");
@@ -77,12 +123,23 @@ sel.addEventListener("change", refresh);
 $("qty").addEventListener("input", refresh);
 
 document.addEventListener("click", function (e) {
+  var g = e.target.closest("[data-g]");
+  if (g) { openGal(+g.getAttribute("data-g")); return; }
   var b = e.target.closest(".qtybtn");
   if (b) {
     var n = qt() + parseInt(b.getAttribute("data-q"), 10);
     $("qty").value = Math.max(1, n);
     refresh();
   }
+});
+
+document.addEventListener("keydown", function (e) {
+  if (!galImg.length) return;
+  if (e.key === "ArrowRight") gi = Math.min(galImg.length - 1, gi + 1);
+  else if (e.key === "ArrowLeft") gi = Math.max(0, gi - 1);
+  else if (e.key === "Escape") closeGal();
+  else return;
+  drawGal();
 });
 
 $("pay").addEventListener("click", function () {

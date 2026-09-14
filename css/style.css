@@ -253,6 +253,18 @@ textarea { resize: vertical; }
 
 .errbox { background: #fdecec; border: 1px solid #f6c9c9; color: var(--red); padding: 14px 16px; border-radius: 12px; font-weight: 600; margin-top: 16px; }
 
+.order-gal { margin-top: 4px; }
+.order-gal .label { margin: 12px 0 6px; }
+.order-gal-strip { display: flex; gap: 8px; overflow-x: auto; padding: 4px 2px 8px; scrollbar-width: thin; }
+.order-gal-strip::-webkit-scrollbar { height: 6px; }
+.order-gal-strip::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }
+.order-gal-strip .og-th {
+  width: 96px; height: 96px; min-width: 96px; object-fit: cover; border-radius: 12px;
+  cursor: pointer; border: 2px solid var(--line); background: #fff; transition: border-color .15s, transform .15s;
+}
+.order-gal-strip .og-th.act { border-color: var(--brand); }
+.order-gal-strip .og-th:hover { transform: translateY(-2px); border-color: var(--brand2); }
+
 .sticky { position: sticky; top: 80px; }
 .summary-product { display: flex; gap: 12px; align-items: center; margin: 6px 0 14px; }
 .simg {
