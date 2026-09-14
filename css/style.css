@@ -19,6 +19,8 @@
 
 html { scroll-behavior: smooth; }
 
+html, body { overflow-x: hidden; }
+
 body {
   font-family: "Inter", "Segoe UI", Arial, sans-serif;
   background: var(--bg);
@@ -169,7 +171,9 @@ nav a.active { background: var(--ink); color: #fff; }
 .pdesc { color: var(--muted); font-size: 13px; }
 .rate { margin-top: 7px; font-size: 12.5px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
 .stars { color: var(--gold); letter-spacing: 1px; }
-.prow { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; flex-wrap: wrap; gap: 8px; }
+.prow { display: flex; align-items: center; gap: 4px; margin-top: 10px; flex-wrap: wrap; }
+.cbtn-wrap { margin-top: 10px; }
+.cbtn-wrap .btn { width: 100%; }
 .price { font-size: 19px; font-weight: 800; font-family: "Poppins", sans-serif; }
 .mrp { color: var(--muted); font-size: 14px; text-decoration-line: line-through; margin-right: 5px; }
 .off { color: #0a8f3c; font-weight: 800; font-size: 13px; background: rgba(10, 143, 60, .12); padding: 2px 7px; border-radius: 999px; margin-left: 6px; white-space: nowrap; }
@@ -549,6 +553,7 @@ input[type="file"] { padding: 9px; font-size: 14px; cursor: pointer; }
   .subs::-webkit-scrollbar { display: none; }
   .catalog-head { margin: 4px 0 12px; }
   .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .grid .product { min-width: 0; }
   .imgbox { height: 148px; }
   .card-strip { gap: 4px; padding: 6px; }
   .card-strip .gthumb { width: 36px; height: 36px; min-width: 36px; border-radius: 7px; }
@@ -557,11 +562,12 @@ input[type="file"] { padding: 9px; font-size: 14px; cursor: pointer; }
   .pbody h3 { font-size: 13px; margin: 7px 0 2px; }
   .pdesc { font-size: 12px; }
   .rate { margin-top: 6px; font-size: 11.5px; }
-  .prow { margin-top: 9px; }
-  .price { font-size: 15px; }
-  .mrp { font-size: 12px; }
-  .off { font-size: 11px; padding: 1px 6px; margin-left: 4px; }
-  .btn.sm { padding: 7px 11px; font-size: 12.5px; }
+  .prow { margin-top: 8px; gap: 3px 4px; }
+  .product .mrp { font-size: 11px; margin-right: 3px; }
+  .product .price { font-size: 14px; }
+  .product .off { font-size: 10.5px; padding: 1px 6px; margin-left: 0; }
+  .cbtn-wrap { margin-top: 8px; }
+  .cbtn-wrap .btn { padding: 8px 8px; font-size: 12.5px; }
   .wa-float { display: flex; }
   body { padding-bottom: env(safe-area-inset-bottom); }
 }
