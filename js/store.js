@@ -50,7 +50,10 @@ function authClear() { sessionStorage.removeItem("rh_auth"); }
 function saveSett(s) { lsSet("rh_settings", s); }
 
 function getProds() { return lsGet("rh_products", []); }
-function saveProds(p) { lsSet("rh_products", p); }
+function saveProds(p) {
+  try { lsSet("rh_products", p); return true; }
+  catch (e) { return false; }
+}
 
 function seedIfEmpty() {
   var v = lsGet("rh_seed_v", 0);

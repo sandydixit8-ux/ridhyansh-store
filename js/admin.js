@@ -42,17 +42,23 @@ function init() {
 }
 
 var curImgs = [];
+var busy = false;
 
 function onPickPhoto() {
   var files = Array.prototype.slice.call($("pfile").files);
   var room = 5 - curImgs.length;
   if (files.length > room) { toast("Zyada se zyada 5 photos choose kar sakte ho.", "bad"); }
   files = files.slice(0, room);
+  busy = true;
+  $("addProd").disabled = true;
+  $("addProd").textContent = "Photos load ho rahi hain…";
+  $("imgCount").textContent = "⌛ photos load ho rahi hain…";
+  $("imgCount").className = "hint warn";
   readNext(files, 0);
 }
 
 function readNext(files, i) {
-  if (i >= files.length) { renderPrev(); return; }
+  if (i >= files.length) { finishPick(); return; }
   var f = files[i];
   if (f.size > 8 * 1024 * 1024) { toast("Har photo 8 MB se chhota chahiye.", "bad"); readNext(files, i + 1); return; }
   var rd = new FileReader();
@@ -63,7 +69,17 @@ function readNext(files, i) {
       readNext(files, i + 1);
     });
   };
+  rd.onerror = function () { toast("Photo " + (f.name || "") + " padhni nahi aayi.", "bad"); readNext(files, i + 1); };
   rd.readAsDataURL(f);
+}
+
+function finishPick() {
+  busy = false;
+  $("addProd").disabled = false;
+  $("addProd").textContent = "＋ Add Product";
+  renderPrev();
+  if (curImgs.length < 3) toast("Kam se kam 3 photos chunni hain.", "bad");
+  else toast(curImgs.length + " photos ready ✔", "ok");
 }
 
 function renderPrev() {
@@ -126,6 +142,7 @@ function saveSettings() {
 }
 
 function addProduct() {
+  if (busy) { toast("Ruko, photos load ho rahi hain…", "bad"); return; }
   var n = $("pname").value.trim();
   var price = parseInt($("pprice").value, 10);
   if (!n || !price || price < 1) { toast("Naam aur sahi price dono chahiye.", "bad"); return; }
@@ -148,7 +165,12 @@ function addProduct() {
     if (sz) prod.sizes = sz.split(",").map(function (x) { return x.trim(); }).filter(Boolean);
   }
   p.push(prod);
-  saveProds(p);
+  if (!saveProds(p)) {
+    $("prodMsg").textContent = "Storage bhar gaya hai — purane products delete karo ya photos kam karo (छोटी photos).";
+    p.pop();
+    return;
+  }
+  $("prodMsg").textContent = "";
   $("pname").value = ""; $("pprice").value = ""; $("pdesc").value = "";
   $("pfile").value = "";
   curImgs = [];
