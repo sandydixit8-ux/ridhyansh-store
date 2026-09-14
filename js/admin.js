@@ -218,10 +218,11 @@ function saveSettings() {
   toast("Settings save ho gayi ✔");
   setTimeout(function () { $("settMsg").textContent = ""; }, 500);
   if (s.rh_cdb && s.rh_fbkey && s.rh_fbemail && s.rh_fbpass) {
-    ensureOwner().then(function (ok) {
-      toast(ok ? "Firebase auth connected — owner verified ✔" : "Firebase owner setup dhyan se check karo.", ok ? "ok" : "bad");
+    fbBootstrap().then(function (r) {
+      if (r.ok) { toast("Firebase auth connected — owner verified ✔", "ok"); s.rh_fbuid = r.au.localId; saveSett(s); }
+      else toast("config already set ya owner field check karo.", "bad");
     }).catch(function () {
-      toast("Firebase setup me galti — API Key/Email/Password check karo.", "bad");
+      toast("Firebase setup me galti — Email/Password check karo.", "bad");
     });
   } else if (s.rh_cdb) {
     toast("Secure publish ke liye Firebase API Key + Email + Password bhi bharo.", "bad");

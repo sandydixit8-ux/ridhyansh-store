@@ -71,7 +71,7 @@ function fbCreds() {
   return { email: (sett().rh_fbemail || "").trim(), pass: sett().rh_fbpass || "" };
 }
 
-function fbLogin() {
+function fbLogin(autoCreate) {
   var k = fbKey();
   if (!k) return Promise.reject("nokey");
   var c = fbCreds();
@@ -85,9 +85,18 @@ function fbLogin() {
   }
   return call("signInWithPassword").then(function (j) {
     if (j.idToken) return j;
+    if (!autoCreate) throw new Error(j.error ? j.error.message : "noauth");
     return call("signUp").then(function (j2) {
       if (j2.idToken) return j2;
       throw new Error(j2.error ? j2.error.message : "authfail");
+    });
+  });
+}
+
+function fbBootstrap() {
+  return fbLogin(true).then(function (au) {
+    return cput("config", { ownerUid: au.localId }).then(function (ok) {
+      return { au: au, ok: ok };
     });
   });
 }
