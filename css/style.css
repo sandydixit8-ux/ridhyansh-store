@@ -326,7 +326,7 @@ textarea { resize: vertical; }
 
 .lb { position: fixed; inset: 0; background: rgba(0,0,0,.88); z-index: 9999; display: flex; align-items: center; justify-content: center; }
 .lb-x { position: absolute; top: 14px; right: 18px; font-size: 28px; color: #fff; background: none; border: none; cursor: pointer; z-index: 10; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
-.lb-nav { position: absolute; top: 50%; transform: translateY(-50%); font-size: 40px; color: #fff; background: rgba(255,255,255,.12); border: none; cursor: pointer; width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(6px); }
+.lb-nav { position: absolute; bottom: 112px; font-size: 34px; color: #fff; background: rgba(255,255,255,.14); border: none; cursor: pointer; width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(6px); z-index: 5; }
 .lb-nav:first-of-type { left: 12px; }
 .lb-nav:nth-of-type(2) { right: 12px; }
 .lb img { max-width: 88vw; max-height: 82vh; border-radius: 14px; object-fit: contain; box-shadow: 0 0 0 1px rgba(255,255,255,.08); }
