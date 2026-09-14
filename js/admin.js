@@ -237,12 +237,22 @@ function renderList() {
     h += '<div class="plist-row">' + thumb(pr) +
       '<div class="plist-info"><b>' + esc(pr.name) + "</b>" +
       '<span>' + catIcon(pr.cat) + " " + esc(pr.cat) + (pr.sub ? " · " + esc(pr.sub) : "") + " · " + inr(pr.price) + (pr.sizes && pr.sizes.length ? " · Sizes: " + esc(pr.sizes.join(", ")) : "") + "</span></div>" +
-      '<button class="btn danger sm" data-del="' + pr.id + '">Delete</button></div>';
+      '<div class="plist-actions">' +
+      '<button class="btn sm link2" data-link="' + pr.id + '" title="Product URL copy karo (ad mein dalna)">🔗 Link</button>' +
+      '<button class="btn danger sm" data-del="' + pr.id + '">Delete</button>' +
+      "</div></div>";
   });
   $("plist").innerHTML = h || '<div class="plist-empty">📮 Abhi koi product nahi — upar "Add Product" se daalo.</div>';
 }
 
 document.addEventListener("click", function (e) {
+  var link = e.target.closest("[data-link]");
+  if (link) {
+    var base = location.href.split("admin.html")[0] || location.href;
+    copyText(base + "order.html?p=" + link.getAttribute("data-link"), link);
+    toast("Product URL copy ho gaya — ad mein paste karo ✔", "ok");
+    return;
+  }
   var d = e.target.closest("[data-del]");
   if (!d) return;
   if (!confirm("Yeh product delete karna hai?")) return;
