@@ -78,7 +78,7 @@ function heroArt() {
 function waFloat() {
   var a = document.createElement("a");
   a.className = "wa-float";
-  a.href = "https://wa.me/" + waDigits(s.whatsapp) + "?text=" + encodeURIComponent("Hi! Mujhe Ridhyansh par order karna hai.");
+  a.href = "https://wa.me/" + waDigits(s.whatsapp) + "?text=" + encodeURIComponent("Hi! Mujhe Ridhyansh Store par order karna hai.");
   a.target = "_blank";
   a.rel = "noopener";
   a.innerHTML = "💬";

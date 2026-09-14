@@ -222,7 +222,7 @@ function syncSub() {
 }
 
 function saveSettings() {
-  s.shopName = $("shopName").value.trim() || "Ridhyansh";
+  s.shopName = $("shopName").value.trim() || "Ridhyansh Store";
   s.rh_user = $("user").value.trim() || "admin";
   s.upiId = $("upiId").value.trim();
   s.whatsapp = $("whatsapp").value.trim();

@@ -112,7 +112,7 @@ $("sizeBtns").addEventListener("click", function (e) {
 
 $("sizeChartBtn").addEventListener("click", function () { $("sizeChart").classList.toggle("hidden"); });
 
-document.title = (s.shopName || "Ridhyansh") + " — Place Order";
+document.title = (s.shopName || "Ridhyansh Store") + " — Place Order";
 $("brand").textContent = s.shopName;
 loadProds().then(function (list) {
   prods = list;

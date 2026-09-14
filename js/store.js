@@ -31,7 +31,7 @@ function sett() {
     s.rh_pass = "admin@123";
     saveSett(s);
   }
-  if (!s.shopName) s.shopName = "Ridhyansh";
+  if (!s.shopName) s.shopName = "Ridhyansh Store";
   if (!s.rh_user) s.rh_user = "ridhyansh007";
   if (!s.rh_pass) s.rh_pass = "admin@123";
   if (!s.upiId) s.upiId = "6262072151@ybl";
@@ -199,7 +199,7 @@ function refCode() {
 function upiLink(s, amount, note) {
   var q = [
     "pa=" + encodeURIComponent((s.upiId || "")),
-    "pn=" + encodeURIComponent(s.shopName || "Ridhyansh"),
+    "pn=" + encodeURIComponent(s.shopName || "Ridhyansh Store"),
     "am=" + amount,
     "cu=INR",
     "tn=" + encodeURIComponent(note || "Order")
