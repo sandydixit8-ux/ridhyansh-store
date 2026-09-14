@@ -2,7 +2,7 @@ seedIfEmpty();
 
 var s = sett();
 var sel = document.getElementById("product");
-var prods = getProds();
+var prods = [];
 var picked = null;
 var selSize = "";
 
@@ -68,8 +68,11 @@ $("sizeChartBtn").addEventListener("click", function () { $("sizeChart").classLi
 
 document.title = (s.shopName || "Ridhyansh") + " — Place Order";
 $("brand").textContent = s.shopName;
-fillSelect();
-refresh();
+loadProds().then(function (list) {
+  prods = list;
+  fillSelect();
+  refresh();
+});
 sel.addEventListener("change", refresh);
 $("qty").addEventListener("input", refresh);
 
@@ -99,6 +102,20 @@ $("pay").addEventListener("click", function () {
   var link = upiLink(s, amount, note);
 
   addOrder({
+    ref: code,
+    time: new Date().toISOString(),
+    product: picked.name,
+    cat: picked.cat,
+    sub: picked.sub || "",
+    size: selSize || "",
+    qty: qty,
+    amount: amount,
+    name: name,
+    phone: phone,
+    addr: addr,
+    status: "pending"
+  });
+  saveOrderCloud({
     ref: code,
     time: new Date().toISOString(),
     product: picked.name,

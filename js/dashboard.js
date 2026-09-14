@@ -11,7 +11,12 @@ document.title = s.shopName + " — Dashboard";
 $("brand").textContent = s.shopName;
 $("logout").addEventListener("click", function () { authClear(); location.href = "login.html"; });
 
-var orders = getOrders();
+var orders = [];
+
+loadOrders().then(function (list) {
+  orders = list;
+  renderAll();
+});
 
 function badge(st) {
   return st === "paid"
@@ -105,31 +110,30 @@ function filters() {
   });
 }
 
+function renderAll() { kpis(); prodTable(); catTable(); orderTable(); }
+
 document.addEventListener("click", function (e) {
   var p = e.target.closest("[data-paid]");
   if (p) {
     var r = p.getAttribute("data-paid");
-    var o = getOrders();
-    o.forEach(function (x, i) { if (x.ref === r) { o[i].status = "paid"; } });
-    saveOrders(o);
-    orders = getOrders();
+    orders.forEach(function (x) { if (x.ref === r) x.status = "paid"; });
+    saveOrders(orders);
+    var paid = orders.filter(function (x) { return x.ref === r; })[0];
+    if (paid && dbUrl()) cput("orders/" + r, paid);
     toast(r + " marked as PAID ✔");
-    kpis(); prodTable(); catTable(); orderTable();
+    renderAll();
     return;
   }
   var d = e.target.closest("[data-delorder]");
   if (d) {
     if (!confirm("Yeh order delete karna hai?")) return;
     var r2 = d.getAttribute("data-delorder");
-    saveOrders(getOrders().filter(function (x) { return x.ref !== r2; }));
-    orders = getOrders();
+    saveOrders(orders.filter(function (x) { return x.ref !== r2; }));
+    if (dbUrl()) cput("orders/" + r2, null);
     toast("Order delete ho gaya.");
-    kpis(); prodTable(); catTable(); orderTable();
+    loadOrders().then(function (l) { orders = l; renderAll(); });
   }
 });
 
 filters();
-kpis();
-prodTable();
-catTable();
-orderTable();
+renderAll();

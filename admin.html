@@ -38,7 +38,10 @@
     <input type="text" id="addr" placeholder="Shop / delivery address">
     <label for="pass">New admin password <span class="req">(khaali chhod do to pehle wala rahega)</span></label>
     <input type="text" id="pass" placeholder="current: admin@123">
+    <label for="cdb">Cloud DB URL <span class="req">(optional — Firebase free RTDB URL, catalog/orders sab jagah share honge)</span></label>
+    <input type="text" id="cdb" placeholder="https://myapp-default-rtdb.firebaseio.com">
     <button class="btn primary" id="saveSett">💾 Save Settings</button>
+    <button class="btn secondary" id="pubCloud">⬆️ Publish catalog to cloud</button>
     <p class="hint" id="settMsg"></p>
   </section>
 

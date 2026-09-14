@@ -60,6 +60,57 @@ function seedIfEmpty() {
   if (v < 2) { lsSet("rh_products", SEED); lsSet("rh_seed_v", 2); }
 }
 
+var CDB = "";
+function dbUrl() {
+  var u = (sett().rh_cdb || "").trim();
+  return u || CDB;
+}
+
+function cget(path) {
+  var u = dbUrl();
+  if (!u) return Promise.resolve(null);
+  return fetch(u + "/" + path + ".json", { cache: "no-store" })
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error("http")); })
+    .catch(function () { return null; });
+}
+
+function cput(path, data) {
+  var u = dbUrl();
+  if (!u) return Promise.resolve(false);
+  return fetch(u + "/" + path + ".json", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  }).then(function (r) { return r.ok; }).catch(function () { return false; });
+}
+
+function loadProds() {
+  return cget("products").then(function (list) {
+    if (Array.isArray(list) && list.length) {
+      saveProds(list);
+      return list;
+    }
+    return getProds();
+  });
+}
+
+function loadOrders() {
+  return cget("orders").then(function (obj) {
+    var list = getOrders();
+    if (obj && typeof obj === "object") {
+      Object.keys(obj).forEach(function (k) {
+        var o = obj[k];
+        if (o && o.ref) list = list.filter(function (x) { return x.ref !== o.ref; }).concat([o]);
+      });
+    }
+    return list;
+  });
+}
+
+function saveOrderCloud(o) {
+  if (dbUrl()) cput("orders/" + o.ref, o);
+}
+
 function inr(n) { return "₹" + Number(n || 0).toLocaleString("en-IN"); }
 
 function stars(r) {

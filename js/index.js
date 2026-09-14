@@ -4,6 +4,7 @@ var s = sett();
 var cat = "All";
 var sub = "All";
 var q = "";
+var PRODS = [];
 
 function $(id) { return document.getElementById(id); }
 
@@ -52,7 +53,7 @@ function card(p) {
 }
 
 function grid() {
-  var list = getProds().filter(function (p) {
+  var list = PRODS.filter(function (p) {
     var inCat = cat === "All" || p.cat === cat;
     var inSub = sub === "All" || !SUBS[cat] || (p.sub || "").indexOf(sub) !== -1;
     var hay = ((p.name || "") + " " + (p.cat || "") + " " + (p.sub || "") + " " + (p.desc || "")).toLowerCase();
@@ -92,7 +93,7 @@ function closeGal() {
 document.addEventListener("click", function (e) {
   var im = e.target.closest(".imgbox[data-pid]");
   if (im) {
-    var p0 = getProds().filter(function (x) { return x.id == +im.dataset.pid; })[0];
+    var p0 = PRODS.filter(function (x) { return x.id == +im.dataset.pid; })[0];
     if (p0 && imgsOf(p0).length > 1) {
       var th = e.target.closest(".gthumb");
       openGal(p0, th ? +th.dataset.i : 0);
@@ -144,4 +145,7 @@ $("footName").textContent = s.shopName;
 $("yr").textContent = new Date().getFullYear();
 tabs();
 renderSubs();
-grid();
+loadProds().then(function (list) {
+  PRODS = list;
+  grid();
+});

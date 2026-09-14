@@ -19,6 +19,7 @@ function init() {
   $("upiId").value = s.upiId || "";
   $("whatsapp").value = s.whatsapp || "";
   $("addr").value = s.address || "";
+  $("cdb").value = s.rh_cdb || "";
 
   var opts = "";
   CATS.forEach(function (c) { opts += '<option value="' + esc(c) + '">' + catIcon(c) + " " + esc(c) + "</option>"; });
@@ -28,6 +29,7 @@ function init() {
   syncSub();
 
   $("saveSett").addEventListener("click", saveSettings);
+  $("pubCloud").addEventListener("click", publishCloud);
   $("addProd").addEventListener("click", addProduct);
   $("genLink").addEventListener("click", genLink);
   $("logout").addEventListener("click", function () { authClear(); location.href = "login.html"; });
@@ -177,12 +179,20 @@ function saveSettings() {
     if ($("pass").value.trim().length < 4) { toast("Password kam se kam 4 characters ka rakho.", "bad"); return; }
     s.rh_pass = $("pass").value.trim();
   }
+  s.rh_cdb = $("cdb").value.trim();
   saveSett(s);
   lsSet("rh_cred_v", 3);
   $("brand").textContent = s.shopName;
   $("pass").value = "";
   toast("Settings save ho gayi ✔");
   setTimeout(function () { $("settMsg").textContent = ""; }, 500);
+}
+
+function publishCloud() {
+  if (!dbUrl()) { toast("Pehle Cloud DB URL Settings mein daalo.", "bad"); return; }
+  cput("products", getProds()).then(function (ok) {
+    toast(ok ? "Catalog cloud par publish ho gaya — sabko dikhega ✔" : "Publish fail — URL check karo.", ok ? "ok" : "bad");
+  });
 }
 
 function addProduct() {
@@ -221,6 +231,7 @@ function addProduct() {
   renderPrev();
   renderList();
   toast("Product " + imgs.length + " photos ke saath add ho gaya ✔");
+  publishCloud();
 }
 
 function thumb(p) {
@@ -260,6 +271,7 @@ document.addEventListener("click", function (e) {
   saveProds(p);
   renderList();
   toast("Product delete ho gaya.");
+  publishCloud();
 });
 
 function genLink() {
