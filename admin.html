@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ridhyansh â€” Admin</title>
+<title>Ridhyansh — Admin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=3">
@@ -12,12 +12,12 @@
 
 <header class="top">
   <div class="wrap head">
-    <a class="logo" href="index.html">ðŸ›ï¸ <span id="brand">Ridhyansh</span></a>
+    <a class="logo" href="index.html">🛍️ <span id="brand">Ridhyansh</span></a>
     <nav>
       <a href="index.html">Store</a>
       <a href="order.html">Order</a>
-      <a href="dashboard.html">ðŸ“Š Dashboard</a>
-      <a href="admin.html" class="active">ðŸ” Admin</a>
+      <a href="dashboard.html">📊 Dashboard</a>
+      <a href="admin.html" class="active">🔐 Admin</a>
       <button class="logout-btn" id="logout" title="Logout">Logout</button>
     </nav>
   </div>
@@ -25,7 +25,7 @@
 
 <main class="wrap admin">
   <section class="panel">
-    <div class="phead"><span class="picon">âš™ï¸</span><div><h2>Shop Settings</h2><p>Payment link, WhatsApp aur admin login yahan se set karo.</p></div></div>
+    <div class="phead"><span class="picon">⚙️</span><div><h2>Shop Settings</h2><p>Payment link, WhatsApp aur admin login yahan se set karo.</p></div></div>
     <label for="shopName">Shop name</label>
     <input type="text" id="shopName" placeholder="Ridhyansh">
     <label for="user">Admin username</label>
@@ -38,12 +38,12 @@
     <input type="text" id="addr" placeholder="Shop / delivery address">
     <label for="pass">New admin password <span class="req">(khaali chhod do to pehle wala rahega)</span></label>
     <input type="text" id="pass" placeholder="current: admin@123">
-    <button class="btn primary" id="saveSett">ðŸ’¾ Save Settings</button>
+    <button class="btn primary" id="saveSett">💾 Save Settings</button>
     <p class="hint" id="settMsg"></p>
   </section>
 
   <section class="panel">
-    <div class="phead"><span class="picon">âž•</span><div><h2>Add Product</h2><p>Naya product storefront par sirf yahin se aata hai.</p></div></div>
+    <div class="phead"><span class="picon">➕</span><div><h2>Add Product</h2><p>Naya product storefront par sirf yahin se aata hai.</p></div></div>
     <div class="grid2f">
       <div>
         <label for="pname">Product name</label>
@@ -62,29 +62,29 @@
         <input type="text" id="psizes" placeholder="e.g. 39,40,42,44 ya S,M,L,XL">
       </div>
     </div>
-    <label for="pprice">Price (â‚¹)</label>
+    <label for="pprice">Price (₹)</label>
     <input type="number" id="pprice" min="1" placeholder="e.g. 899">
-    <label for="pfile">ðŸ“· Product photos â€” <b>kam se kam 3</b>, <b>zyada se zyada 5</b> (phone/computer se choose karo)</label>
+    <label for="pfile">📷 Product photos — <b>kam se kam 3</b>, <b>zyada se zyada 5</b> (phone/computer se choose karo)</label>
     <input type="file" id="pfile" accept="image/*" multiple>
     <div class="imgprevs hidden" id="imgPrevs"></div>
     <p class="hint" id="imgCount"></p>
     <p class="hint" id="storeMeter"></p>
     <label for="pdesc">Short description <span class="req">(optional)</span></label>
     <input type="text" id="pdesc" placeholder="e.g. Wireless, 12h battery">
-    <button class="btn primary" id="addProd">ï¼‹ Add Product</button>
+    <button class="btn primary" id="addProd">＋ Add Product</button>
     <p class="hint" id="prodMsg"></p>
   </section>
 
   <section class="panel">
-    <div class="phead"><span class="picon">ðŸ“¦</span><div><h2>Products <span class="count" id="pc">0</span></h2><p>Storefront par jo dikh raha hai.</p></div></div>
+    <div class="phead"><span class="picon">📦</span><div><h2>Products <span class="count" id="pc">0</span></h2><p>Storefront par jo dikh raha hai.</p></div></div>
     <div id="plist"></div>
   </section>
 
   <section class="panel">
-    <div class="phead"><span class="picon">ðŸ”—</span><div><h2>Payment Link Generator</h2><p>Kisi bhi order ke liye alag se UPI link banao â€” bhejo WhatsApp pe.</p></div></div>
+    <div class="phead"><span class="picon">🔗</span><div><h2>Payment Link Generator</h2><p>Kisi bhi order ke liye alag se UPI link banao — bhejo WhatsApp pe.</p></div></div>
     <div class="grid2f">
       <div>
-        <label for="gamt">Amount (â‚¹)</label>
+        <label for="gamt">Amount (₹)</label>
         <input type="number" id="gamt" min="1" placeholder="e.g. 1299">
       </div>
       <div>
@@ -92,7 +92,7 @@
         <input type="text" id="gnote" placeholder="e.g. Order RID26091341">
       </div>
     </div>
-    <button class="btn primary" id="genLink">âš¡ Generate Payment Link</button>
+    <button class="btn primary" id="genLink">⚡ Generate Payment Link</button>
     <div class="genout hidden" id="genOut">
       <p class="genlabel">Payment link</p>
       <div class="genline" id="gline"></div>
@@ -109,8 +109,8 @@
 
 <footer class="foot">
   <div class="wrap foot-in">
-    <div class="logo">ðŸ›ï¸ <span>Ridhyansh</span></div>
-    <p class="muted">Admin Â· Prepaid / UPI only</p>
+    <div class="logo">🛍️ <span>Ridhyansh</span></div>
+    <p class="muted">Admin · Prepaid / UPI only</p>
   </div>
 </footer>
 
