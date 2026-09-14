@@ -190,8 +190,11 @@ function saveSettings() {
 
 function publishCloud() {
   if (!dbUrl()) { toast("Pehle Cloud DB URL Settings mein daalo.", "bad"); return; }
-  cput("products", getProds()).then(function (ok) {
-    toast(ok ? "Catalog cloud par publish ho gaya — sabko dikhega ✔" : "Publish fail — URL check karo.", ok ? "ok" : "bad");
+  var prods = getProds();
+  if (!prods.length) { toast("Pehle products add karo phir publish karo.", "bad"); return; }
+  Promise.all(prods.map(function (p) { return cput("products/" + p.id, p); })).then(function (oks) {
+    var okAll = oks.every(Boolean);
+    toast(okAll ? "Catalog cloud par publish ho gaya — sabko dikhega ✔" : "Publish fail — ho sakta hai ek product ke photos bahut bade hain.", okAll ? "ok" : "bad");
   });
 }
 

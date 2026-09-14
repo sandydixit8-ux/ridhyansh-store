@@ -90,6 +90,10 @@ function loadProds() {
       saveProds(list);
       return list;
     }
+    if (list && typeof list === "object") {
+      var arr = Object.keys(list).map(function (k) { return list[k]; }).filter(function (x) { return x && x.id; });
+      if (arr.length) { saveProds(arr); return arr; }
+    }
     return getProds();
   });
 }
