@@ -47,13 +47,21 @@ function refresh() {
       shipRow.classList.add("hidden");
       freeRow.classList.toggle("hidden", !(Number(sett().shipFee) > 0));
     }
+  } else if (shipRow && freeRow) {
+    shipRow.classList.add("hidden");
+    freeRow.classList.add("hidden");
   }
   $("grand").textContent = inr(amt + sh);
   var stk = picked ? getStockOf(picked) : 0;
   var se = $("sstock");
   if (se) {
-    se.textContent = stk === 0 ? "⛔ Sold out" : "Stock: " + stk;
-    se.style.color = stk === 0 ? "#dc2626" : stk <= 3 ? "#b45309" : "";
+    if (picked) {
+      se.textContent = stk === 0 ? "⛔ Sold out" : "Stock: " + stk;
+      se.style.color = stk === 0 ? "#dc2626" : stk <= 3 ? "#b45309" : "";
+    } else {
+      se.textContent = "";
+      se.style.color = "";
+    }
   }
   if (picked) {
     $("sname").textContent = picked.name;
