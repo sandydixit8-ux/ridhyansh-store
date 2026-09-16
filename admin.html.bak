@@ -6,7 +6,7 @@
 <title>Ridhyansh Store — Admin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=9">
+<link rel="stylesheet" href="css/style.css?v=8">
 </head>
 <body>
 
@@ -37,16 +37,6 @@
     <input type="tel" id="whatsapp" placeholder="10 digit number">
     <label for="addr">Shop address <span class="req">(optional)</span></label>
     <input type="text" id="addr" placeholder="Shop / delivery address">
-    <div class="grid2f">
-      <div>
-        <label for="shipFee">Shipping charges (₹) <span class="req">(0 = free)</span></label>
-        <input type="number" id="shipFee" min="0" placeholder="e.g. 60">
-      </div>
-      <div>
-        <label for="freeShipAbove">Free shipping above (₹)</label>
-        <input type="number" id="freeShipAbove" min="0" placeholder="e.g. 999">
-      </div>
-    </div>
     <label for="pass">New admin password <span class="req">(khaali chhod do to pehle wala rahega)</span></label>
     <input type="text" id="pass" placeholder="current: admin@123">
     <label for="cdb">Cloud DB URL <span class="req">(optional — Firebase free RTDB URL, catalog/orders sab jagah share honge)</span></label>
@@ -86,8 +76,6 @@
     <input type="number" id="pprice" min="1" placeholder="e.g. 899">
     <label for="pmrp">MRP (₹) <span class="req">(optional — daaloge to discount % dikhega)</span></label>
     <input type="number" id="pmrp" min="1" placeholder="e.g. 1299">
-    <label for="pstock">Stock <span class="req">(kitne pieces bache hain)</span></label>
-    <input type="number" id="pstock" min="0" placeholder="e.g. 20">
     <label for="pfile">📷 Product photos — <b>kam se kam 3</b>, <b>zyada se zyada 5</b> (phone/computer se choose karo)</label>
     <input type="file" id="pfile" accept="image/*" multiple>
     <div class="imgprevs hidden" id="imgPrevs"></div>
@@ -139,7 +127,7 @@
   </div>
 </footer>
 
-<script src="js/store.js?v=17"></script>
-<script src="js/admin.js?v=17"></script>
+<script src="js/store.js?v=15"></script>
+<script src="js/admin.js?v=15"></script>
 </body>
 </html>

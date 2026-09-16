@@ -6,7 +6,7 @@
 <title>Ridhyansh Store — Place Order</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=9">
+<link rel="stylesheet" href="css/style.css?v=8">
 </head>
 <body>
 
@@ -85,11 +85,9 @@
       <h3>Order Summary</h3>
       <div class="summary-product">
         <div class="simg" id="simg">🛍️</div>
-        <div class="sinfo"><b id="sname">Select a product</b><span id="sprice"></span><span class="sstock muted" id="sstock"></span></div>
+        <div class="sinfo"><b id="sname">Select a product</b><span id="sprice"></span></div>
       </div>
       <div class="srow"><span>Price × <b id="sqty">1</b></span><span id="stotal"></span></div>
-      <div class="srow hidden" id="shipRow"><span>Shipping</span><span id="sShip"></span></div>
-      <div class="srow hidden" id="freeRow"><span class="free-ship">🎉 Free shipping</span><span>₹0</span></div>
       <div class="divider"></div>
       <div class="srow sgrand"><span>To pay</span><b id="grand"></b></div>
       <div class="prepaid-badge">🔒 100% Prepaid</div>
@@ -141,7 +139,7 @@
   <div class="lb-count" id="lbCount"></div>
 </div>
 
-<script src="js/store.js?v=17"></script>
-<script src="js/order.js?v=17"></script>
+<script src="js/store.js?v=15"></script>
+<script src="js/order.js?v=15"></script>
 </body>
 </html>
