@@ -17,13 +17,29 @@ function docClick(e) {
   var ce = e.target.closest("[data-cedit]");
   if (ce) { cancelEdit(); return; }
   var d = e.target.closest("[data-del]");
-  if (!d) return;
-  if (!confirm("Yeh product delete karna hai?")) return;
-  var p = getProds().filter(function (pr) { return String(pr.id) !== d.getAttribute("data-del"); });
-  saveProds(p);
-  renderList();
-  toast("Product delete ho gaya.");
-  publishCloud();
+  if (d) {
+    if (!confirm("Yeh product delete karna hai?")) return;
+    var p = getProds().filter(function (pr) { return String(pr.id) !== d.getAttribute("data-del"); });
+    saveProds(p);
+    renderList();
+    toast("Product delete ho gaya.");
+    publishCloud();
+    return;
+  }
+  var inc = e.target.closest("[data-inc]");
+  var dec = e.target.closest("[data-dec]");
+  if (inc || dec) {
+    var id = (inc || dec).getAttribute("data-inc") || (inc || dec).getAttribute("data-dec");
+    var ps = getProds();
+    var pr = ps.filter(function (x) { return String(x.id) === String(id); })[0];
+    if (!pr) { toast("Product nahi mila.", "bad"); return; }
+    pr.stock = Math.max(0, getStockOf(pr) + (inc ? 1 : -1));
+    saveProds(ps);
+    renderList();
+    toast((inc ? "+1" : "−1") + " stock → " + pr.stock);
+    publishCloud();
+    return;
+  }
 }
 document.addEventListener("click", docClick);
 
@@ -43,6 +59,8 @@ function init() {
   $("upiId").value = s.upiId || "";
   $("whatsapp").value = s.whatsapp || "";
   $("addr").value = s.address || "";
+  $("shipFee").value = s.shipFee != null ? s.shipFee : "";
+  $("freeShipAbove").value = s.freeShipAbove != null ? s.freeShipAbove : "";
   $("cdb").value = s.rh_cdb || "";
   $("fbkey").value = s.rh_fbkey || "";
   $("fbemail").value = s.rh_fbemail || "";
@@ -227,6 +245,8 @@ function saveSettings() {
   s.upiId = $("upiId").value.trim();
   s.whatsapp = $("whatsapp").value.trim();
   s.address = $("addr").value.trim();
+  s.shipFee = $("shipFee").value.trim() || "0";
+  s.freeShipAbove = $("freeShipAbove").value.trim() || "0";
   if ($("pass").value.trim()) {
     if ($("pass").value.trim().length < 4) { toast("Password kam se kam 4 characters ka rakho.", "bad"); return; }
     s.rh_pass = $("pass").value.trim();
@@ -302,12 +322,15 @@ function addProduct() {
   if (curImgs.length > 5) { toast("Zyada se zyada 5 photos ho sakti hain.", "bad"); return; }
   var p = getProds();
   var imgs = curImgs.slice();
+  var stock = parseInt($("pstock").value, 10);
+  if (isNaN(stock) || stock < 0) stock = 20;
   var prod = {
     id: Date.now(),
     name: n,
     cat: $("pcat").value,
     price: price,
     mrp: mrp || 0,
+    stock: stock,
     images: imgs,
     img: imgs[0],
     desc: $("pdesc").value.trim()
@@ -321,6 +344,7 @@ function addProduct() {
     var ex = p.filter(function (x) { return String(x.id) === String(editId); })[0];
     if (!ex) { toast("Product nahi mila.", "bad"); return; }
     ex.name = prod.name; ex.cat = prod.cat; ex.price = prod.price; ex.mrp = prod.mrp; ex.desc = prod.desc;
+    ex.stock = prod.stock;
     if (prod.sub) ex.sub = prod.sub;
     if (prod.sizes) ex.sizes = prod.sizes;
     if (prod.images.length) { ex.images = prod.images; ex.img = prod.images[0]; }
@@ -338,11 +362,10 @@ function addProduct() {
     }
     toast("Product " + imgs.length + " photos ke saath add ho gaya ✔");
   }
-  $("prodMsg").textContent = "";
+$("prodMsg").textContent = "";
   $("cancelEdit") && $("cancelEdit").classList.add("hidden");
   $("pname").value = ""; $("pprice").value = ""; $("pmrp").value = ""; $("pdesc").value = "";
-  $("psizes").value = "";
-  $("pfile").value = "";
+  $("psizes").value = ""; $("pstock").value = "";
   curImgs = [];
   renderPrev();
   renderList();
@@ -362,8 +385,10 @@ function renderList() {
   p.forEach(function (pr) {
     h += '<div class="plist-row">' + thumb(pr) +
       '<div class="plist-info"><b>' + esc(pr.name) + "</b>" +
-      '<span>' + catIcon(pr.cat) + " " + esc(pr.cat) + (pr.sub ? " · " + esc(pr.sub) : "") + " · " + mrpHtml(pr) + (pr.sizes && pr.sizes.length ? " · Sizes: " + esc(pr.sizes.join(", ")) : "") + "</span></div>" +
+      '<span>' + catIcon(pr.cat) + " " + esc(pr.cat) + (pr.sub ? " · " + esc(pr.sub) : "") + " · " + mrpHtml(pr) + (pr.sizes && pr.sizes.length ? " · Sizes: " + esc(pr.sizes.join(", ")) : "") + ' · Stock: <b>' + getStockOf(pr) + '</b></span></div>' +
       '<div class="plist-actions">' +
+      '<button class="btn sm ghost" data-inc="' + pr.id + '" title="Stock +1">+</button>' +
+      '<button class="btn sm ghost" data-dec="' + pr.id + '" title="Stock −1">−</button>' +
       '<button class="btn sm link2" data-link="' + pr.id + '" title="Product URL copy karo (ad mein dalna)">🔗 Link</button>' +
       '<button class="btn sm" data-edit="' + pr.id + '" title="Price/MRP/naam badlo">✏️ Edit</button>' +
       '<button class="btn danger sm" data-del="' + pr.id + '">Delete</button>' +
@@ -379,6 +404,7 @@ function startEdit(id) {
   $("pname").value = p.name || "";
   $("pprice").value = p.price || "";
   $("pmrp").value = p.mrp || "";
+  $("pstock").value = p.stock != null ? p.stock : "";
   $("pdesc").value = p.desc || "";
   $("pcat").value = p.cat || "Clothing";
   syncSub();

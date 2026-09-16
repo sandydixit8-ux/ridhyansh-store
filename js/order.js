@@ -33,9 +33,28 @@ function refresh() {
   pick();
   selSize = "";
   var amt = total();
+  var sh = shipFeeFor(amt);
   $("sqty").textContent = qt();
   $("stotal").textContent = picked ? inr(picked.price) + " × " + qt() : "—";
-  $("grand").textContent = inr(amt);
+  var shipRow = $("shipRow");
+  var freeRow = $("freeRow");
+  if (picked && amt) {
+    if (sh > 0) {
+      shipRow.classList.remove("hidden");
+      $("sShip").textContent = inr(sh);
+      freeRow.classList.add("hidden");
+    } else {
+      shipRow.classList.add("hidden");
+      freeRow.classList.toggle("hidden", !(Number(sett().shipFee) > 0));
+    }
+  }
+  $("grand").textContent = inr(amt + sh);
+  var stk = picked ? getStockOf(picked) : 0;
+  var se = $("sstock");
+  if (se) {
+    se.textContent = stk === 0 ? "⛔ Sold out" : "Stock: " + stk;
+    se.style.color = stk === 0 ? "#dc2626" : stk <= 3 ? "#b45309" : "";
+  }
   if (picked) {
     $("sname").textContent = picked.name;
     $("simg").textContent = firstImg(picked) ? "" : catIcon(picked.cat);
@@ -149,11 +168,16 @@ $("pay").addEventListener("click", function () {
   var addr = $("addr").value.trim();
   var qty = qt();
   if (!picked) { showErr("Pehle product chuniye."); return; }
+  var stk = getStockOf(picked);
+  if (!stk) { showErr("Yeh product abhi sold out hai."); return; }
+  if (qty > stk) { showErr("Sirf " + stk + " " + (stk === 1 ? "piece" : "pieces") + " baaki hain — quantity kam karo."); return; }
   if (!name || !phone || phone.replace(/\D/g, "").length < 10) { showErr("Naam aur sahi 10-digit phone number likhiye."); return; }
   if (!addr) { showErr("Delivery address likhiye."); return; }
   if (picked.sizes && picked.sizes.length && !selSize) { showErr("Pehle size select kijiye."); return; }
 
-  var amount = Math.round(total());
+  var amount = total();
+  var sh = shipFeeFor(amount);
+  amount = amount + sh;
   var code = refCode();
   var note = "Order " + code;
   var link = upiLink(s, amount, note);
@@ -167,6 +191,7 @@ $("pay").addEventListener("click", function () {
     size: selSize || "",
     qty: qty,
     amount: amount,
+    ship: sh,
     name: name,
     phone: phone,
     addr: addr,
@@ -181,6 +206,7 @@ $("pay").addEventListener("click", function () {
     size: selSize || "",
     qty: qty,
     amount: amount,
+    ship: sh,
     name: name,
     phone: phone,
     addr: addr,
@@ -196,7 +222,7 @@ $("pay").addEventListener("click", function () {
   var msg = "*" + s.shopName + "* — New Order\n" +
     "Order: *" + code + "*\n" +
     "Product: " + picked.name + " × " + qty + (selSize ? " (Size: " + selSize + ")" : "") + "\n" +
-    "Amount: " + inr(amount) + "\n" +
+    "Amount: " + inr(amount) + (sh ? " (incl. shipping " + inr(sh) + ")" : "") + "\n" +
     "Name: " + name + "\n" +
     "Phone: " + phone + "\n" +
     "Address: " + addr + "\n" +

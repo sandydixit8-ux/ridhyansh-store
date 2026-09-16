@@ -1,23 +1,23 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ridhyansh Store — Admin</title>
+<title>Ridhyansh Store � Admin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=8">
+<link rel="stylesheet" href="css/style.css?v=9">
 </head>
 <body>
 
 <header class="top">
   <div class="wrap head">
-    <a class="logo" href="index.html">🛍️ <span id="brand">Ridhyansh Store</span></a>
+    <a class="logo" href="index.html">??? <span id="brand">Ridhyansh Store</span></a>
     <nav>
       <a href="index.html">Store</a>
       <a href="order.html">Order</a>
-      <a href="dashboard.html">📊 Dashboard</a>
-      <a href="admin.html" class="active">🔐 Admin</a>
+      <a href="dashboard.html">?? Dashboard</a>
+      <a href="admin.html" class="active">?? Admin</a>
       <span class="ver-badge" id="verBadge" title="App version">ver?</span>
       <button class="logout-btn" id="logout" title="Logout">Logout</button>
     </nav>
@@ -26,7 +26,7 @@
 
 <main class="wrap admin">
   <section class="panel">
-    <div class="phead"><span class="picon">⚙️</span><div><h2>Shop Settings</h2><p>Payment link, WhatsApp aur admin login yahan se set karo.</p></div></div>
+    <div class="phead"><span class="picon">??</span><div><h2>Shop Settings</h2><p>Payment link, WhatsApp aur admin login yahan se set karo.</p></div></div>
     <label for="shopName">Shop name</label>
     <input type="text" id="shopName" placeholder="Ridhyansh Store">
     <label for="user">Admin username</label>
@@ -37,23 +37,33 @@
     <input type="tel" id="whatsapp" placeholder="10 digit number">
     <label for="addr">Shop address <span class="req">(optional)</span></label>
     <input type="text" id="addr" placeholder="Shop / delivery address">
+    <div class="grid2f">
+      <div>
+        <label for="shipFee">Shipping charges (?) <span class="req">(0 = free)</span></label>
+        <input type="number" id="shipFee" min="0" placeholder="e.g. 60">
+      </div>
+      <div>
+        <label for="freeShipAbove">Free shipping above (?)</label>
+        <input type="number" id="freeShipAbove" min="0" placeholder="e.g. 999">
+      </div>
+    </div>
     <label for="pass">New admin password <span class="req">(khaali chhod do to pehle wala rahega)</span></label>
     <input type="text" id="pass" placeholder="current: admin@123">
-    <label for="cdb">Cloud DB URL <span class="req">(optional — Firebase free RTDB URL, catalog/orders sab jagah share honge)</span></label>
+    <label for="cdb">Cloud DB URL <span class="req">(optional � Firebase free RTDB URL, catalog/orders sab jagah share honge)</span></label>
     <input type="text" id="cdb" placeholder="https://myapp-default-rtdb.firebaseio.com">
-    <label for="fbkey">Firebase Auth API Key <span class="req">(SETTINGS → General → Web API Key — products/orders kew tum hi write kar paoge)</span></label>
+    <label for="fbkey">Firebase Auth API Key <span class="req">(SETTINGS ? General ? Web API Key � products/orders kew tum hi write kar paoge)</span></label>
     <input type="text" id="fbkey" placeholder="AIzaSy...">
-    <label for="fbemail">Firebase Owner Email <span class="req">(koi bhi email — pehli save par account khud ban jayega)</span></label>
+    <label for="fbemail">Firebase Owner Email <span class="req">(koi bhi email � pehli save par account khud ban jayega)</span></label>
     <input type="email" id="fbemail" placeholder="your@gmail.com">
     <label for="fbpass">Firebase Owner Password <span class="req">(kam se kam 6 characters)</span></label>
-    <input type="password" id="fbpass" placeholder="••••••••">
-    <button class="btn primary" id="saveSett">💾 Save Settings</button>
-    <button class="btn secondary" id="pubCloud">⬆️ Publish catalog to cloud</button>
+    <input type="password" id="fbpass" placeholder="��������">
+    <button class="btn primary" id="saveSett">?? Save Settings</button>
+    <button class="btn secondary" id="pubCloud">?? Publish catalog to cloud</button>
     <p class="hint" id="settMsg"></p>
   </section>
 
   <section class="panel">
-    <div class="phead"><span class="picon">➕</span><div><h2 id="phead2">Add Product</h2><p>Naya product storefront par sirf yahin se aata hai.</p></div></div>
+    <div class="phead"><span class="picon">?</span><div><h2 id="phead2">Add Product</h2><p>Naya product storefront par sirf yahin se aata hai.</p></div></div>
     <div class="grid2f">
       <div>
         <label for="pname">Product name</label>
@@ -72,32 +82,34 @@
         <input type="text" id="psizes" placeholder="e.g. 39,40,42,44 ya S,M,L,XL">
       </div>
     </div>
-    <label for="pprice">Selling Price (₹) <span class="req">(customer yehi pay karega)</span></label>
+    <label for="pprice">Selling Price (?) <span class="req">(customer yehi pay karega)</span></label>
     <input type="number" id="pprice" min="1" placeholder="e.g. 899">
-    <label for="pmrp">MRP (₹) <span class="req">(optional — daaloge to discount % dikhega)</span></label>
+    <label for="pmrp">MRP (?) <span class="req">(optional � daaloge to discount % dikhega)</span></label>
     <input type="number" id="pmrp" min="1" placeholder="e.g. 1299">
-    <label for="pfile">📷 Product photos — <b>kam se kam 3</b>, <b>zyada se zyada 5</b> (phone/computer se choose karo)</label>
+    <label for="pstock">Stock <span class="req">(kitne pieces bache hain)</span></label>
+    <input type="number" id="pstock" min="0" placeholder="e.g. 20">
+    <label for="pfile">?? Product photos � <b>kam se kam 3</b>, <b>zyada se zyada 5</b> (phone/computer se choose karo)</label>
     <input type="file" id="pfile" accept="image/*" multiple>
     <div class="imgprevs hidden" id="imgPrevs"></div>
     <p class="hint" id="imgCount"></p>
     <p class="hint" id="storeMeter"></p>
     <label for="pdesc">Short description <span class="req">(optional)</span></label>
     <input type="text" id="pdesc" placeholder="e.g. Wireless, 12h battery">
-    <button class="btn primary" id="addProd">＋ Add Product</button>
-    <button class="btn sm ghost hidden" id="cancelEdit" data-cedit title="Edit mode band karo">❌ Cancel Edit</button>
+    <button class="btn primary" id="addProd">+ Add Product</button>
+    <button class="btn sm ghost hidden" id="cancelEdit" data-cedit title="Edit mode band karo">? Cancel Edit</button>
     <p class="hint" id="prodMsg"></p>
   </section>
 
   <section class="panel">
-    <div class="phead"><span class="picon">📦</span><div><h2>Products <span class="count" id="pc">0</span></h2><p>Storefront par jo dikh raha hai.</p></div></div>
+    <div class="phead"><span class="picon">??</span><div><h2>Products <span class="count" id="pc">0</span></h2><p>Storefront par jo dikh raha hai.</p></div></div>
     <div id="plist"></div>
   </section>
 
   <section class="panel">
-    <div class="phead"><span class="picon">🔗</span><div><h2>Payment Link Generator</h2><p>Kisi bhi order ke liye alag se UPI link banao — bhejo WhatsApp pe.</p></div></div>
+    <div class="phead"><span class="picon">??</span><div><h2>Payment Link Generator</h2><p>Kisi bhi order ke liye alag se UPI link banao � bhejo WhatsApp pe.</p></div></div>
     <div class="grid2f">
       <div>
-        <label for="gamt">Amount (₹)</label>
+        <label for="gamt">Amount (?)</label>
         <input type="number" id="gamt" min="1" placeholder="e.g. 1299">
       </div>
       <div>
@@ -105,7 +117,7 @@
         <input type="text" id="gnote" placeholder="e.g. Order RID26091341">
       </div>
     </div>
-    <button class="btn primary" id="genLink">⚡ Generate Payment Link</button>
+    <button class="btn primary" id="genLink">? Generate Payment Link</button>
     <div class="genout hidden" id="genOut">
       <p class="genlabel">Payment link</p>
       <div class="genline" id="gline"></div>
@@ -122,12 +134,12 @@
 
 <footer class="foot">
   <div class="wrap foot-in">
-    <div class="logo">🛍️ <span>Ridhyansh Store</span></div>
-    <p class="muted">Admin · Prepaid / UPI only</p>
+    <div class="logo">??? <span>Ridhyansh Store</span></div>
+    <p class="muted">Admin � Prepaid / UPI only</p>
   </div>
 </footer>
 
-<script src="js/store.js?v=15"></script>
-<script src="js/admin.js?v=15"></script>
+<script src="js/store.js?v=16"></script>
+<script src="js/admin.js?v=16"></script>
 </body>
 </html>

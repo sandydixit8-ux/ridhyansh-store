@@ -25,9 +25,13 @@ getFbTok().then(function (tok) { return loadOrders(tok); }).then(function (list)
 });
 
 function badge(st) {
-  return st === "paid"
-    ? '<span class="badge paid">✔ Paid</span>'
-    : '<span class="badge pend">⧖ Pending</span>';
+  var map = {
+    pending: '<span class="badge pend">⧖ Pending</span>',
+    paid: '<span class="badge paid">✔ Paid</span>',
+    shipped: '<span class="badge ship">🚚 Shipped</span>',
+    delivered: '<span class="badge del">📦 Delivered</span>'
+  };
+  return map[st] || map.pending;
 }
 
 function fmtTime(t) {
@@ -39,9 +43,9 @@ function fmtTime(t) {
 }
 
 function kpis() {
-  var paidAmt = orders.filter(function (o) { return o.status === "paid"; }).reduce(function (a, o) { return a + o.amount; }, 0);
+  var paidAmt = orders.filter(function (o) { return o.status === "paid" || o.status === "shipped" || o.status === "delivered"; }).reduce(function (a, o) { return a + o.amount; }, 0);
   var totAmt = orders.reduce(function (a, o) { return a + o.amount; }, 0);
-  var paidN = orders.filter(function (o) { return o.status === "paid"; }).length;
+  var paidN = orders.filter(function (o) { return o.status === "paid" || o.status === "shipped" || o.status === "delivered"; }).length;
   var pendN = orders.length - paidN;
   var cards = [
     { icon: "🧾", label: "Total Orders", val: orders.length, sub: "rukhe orders: " + pendN },
@@ -91,23 +95,26 @@ function orderTable() {
     return filter === "all" || o.status === filter;
   });
   $("orderRows").innerHTML = list.map(function (o) {
+    var actions = "";
+    if (o.status === "pending") actions = '<button class="btn green sm" data-paid="' + o.ref + '">Mark Paid</button>';
+    else if (o.status === "paid") actions = '<button class="btn blue sm" data-ship="' + o.ref + '">Mark Shipped</button>';
+    else if (o.status === "shipped") actions = '<button class="btn green sm" data-deliv="' + o.ref + '">Mark Delivered</button>';
+    else actions = '<button class="btn danger sm ghost" data-delorder="' + o.ref + '">Delete</button>';
     return '<tr><td><b>' + esc(o.ref) + "</b><br><small>" + fmtTime(o.time) + "</small></td>" +
       "<td>" + esc(o.product) + (o.sub ? ' <small>· ' + esc(o.sub) + "</small>" : "") + (o.size ? ' <small>· Size ' + esc(o.size) + "</small>" : "") + "</td>" +
       "<td>" + o.qty + "</td>" +
       "<td><b>" + inr(o.amount) + "</b></td>" +
       "<td><small>" + esc(o.name) + "<br>" + esc(o.phone) + "</small></td>" +
       "<td>" + badge(o.status) + "</td>" +
-      "<td>" + (o.status === "pending"
-        ? '<button class="btn green sm" data-paid="' + o.ref + '">Mark Paid</button>'
-        : '<button class="btn danger sm ghost" data-delorder="' + o.ref + '">Delete</button>') + "</td></tr>";
+      "<td>" + actions + "</td></tr>";
   }).join("");
   $("orderEmpty").style.display = list.length ? "none" : "block";
 }
 
 function filters() {
   var h = "";
-  ["all", "pending", "paid"].forEach(function (f) {
-    var label = f === "all" ? "All" : f === "pending" ? "Pending" : "Paid";
+  ["all", "pending", "paid", "shipped", "delivered"].forEach(function (f) {
+    var label = f === "all" ? "All" : f.charAt(0).toUpperCase() + f.slice(1);
     h += '<button class="chip' + (filter === f ? " on" : "") + '" data-f="' + f + '">' + label + "</button>";
   });
   $("filters").innerHTML = h;
@@ -116,20 +123,24 @@ function filters() {
   });
 }
 
+function setStatus(r, st, msg) {
+  orders.forEach(function (x) { if (x.ref === r) x.status = st; });
+  saveOrders(orders);
+  var o = orders.filter(function (x) { return x.ref === r; })[0];
+  if (o) getFbTok().then(function (tok) { if (tok) cput("orders/" + r, o, tok); });
+  toast(msg);
+  renderAll();
+}
+
 function renderAll() { kpis(); prodTable(); catTable(); orderTable(); }
 
 document.addEventListener("click", function (e) {
   var p = e.target.closest("[data-paid]");
-  if (p) {
-    var r = p.getAttribute("data-paid");
-    orders.forEach(function (x) { if (x.ref === r) x.status = "paid"; });
-    saveOrders(orders);
-    var paid = orders.filter(function (x) { return x.ref === r; })[0];
-    if (paid) getFbTok().then(function (tok) { cput("orders/" + r, paid, tok); });
-    toast(r + " marked as PAID ✔");
-    renderAll();
-    return;
-  }
+  if (p) { setStatus(p.getAttribute("data-paid"), "paid", p.getAttribute("data-paid") + " marked as PAID ✔"); return; }
+  var sh = e.target.closest("[data-ship]");
+  if (sh) { setStatus(sh.getAttribute("data-ship"), "shipped", sh.getAttribute("data-ship") + " marked as SHIPPED 🚚"); return; }
+  var dl = e.target.closest("[data-deliv]");
+  if (dl) { setStatus(dl.getAttribute("data-deliv"), "delivered", dl.getAttribute("data-deliv") + " marked as DELIVERED 📦"); return; }
   var d = e.target.closest("[data-delorder]");
   if (d) {
     if (!confirm("Yeh order delete karna hai?")) return;

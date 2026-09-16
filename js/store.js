@@ -36,6 +36,9 @@ function sett() {
   if (!s.rh_pass) s.rh_pass = "admin@123";
   if (!s.upiId) s.upiId = "6262072151@ybl";
   if (!s.whatsapp) s.whatsapp = "6262072151";
+  if (s.shipFee == null) s.shipFee = "60";
+  if (s.freeShipAbove == null) s.freeShipAbove = "999";
+  if (s.lowStock == null) s.lowStock = "3";
   return s;
 }
 
@@ -53,6 +56,17 @@ function getProds() { return lsGet("rh_products", []); }
 function saveProds(p) {
   try { lsSet("rh_products", p); return true; }
   catch (e) { return false; }
+}
+
+function getStockOf(p) { return Math.max(0, Number(p && p.stock) || 20); }
+
+function shipFeeFor(amount) {
+  var s2 = sett();
+  var fee = Number(s2.shipFee) || 0;
+  if (!fee) return 0;
+  var free = Number(s2.freeShipAbove) || 0;
+  if (free && amount >= free) return 0;
+  return fee;
 }
 
 function seedIfEmpty() {

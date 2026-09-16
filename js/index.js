@@ -47,10 +47,18 @@ function card(p) {
     "<h3>" + esc(p.name) + "</h3>" +
     (p.desc ? "<p class=\"pdesc\">" + esc(p.desc) + "</p>" : "") +
     (p.rating ? '<div class="rate"><span class="stars">' + stars(p.rating) + '</span><span>' + esc(p.rating) + '</span></div>' : "") +
-    '<div class="prow">' + mrpHtml(p) + '</div>' +
+    '<div class="prow">' + mrpHtml(p) + stockBadge(p) + '</div>' +
     '<div class="cbtn-wrap"><a class="btn main sm" href="order.html?p=' + p.id + '">Order</a></div>' +
     "</div></div>"
   );
+}
+
+function stockBadge(p) {
+  var stk = getStockOf(p);
+  var low = Number(sett().lowStock) || 3;
+  if (!stk) return '<span class="off sold-out">Sold out</span>';
+  if (stk <= low) return '<span class="off low-stock">Only ' + stk + " left</span>";
+  return "";
 }
 
 function grid() {
