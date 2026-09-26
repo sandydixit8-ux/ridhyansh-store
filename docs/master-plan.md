@@ -3,7 +3,7 @@
 Merged from the standalone plan into the live store repo.
 
 ## Live Store
-- URL: https://sandydixit8-ux.github.io/ridhyansh-store/index.html
+- URL: https://ridhanshstore.online/
 - Backend: Firebase RTDB (products public read, orders owner-only)
 - Payments: UPI payment links (prepaid only)
 - Products: 4 real Men's Clothing items (shirts + jeans)

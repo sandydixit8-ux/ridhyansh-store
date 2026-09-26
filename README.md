@@ -1,6 +1,6 @@
 # Ridhyansh Store
 
-D2C e-commerce store — live at https://sandydixit8-ux.github.io/ridhyansh-store/index.html
+D2C e-commerce store — live at https://ridhanshstore.online/
 
 - **Payments**: UPI prepaid (payment links + QR)
 - **Backend**: Firebase RTDB (products public, orders owner-only)
