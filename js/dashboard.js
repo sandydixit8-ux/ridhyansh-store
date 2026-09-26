@@ -12,6 +12,7 @@ $("brand").textContent = s.shopName;
 $("logout").addEventListener("click", function () { authClear(); location.href = "login.html"; });
 
 var orders = [];
+var stats = {};
 var fbTok = null;
 
 function getFbTok() {
@@ -19,8 +20,11 @@ function getFbTok() {
   return fbLogin().then(function (au) { fbTok = au.idToken; return au.idToken; }).catch(function () { return null; });
 }
 
-getFbTok().then(function (tok) { return loadOrders(tok); }).then(function (list) {
-  orders = list;
+getFbTok().then(function (tok) {
+  return Promise.all([loadOrders(tok), loadStats(tok), loadProds()]);
+}).then(function (res) {
+  orders = res[0];
+  stats = res[1];
   renderAll();
 });
 
@@ -90,6 +94,32 @@ function catTable() {
   $("catEmpty").style.display = rows.length ? "none" : "block";
 }
 
+function statTotals() {
+  var imp = 0, clk = 0;
+  Object.keys(stats).forEach(function (id) {
+    imp += stats[id].imp || 0;
+    clk += stats[id].clk || 0;
+  });
+  $("stImp").textContent = imp;
+  $("stClk").textContent = clk;
+  $("stCtr").textContent = imp ? ((clk / imp) * 100).toFixed(1) + "%" : "—";
+}
+
+function statTable() {
+  var prods = getProds();
+  var names = {};
+  prods.forEach(function (p) { names[p.id] = p.name; });
+  var rows = Object.keys(stats).map(function (id) {
+    var s = stats[id];
+    return { id: id, name: names[id] || ("Product #" + id), imp: s.imp || 0, clk: s.clk || 0 };
+  }).sort(function (a, b) { return b.imp - a.imp; });
+  $("statRows").innerHTML = rows.map(function (r) {
+    var ctr = r.imp ? ((r.clk / r.imp) * 100).toFixed(1) + "%" : "—";
+    return "<tr><td><b>" + esc(r.name) + "</b></td><td>" + r.imp + "</td><td>" + r.clk + "</td><td>" + ctr + "</td></tr>";
+  }).join("");
+  $("statEmpty").style.display = rows.length ? "none" : "block";
+}
+
 function orderTable() {
   var list = orders.filter(function (o) {
     return filter === "all" || o.status === filter;
@@ -132,7 +162,7 @@ function setStatus(r, st, msg) {
   renderAll();
 }
 
-function renderAll() { kpis(); prodTable(); catTable(); orderTable(); }
+function renderAll() { kpis(); statTotals(); statTable(); prodTable(); catTable(); orderTable(); }
 
 document.addEventListener("click", function (e) {
   var p = e.target.closest("[data-paid]");

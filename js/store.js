@@ -145,6 +145,33 @@ function cput(path, data, tok) {
   }).then(function (r) { return r.ok; }).catch(function () { return false; });
 }
 
+function trackEvnt(kind, id) {
+  var u = dbUrl();
+  if (!u || !id) return;
+  var key = Date.now() + "-" + Math.random().toString(36).slice(2, 8);
+  cput("stats/" + kind + "/" + id + "/" + key, { t: Date.now() });
+}
+function trackImp(id) { trackEvnt("impressions", id); }
+function trackClk(id) { trackEvnt("clicks", id); }
+
+function loadStats(tok) {
+  return cget("stats", tok).then(function (obj) {
+    var s = {};
+    ["impressions", "clicks"].forEach(function (kind) {
+      var node = obj && obj[kind] ? obj[kind] : {};
+      Object.keys(node).forEach(function (id) {
+        s[id] = s[id] || { imp: 0, clk: 0 };
+        var k = node[id];
+        var n = 0;
+        if (k && typeof k === "object") n = Object.keys(k).filter(function (x) { return x !== "t"; }).length;
+        if (k && typeof k === "number") n = k;
+        if (kind === "impressions") s[id].imp += n; else s[id].clk += n;
+      });
+    });
+    return s;
+  });
+}
+
 function loadProds() {
   return cget("products").then(function (list) {
     if (Array.isArray(list) && list.length) {

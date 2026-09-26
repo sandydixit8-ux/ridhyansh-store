@@ -73,6 +73,27 @@ function grid() {
   $("resCount").textContent = list.length + (list.length === 1 ? " product" : " products");
   $("empty").classList.toggle("hidden", list.length > 0);
   document.body.classList.toggle("has-products", list.length > 0);
+  trackGridImps(list);
+}
+
+var impTracked = {};
+function trackGridImps(list) {
+  if (!("IntersectionObserver" in window)) return;
+  if (list.length > 30) return;
+  var cards = $("grid").querySelectorAll(".product");
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      var box = en.target.querySelector(".imgbox[data-pid]");
+      if (!box) return;
+      var pid = box.getAttribute("data-pid");
+      if (impTracked[pid]) return;
+      impTracked[pid] = 1;
+      trackImp(pid);
+      io.unobserve(en.target);
+    });
+  }, { threshold: 0.5 });
+  cards.forEach(function (c) { io.observe(c); });
 }
 
 function heroArt() {
@@ -120,9 +141,16 @@ function closeGal() {
 }
 
 document.addEventListener("click", function (e) {
+  var oBtn = e.target.closest('a[href^="order.html"]');
+  if (oBtn) {
+    var pid = new URLSearchParams(oBtn.getAttribute("href").split("?")[1] || "").get("p");
+    if (pid) trackClk(pid);
+    return;
+  }
   var im = e.target.closest(".imgbox[data-pid]");
   if (im) {
     var p0 = PRODS.filter(function (x) { return x.id == +im.dataset.pid; })[0];
+    if (p0) trackClk(im.dataset.pid);
     if (p0 && imgsOf(p0).length > 1) {
       var th = e.target.closest(".gthumb");
       openGal(p0, th ? +th.dataset.i : 0);
