@@ -87,6 +87,13 @@ function init() {
 
   renderList();
   showStorage();
+  loadProds().then(function (list) {
+    if (list && list.length) {
+      renderList();
+      showStorage();
+      toast("Cloud products sync ho gaye — " + list.length + " product mile.", "ok");
+    }
+  });
 }
 
 var curImgs = [];
