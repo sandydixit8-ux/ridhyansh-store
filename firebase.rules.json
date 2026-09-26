@@ -19,7 +19,7 @@
       "$kind": {
         "$pid": {
           "$key": {
-            ".write": "newData.hasChildren(['t']) && !data.exists()"
+            ".write": "auth.uid != null && auth.uid == root.child('config').child('ownerUid').val() ? true : (newData.hasChildren(['t']) && !data.exists())"
           }
         }
       }
