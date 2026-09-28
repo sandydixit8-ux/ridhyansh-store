@@ -58,11 +58,7 @@ function saveProds(p) {
   catch (e) { return false; }
 }
 
-function getStockOf(p) {
-  var st = Number(p && p.stock);
-  if (isNaN(st)) return 20;
-  return Math.max(0, Math.floor(st));
-}
+function getStockOf(p) { return Math.max(0, Number(p && p.stock) || 20); }
 
 function shipFeeFor(amount) {
   var s2 = sett();
@@ -204,173 +200,7 @@ function loadOrders(tok) {
 }
 
 function saveOrderCloud(o) {
-  if (dbUrl()) return cput("orders/" + o.ref, o);
-  return Promise.resolve(false);
-}
-
-// ===== Cart (client-side, prices always re-derived from catalog) =====
-function getCart() { return lsGet("rh_cart", []); }
-function saveCart(c) { lsSet("rh_cart", c); }
-function clearCart() { saveCart([]); }
-function cartCount() {
-  var n = 0;
-  getCart().forEach(function (i) { n += (Number(i.qty) || 1); });
-  return n;
-}
-function prodById(id) {
-  var ps = getProds();
-  for (var i = 0; i < ps.length; i++) if (String(ps[i].id) === String(id)) return ps[i];
-  return null;
-}
-function cartData() {
-  var c = getCart();
-  var items = [];
-  var subtotal = 0;
-  c.forEach(function (line) {
-    var p = prodById(line.id);
-    if (!p) return;
-    var stk = getStockOf(p);
-    var qty = Math.max(1, Math.min(stk, Number(line.qty) || 1));
-    var price = Number(p.price) || 0;
-    var sub = price * qty;
-    subtotal += sub;
-    items.push({
-      id: p.id, name: p.name, cat: p.cat, sub: p.sub || "",
-      size: line.size || "", qty: qty, price: price, img: firstImg(p),
-      subtotal: sub, stock: stk
-    });
-  });
-  var ship = shipFeeFor(subtotal);
-  return { items: items, subtotal: subtotal, ship: ship, total: subtotal + ship };
-}
-function addToCart(id, size, qty) {
-  var c = getCart();
-  size = size || ""; qty = Math.max(1, Number(qty) || 1);
-  var found = false;
-  c.forEach(function (i) {
-    if (String(i.id) === String(id) && String(i.size || "") === String(size)) { i.qty = (Number(i.qty) || 1) + qty; found = true; }
-  });
-  if (!found) c.push({ id: String(id), size: size, qty: qty });
-  saveCart(c);
-  return cartCount();
-}
-function setCartQty(id, size, qty) {
-  var c = getCart();
-  qty = Number(qty) || 0;
-  if (qty <= 0) {
-    c = c.filter(function (i) { return !(String(i.id) === String(id) && String(i.size || "") === String(size || "")); });
-  } else {
-    c.forEach(function (i) { if (String(i.id) === String(id) && String(i.size || "") === String(size || "")) i.qty = qty; });
-  }
-  saveCart(c);
-}
-
-// ===== URL / SEO helpers (pure static friendly) =====
-function slugify(s) {
-  return String(s || "").toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "").replace(/-+/g, "-").replace(/^-|-$/g, "");
-}
-function pUrl(p) { return "product.html?p=" + encodeURIComponent(p.id); }
-
-function reelFile(p) { return "reels/" + p.id + "_reel_1080x1920.mp4"; }
-function videoFor(p) {
-  if (p && p.video && String(p.video).trim()) return String(p.video).trim();
-  return "";
-}
-
-function trackPV(id) { trackEvnt("views", id); }
-
-// ===== Cart UI (shared drawer across storefront pages) =====
-function cartEl(id) { return document.getElementById(id); }
-function openCart() {
-  var ov = cartEl("cartOv"), dr = cartEl("cartDrawer");
-  if (!dr) return;
-  ov && ov.classList.remove("hidden");
-  dr.classList.add("open");
-  dr.setAttribute("aria-hidden", "false");
-  document.body.classList.add("cart-open");
-  renderCart();
-}
-function closeCart() {
-  var ov = cartEl("cartOv"), dr = cartEl("cartDrawer");
-  if (!dr) return;
-  ov && ov.classList.add("hidden");
-  dr.classList.remove("open");
-  dr.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("cart-open");
-}
-function updateCartCount() {
-  var c = cartEl("cartCount");
-  if (c) c.textContent = cartCount();
-}
-function cartQtyOf(id, size) {
-  var n = 0;
-  getCart().forEach(function (i) {
-    if (String(i.id) === String(id) && String(i.size || "") === String(size || "")) n += (Number(i.qty) || 1);
-  });
-  return n;
-}
-function renderCart() {
-  var d = cartData();
-  var box = cartEl("cartItems");
-  if (!box) return;
-  if (!d.items.length) {
-    box.innerHTML = '<div class="cart-empty"><div>🛒</div><p>Cart khaali hai.</p><a class="btn main sm" href="index.html" onclick="closeCart()">Shop now</a></div>';
-  } else {
-    box.innerHTML = d.items.map(function (it) {
-      return '<div class="citem">' +
-        (it.img ? '<div class="cimg" style="background-image:url(' + esc(it.img) + ')"></div>' : '<div class="cimg em">' + catIcon(it.cat) + "</div>") +
-        '<div class="cinfo"><b>' + esc(it.name) + "</b>" +
-        (it.size ? "<small>Size: " + esc(it.size) + "</small>" : "") +
-        '<div class="csub">' + inr(it.price) + " × " + it.qty + " = <b>" + inr(it.subtotal) + "</b></div>" +
-        '<div class="cqty"><button class="qtybtn" data-q="' + it.id + '" data-qs="' + esc(it.size) + '" data-qv="-1">−</button>' +
-        '<span>' + it.qty + '</span>' +
-        '<button class="qtybtn" data-q="' + it.id + '" data-qs="' + esc(it.size) + '" data-qv="1">+</button>' +
-        '<button class="crm" data-q="' + it.id + '" data-qs="' + esc(it.size) + '" data-qv="rm" title="Remove">🗑️</button></div></div></div>';
-    }).join("");
-  }
-  var sub = cartEl("cartSubtotal"), ship = cartEl("cartShip"), tot = cartEl("cartTotal"), sr = cartEl("cartShipRow");
-  if (sub) sub.textContent = inr(d.subtotal);
-  if (ship) ship.textContent = d.ship ? inr(d.ship) : "FREE";
-  if (sr) sr.classList.toggle("hidden", d.subtotal <= 0);
-  if (tot) tot.textContent = inr(d.total);
-  updateCartCount();
-}
-function addCartUI(id, size, qty) {
-  var p = prodById(id);
-  if (!p) { toast("Product nahi mila.", "bad"); return; }
-  if (p.sizes && p.sizes.length && !size) { toast("Pehle size select kijiye.", "bad"); return; }
-  var stk = getStockOf(p);
-  if (cartQtyOf(id, size) + (qty || 1) > stk) { toast("Sirf " + stk + " piece baaki hain.", "bad"); return; }
-  addToCart(id, size, qty);
-  renderCart();
-  openCart();
-  toast("Cart mein add ho gaya 🛒", "ok");
-}
-function initCartUI() {
-  var btn = cartEl("cartBtn");
-  if (!btn) return;
-  btn.addEventListener("click", openCart);
-  var cl = cartEl("cartClose");
-  if (cl) cl.addEventListener("click", closeCart);
-  var ov = cartEl("cartOv");
-  if (ov) ov.addEventListener("click", closeCart);
-  document.addEventListener("click", function (e) {
-    var qb = e.target.closest("[data-q]:not([data-qv])");
-    if (!qb) return;
-    var id2 = qb.getAttribute("data-q");
-    var sz2 = qb.getAttribute("data-qs") || "";
-    var qv = qb.getAttribute("data-qv");
-    var cur = cartQtyOf(id2, sz2);
-    if (qv === "rm") { setCartQty(id2, sz2, 0); }
-    else if (Number(qv) === 1) {
-      var pp = prodById(id2);
-      var stk2 = pp ? getStockOf(pp) : 1;
-      if (cur + 1 > stk2) { toast("Sirf " + stk2 + " piece baaki hain.", "bad"); return; }
-      setCartQty(id2, sz2, cur + 1);
-    } else { setCartQty(id2, sz2, cur - 1); }
-    renderCart();
-  });
-  updateCartCount();
+  if (dbUrl()) cput("orders/" + o.ref, o);
 }
 
 function inr(n) { return "₹" + Number(n || 0).toLocaleString("en-IN"); }
@@ -446,26 +276,15 @@ function esc(s) {
   });
 }
 
-var IMG_PH = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(
-  "<svg xmlns='http://www.w3.org/2000/svg' width='400' height='500' viewBox='0 0 400 500'>" +
-  "<rect width='400' height='500' fill='#f1f1ef'/>" +
-  "<text x='200' y='240' font-family='Arial' font-size='22' fill='#b0b0aa' text-anchor='middle'>No image</text>" +
-  "<text x='200' y='270' font-family='Arial' font-size='14' fill='#ccc' text-anchor='middle'>Ridhyansh Store</text></svg>"
-);
-
-function hasImg(p) {
-  return (p && Array.isArray(p.images) && p.images.some(Boolean)) || (p && p.img);
-}
-
 function imgsOf(p) {
   if (p && Array.isArray(p.images)) return p.images.filter(Boolean);
   if (p && p.img) return [p.img];
-  return [IMG_PH];
+  return [];
 }
 
 function firstImg(p) {
   var i = imgsOf(p);
-  return p && hasImg(p) ? i[0] : "";
+  return i.length ? i[0] : "";
 }
 
 function toast(msg, type) {

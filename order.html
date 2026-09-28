@@ -2,65 +2,46 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Ridhyansh Store — Checkout</title>
-<meta name="description" content="Ridhyansh Store checkout — UPI prepaid, home delivery.">
-<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ridhyansh Store — Place Order</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=10">
+<link rel="stylesheet" href="css/style.css?v=9">
 </head>
 <body>
-
-<div class="banner-prepaid">🔒 100% Prepaid — Payment UPI link se, dispatch sirf payment confirm hone ke baad.</div>
 
 <header class="top">
   <div class="wrap head">
     <a class="logo" href="index.html">🛍️ <span id="brand">Ridhyansh Store</span></a>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
-    <nav id="nav">
-      <a href="index.html">Shop</a>
+    <nav>
+      <a href="index.html">Store</a>
       <a href="order.html" class="active">Order</a>
-      <a href="track-order.html">Track Order</a>
-      <a href="contact.html">Contact</a>
+      <a href="dashboard.html">📊 Dashboard</a>
+      <a href="login.html" class="nav-link-btn" title="Admin login">🔐 Admin</a>
     </nav>
-    <div class="head-actions">
-      <button class="cart-btn" id="cartBtn" title="Cart">
-        🛒 <span class="cart-count" id="cartCount">0</span>
-      </button>
-    </div>
   </div>
 </header>
 
 <div class="wrap page-top">
   <div class="stepper">
-    <div class="step done"><span class="sn">1</span> Order</div>
-    <div class="step active" id="st2"><span class="sn">2</span> Your details</div>
+    <div class="step done"><span class="sn">1</span> Select product</div>
+    <div class="step active"><span class="sn">2</span> Your details</div>
     <div class="step" id="st3"><span class="sn">3</span> Pay via UPI</div>
   </div>
 </div>
 
 <main class="wrap two-col">
   <div class="col-main">
-
-    <section class="card form-card hidden" id="multiWrap">
-      <h2>Your order</h2>
-      <p class="hint">Cart se items yahan checkout ho rahe hain.</p>
-      <div class="cart-list" id="ccList"></div>
-      <a class="btn sec sm" href="index.html">＋ Add more products</a>
-    </section>
-
-    <section class="card form-card" id="singleWrap">
+    <section class="card form-card">
       <h2>Select product</h2>
       <label for="product">Product</label>
       <div class="select-wrap"><select id="product"></select></div>
       <div class="order-gal hidden" id="orderGal">
-        <label class="label">Photos <span class="req">(tap karke bada dekho)</span></label>
+        <label>Photos <span class="req">(tap karke bada dekho)</span></label>
         <div class="order-gal-strip" id="orderGalStrip"></div>
       </div>
       <div class="hidden" id="sizeWrap">
-        <label for="sizeBtns">Select Size</label>
+        <label>Select Size</label>
         <div class="size-btns" id="sizeBtns"></div>
         <button type="button" class="link-btn" id="sizeChartBtn">📏 Size Chart</button>
         <div class="size-chart hidden" id="sizeChart">
@@ -74,8 +55,10 @@
           </tbody></table>
         </div>
       </div>
+    </section>
 
-      <h2 style="margin-top:18px">Quantity &amp; details</h2>
+    <section class="card form-card">
+      <h2>Quantity &amp; details</h2>
       <div class="inline2">
         <div>
           <label for="qty">Quantity</label>
@@ -86,10 +69,6 @@
           </div>
         </div>
       </div>
-    </section>
-
-    <section class="card form-card" id="detailsBlock">
-      <h2>Delivery details</h2>
       <label for="name">Full name</label>
       <input type="text" id="name" placeholder="e.g. Rahul Sharma">
       <label for="phone">Phone (WhatsApp)</label>
@@ -104,7 +83,11 @@
   <aside class="col-side">
     <div class="card sticky">
       <h3>Order Summary</h3>
-      <div id="sumItems"></div>
+      <div class="summary-product">
+        <div class="simg" id="simg">🛍️</div>
+        <div class="sinfo"><b id="sname">Select a product</b><span id="sprice"></span><span class="sstock muted" id="sstock"></span></div>
+      </div>
+      <div class="srow"><span>Price × <b id="sqty">1</b></span><span id="stotal"></span></div>
       <div class="srow hidden" id="shipRow"><span>Shipping</span><span id="sShip"></span></div>
       <div class="srow hidden" id="freeRow"><span class="free-ship">🎉 Free shipping</span><span>₹0</span></div>
       <div class="divider"></div>
@@ -137,7 +120,6 @@
           <li><b>WhatsApp</b> pe seller ko screenshot ya order detail bhejo</li>
         </ol>
         <p class="warn">⚠️ Dispatch sirf payment confirm hone ke baad hoga.</p>
-        <a class="btn sec full" href="track-order.html">Track this order →</a>
       </div>
     </div>
   </div>
@@ -159,23 +141,7 @@
   <div class="lb-count" id="lbCount"></div>
 </div>
 
-<div class="drawer-ov hidden" id="cartOv"></div>
-<aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
-  <div class="drawer-head">
-    <h3>🛒 Your Cart</h3>
-    <button class="drawer-x" id="cartClose" title="Close">✕</button>
-  </div>
-  <div class="drawer-body" id="cartItems"></div>
-  <div class="drawer-foot">
-    <div class="srow"><span>Subtotal</span><b id="cartSubtotal">₹0</b></div>
-    <div class="srow" id="cartShipRow"><span>Shipping</span><span id="cartShip">₹0</span></div>
-    <div class="srow sgrand"><span>To pay</span><b id="cartTotal">₹0</b></div>
-    <a class="btn primary full" href="order.html">Checkout →</a>
-    <a class="btn whatsapp full" href="contact.html">WhatsApp se poochho 💬</a>
-  </div>
-</aside>
-
-<script src="js/store.js?v=20"></script>
-<script src="js/order.js?v=20"></script>
+<script src="js/store.js?v=19"></script>
+<script src="js/order.js?v=18"></script>
 </body>
 </html>

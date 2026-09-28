@@ -4,7 +4,6 @@ var s = sett();
 var cat = "All";
 var sub = "All";
 var q = "";
-var sortBy = "popular";
 var PRODS = [];
 
 function $(id) { return document.getElementById(id); }
@@ -29,117 +28,52 @@ function renderSubs() {
   el.innerHTML = h;
 }
 
-function renderActiveFilters() {
-  var chips = [];
-  if (q) chips.push('<button class="af-chip" data-clear="q">🔍 "' + esc(q) + '" ✕</button>');
-  if (cat !== "All") chips.push('<button class="af-chip" data-clear="cat">' + catIcon(cat) + " " + esc(cat) + " ✕</button>");
-  if (sub !== "All") chips.push('<button class="af-chip" data-clear="sub">' + esc(sub) + " ✕</button>");
-  $("activeFilters").innerHTML = chips.join("");
-}
-
-function discountOf(p) {
-  var d = discInfo(p);
-  return d.off;
-}
-
-function tab(b, pid) { trackClk(pid); }
-
 function card(p) {
   var ims = imgsOf(p);
   var img = ims.length
-    ? '<img class="ti' + (ims.length > 1 ? " multi" : "") + '" src="' + esc(ims[0]) + '" alt="' + esc(p.name) + '" loading="lazy">'
+    ? '<img class="ti' + (ims.length > 1 ? ' multi' : '') + '" src="' + esc(ims[0]) + '" alt="" loading="lazy">'
     : '<div class="ph">' + esc((p.name || "?").charAt(0).toUpperCase()) + "</div>";
-  var badges = "";
-  if (videoFor(p)) badges += '<span class="p-badge video">▶ Video</span>';
-  var shot = ims.length > 1 ? '<span class="shot-count">📸 ' + ims.length + '</span>' : "";
-  var dsc = discountOf(p);
-  if (dsc > 0) badges += '<span class="p-badge deal">' + dsc + '% OFF</span>';
-  var stk = getStockOf(p);
-  if (!stk) badges += '<span class="p-badge sold">Sold out</span>';
-  else if (stk <= Number(sett().lowStock) + 1) badges += '<span class="p-badge low">Only ' + stk + " left</span>";
+  var badge = ims.length > 1 ? '<span class="shot-count">📸 ' + ims.length + '</span>' : "";
+  var strip = ims.length > 1
+    ? '<div class="card-strip">' + ims.map(function (d, ix) {
+        return '<img class="gthumb' + (ix === 0 ? " act" : "") + '" data-i="' + ix + '" src="' + esc(d) + '" alt="" loading="lazy">';
+      }).join("") + "</div>"
+    : "";
   return (
     '<div class="product reveal">' +
-    '<a class="med imgbox" href="' + pUrl(p) + '" data-plink="' + p.id + '">' + img + badges + shot + "</a>" +
+    '<div class="med imgbox" data-pid="' + p.id + '"' + (ims.length > 1 ? ' title="Photos dekho"' : "") + ">" + img + badge + strip + "</div>" +
     '<div class="pbody">' +
-    '<a class="ptag" href="javascript:void(0)" data-cg="' + esc(p.cat) + '" title="' + esc(p.cat) + '">' + catIcon(p.cat) + " " + esc(p.cat) + "</a>" +
-    '<h3><a href="' + pUrl(p) + '" data-plink="' + p.id + '">' + esc(p.name) + "</a></h3>" +
-    (p.desc ? '<p class="pdesc">' + esc(p.desc) + "</p>" : "") +
-    (p.rating ? '<div class="rate"><span class="stars">' + stars(p.rating) + '</span><span>' + esc(p.rating) + "</span></div>" : "") +
-    '<div class="prow">' + mrpHtml(p) + '</div>' +
-    '<div class="cbtn-row">' +
-    '<button class="btn main sm addcart" data-ac="' + p.id + '">🛒 Add</button>' +
-    '<a class="btn sec sm" href="order.html?p=' + p.id + '" data-buy="' + p.id + '">Buy Now</a>' +
-    "</div>" +
+    '<span class="ptag">' + catIcon(p.cat) + " " + esc(p.cat) + (p.sub ? ' <i>·</i> ' + esc(p.sub) : "") + "</span>" +
+    "<h3>" + esc(p.name) + "</h3>" +
+    (p.desc ? "<p class=\"pdesc\">" + esc(p.desc) + "</p>" : "") +
+    (p.rating ? '<div class="rate"><span class="stars">' + stars(p.rating) + '</span><span>' + esc(p.rating) + '</span></div>' : "") +
+    '<div class="prow">' + mrpHtml(p) + stockBadge(p) + '</div>' +
+    '<div class="cbtn-wrap"><a class="btn main sm" href="order.html?p=' + p.id + '">Order</a></div>' +
     "</div></div>"
   );
 }
 
-function stockBadgeLabel(p) {
+function stockBadge(p) {
   var stk = getStockOf(p);
-  var low = Number(sett().lowStock) + 1;
+  var low = Number(sett().lowStock) || 3;
   if (!stk) return '<span class="off sold-out">Sold out</span>';
   if (stk <= low) return '<span class="off low-stock">Only ' + stk + " left</span>";
   return "";
 }
 
-function matching(list) {
-  var tokens = q ? q.split(/\s+/) : [];
-  return list.filter(function (p) {
+function grid() {
+  var list = PRODS.filter(function (p) {
     var inCat = cat === "All" || p.cat === cat;
     var inSub = sub === "All" || !SUBS[cat] || (p.sub || "").indexOf(sub) !== -1;
     var hay = ((p.name || "") + " " + (p.cat || "") + " " + (p.sub || "") + " " + (p.desc || "")).toLowerCase();
-    var inQ = true;
-    for (var i = 0; i < tokens.length; i++) if (hay.indexOf(tokens[i]) === -1) { inQ = false; break; }
+    var inQ = !q || hay.indexOf(q) !== -1;
     return inCat && inSub && inQ;
   });
-}
-
-function sortList(list) {
-  var out = list.slice();
-  out.sort(function (a, b) {
-    if (sortBy === "price-asc") return (a.price || 0) - (b.price || 0);
-    if (sortBy === "price-desc") return (b.price || 0) - (a.price || 0);
-    if (sortBy === "discount") return discountOf(b) - discountOf(a);
-    if (sortBy === "new") return (b.id || 0) - (a.id || 0);
-    var fa = (a.featured ? 4 : 0) + (a.trending ? 2 : 0);
-    var fb = (b.featured ? 4 : 0) + (b.trending ? 2 : 0);
-    if (fa !== fb) return fb - fa;
-    return (b.rating || 0) - (a.rating || 0);
-  });
-  return out;
-}
-
-function renderTrend() {
-  var list = sortList(PRODS.slice()).slice(0, 4);
-  if (!list.length) { $("trendSec").classList.add("hidden"); return; }
-  $("trendSec").classList.remove("hidden");
-  $("trendGrid").innerHTML = list.map(card).join("");
-}
-
-function grid() {
-  var list = sortList(matching(PRODS));
   $("grid").innerHTML = list.map(card).join("");
   $("resCount").textContent = list.length + (list.length === 1 ? " product" : " products");
   $("empty").classList.toggle("hidden", list.length > 0);
-  renderActiveFilters();
+  document.body.classList.toggle("has-products", list.length > 0);
   trackGridImps(list);
-}
-
-function renderCatCards() {
-  var h = "";
-  CATS.forEach(function (c) {
-    var n = PRODS.filter(function (p) { return p.cat === c; }).length;
-    var deals = PRODS.filter(function (p) { return p.cat === c && discountOf(p) > 0; }).length;
-    var sub = n ? (deals ? deals + " deals" : n + " items") : "coming soon";
-    h += '<a class="cat-card" href="javascript:void(0)" data-cat="' + esc(c) + '">' +
-      '<span class="cc-icon">' + catIcon(c) + '</span>' +
-      "<b>" + esc(c) + "</b>" +
-      "<small>" + sub + "</small>" +
-      '<span class="cc-arrow">→</span>' +
-      "</a>";
-  });
-  $("catCards").innerHTML = h;
-  if (!PRODS.length) $("catCards").innerHTML = '<div class="empty-box">📦 Products add hone ke baad categories yahan dikhengi.</div>';
 }
 
 var impTracked = {};
@@ -150,15 +84,15 @@ function trackGridImps(list) {
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (en) {
       if (!en.isIntersecting) return;
-      var box = en.target.querySelector("[data-plink]");
+      var box = en.target.querySelector(".imgbox[data-pid]");
       if (!box) return;
-      var pid = box.getAttribute("data-plink");
+      var pid = box.getAttribute("data-pid");
       if (impTracked[pid]) return;
       impTracked[pid] = 1;
       trackImp(pid);
       io.unobserve(en.target);
     });
-  }, { threshold: 0.4 });
+  }, { threshold: 0.5 });
   cards.forEach(function (c) { io.observe(c); });
 }
 
@@ -170,8 +104,6 @@ function heroArt() {
   });
 }
 
-// ---------------- Cart (in store.js: openCart/closeCart/renderCart/addCartUI) ----------------
-
 function waFloat() {
   var a = document.createElement("a");
   a.className = "wa-float";
@@ -182,8 +114,6 @@ function waFloat() {
   a.title = "WhatsApp se poochho";
   document.body.appendChild(a);
 }
-
-// ---------------- Lightbox ----------------
 
 var galImg = [], gi = 0;
 function openGal(p, ix) {
@@ -210,67 +140,35 @@ function closeGal() {
   galImg = [];
 }
 
-// ---------------- Events ----------------
-
 document.addEventListener("click", function (e) {
-  var ct = e.target.closest("[data-cat]");
-  if (ct) {
-    cat = ct.getAttribute("data-cat");
-    sub = "All";
-    $("search").value = "";
-    q = "";
-    tabs(); renderSubs(); grid();
-    document.getElementById("catalog").scrollIntoView({ behavior: "smooth", block: "start" });
+  var oBtn = e.target.closest('a[href^="order.html"]');
+  if (oBtn) {
+    var pid = new URLSearchParams(oBtn.getAttribute("href").split("?")[1] || "").get("p");
+    if (pid) trackClk(pid);
     return;
   }
-  var cg = e.target.closest("[data-cg]");
-  if (cg) {
-    cat = cg.getAttribute("data-cg");
-    sub = "All";
-    $("search").value = "";
-    q = "";
-    tabs(); renderSubs(); grid();
-    document.getElementById("catalog").scrollIntoView({ behavior: "smooth", block: "start" });
-    return;
-  }
-  var clr = e.target.closest("[data-clear]");
-  if (clr) {
-    var k = clr.getAttribute("data-clear");
-    if (k === "q") { q = ""; $("search").value = ""; }
-    if (k === "cat") { cat = "All"; sub = "All"; }
-    if (k === "sub") { sub = "All"; }
-    tabs(); renderSubs(); grid();
-    return;
-  }
-  var pl = e.target.closest("[data-plink]");
-  if (pl) { trackClk(pl.getAttribute("data-plink")); return; }
-  var buy = e.target.closest("[data-buy]");
-  if (buy) { trackClk(buy.getAttribute("data-buy")); return; }
-  var ac = e.target.closest("[data-ac]");
-  if (ac) { addCartUI(ac.getAttribute("data-ac"), "", 1); return; }
-  var b = e.target.closest(".chip");
-  if (b) {
-    if (b.getAttribute("data-s")) {
-      sub = b.getAttribute("data-s");
-    } else {
-      cat = b.getAttribute("data-c");
-      sub = "All";
+  var im = e.target.closest(".imgbox[data-pid]");
+  if (im) {
+    var p0 = PRODS.filter(function (x) { return x.id == +im.dataset.pid; })[0];
+    if (p0) trackClk(im.dataset.pid);
+    if (p0 && imgsOf(p0).length > 1) {
+      var th = e.target.closest(".gthumb");
+      openGal(p0, th ? +th.dataset.i : 0);
+      return;
     }
-    tabs(); renderSubs(); grid();
-    return;
   }
-});
-
-initCartUI();
-document.addEventListener("keydown", function (e) {
-  if (galImg.length) {
-    if (e.key === "ArrowRight") gi = Math.min(galImg.length - 1, gi + 1);
-    else if (e.key === "ArrowLeft") gi = Math.max(0, gi - 1);
-    else if (e.key === "Escape") closeGal();
-    else return;
-    drawGal();
+  var b = e.target.closest(".chip");
+  if (!b) return;
+  if (b.getAttribute("data-s")) {
+    sub = b.getAttribute("data-s");
+  } else {
+    cat = b.getAttribute("data-c");
+    sub = "All";
+    $("search").value = "";
   }
-  if (e.key === "Escape" && $("cartDrawer").classList.contains("open")) closeCart();
+  tabs();
+  renderSubs();
+  grid();
 });
 
 $("lbClose").addEventListener("click", closeGal);
@@ -281,46 +179,32 @@ $("lb").addEventListener("click", function (e) {
   if (go) { gi = +go.dataset.go; drawGal(); return; }
   if (e.target === $("lb")) closeGal();
 });
+document.addEventListener("keydown", function (e) {
+  if (galImg.length) {
+    if (e.key === "ArrowRight") gi = Math.min(galImg.length - 1, gi + 1);
+    else if (e.key === "ArrowLeft") gi = Math.max(0, gi - 1);
+    else if (e.key === "Escape") closeGal();
+    else return;
+    drawGal();
+  }
+});
 
 var st;
 $("search").addEventListener("input", function () {
   clearTimeout(st);
   st = setTimeout(function () { q = $("search").value.trim().toLowerCase(); grid(); }, 120);
 });
-$("search").addEventListener("keydown", function (e) {
-  if (e.key === "Enter") { q = $("search").value.trim().toLowerCase(); grid(); }
-});
 
-$("sortSel").addEventListener("change", function () {
-  sortBy = $("sortSel").value;
-  grid();
-});
-
-$("emptyReset").addEventListener("click", function () {
-  cat = "All"; sub = "All"; q = ""; sortBy = "popular";
-  $("search").value = ""; $("sortSel").value = "popular";
-  tabs(); renderSubs(); grid();
-});
-
-$("navToggle").addEventListener("click", function () {
-  $("nav").classList.toggle("open");
-});
-
-document.title = s.shopName + " — Shop Smart. Look Better. Spend Better.";
+document.title = s.shopName + " — Shop Online, Pay Prepaid";
 $("brand").textContent = s.shopName;
-$("heroShopName").textContent = "Look better.";
+$("heroShopName").textContent = s.shopName;
 $("footName").textContent = s.shopName;
 $("yr").textContent = new Date().getFullYear();
-$("footWa").textContent = "WhatsApp: +91 " + s.whatsapp;
-updateCartCount();
 tabs();
 renderSubs();
 loadProds().then(function (list) {
   PRODS = list;
   heroArt();
-  renderCatCards();
-  renderTrend();
   grid();
-  updateCartCount();
 });
 waFloat();
