@@ -131,14 +131,30 @@ function orderTable() {
     else if (o.status === "shipped") actions = '<button class="btn green sm" data-deliv="' + o.ref + '">Mark Delivered</button>';
     else actions = '<button class="btn danger sm ghost" data-delorder="' + o.ref + '">Delete</button>';
     return '<tr><td><b>' + esc(o.ref) + "</b><br><small>" + fmtTime(o.time) + "</small></td>" +
-      "<td>" + esc(o.product) + (o.sub ? ' <small>· ' + esc(o.sub) + "</small>" : "") + (o.size ? ' <small>· Size ' + esc(o.size) + "</small>" : "") + "</td>" +
-      "<td>" + o.qty + "</td>" +
+      "<td>" + orderItemsHtml(o) + "</td>" +
+      "<td>" + orderQty(o) + "</td>" +
       "<td><b>" + inr(o.amount) + "</b></td>" +
       "<td><small>" + esc(o.name) + "<br>" + esc(o.phone) + "</small></td>" +
       "<td>" + badge(o.status) + "</td>" +
       "<td>" + actions + "</td></tr>";
   }).join("");
   $("orderEmpty").style.display = list.length ? "none" : "block";
+}
+
+function orderItemsHtml(o) {
+  if (o.items && o.items.length) {
+    return o.items.map(function (it) {
+      return '<div>' + esc(it.name) + (it.size ? ' <small>· ' + esc(it.size) : "") + " × " + it.qty + "</small></div>";
+    }).join("");
+  }
+  return esc(o.product) + (o.sub ? ' <small>· ' + esc(o.sub) + "</small>" : "") + (o.size ? ' <small>· Size ' + esc(o.size) + "</small>" : "");
+}
+
+function orderQty(o) {
+  if (o.items && o.items.length) {
+    return o.items.reduce(function (n, it) { return n + it.qty; }, 0);
+  }
+  return o.qty;
 }
 
 function filters() {

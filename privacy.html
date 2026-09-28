@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Privacy Policy — Ridhyansh Store</title>
+<meta name="description" content="Ridhyansh Store privacy policy — aapka data kaise use hota hai.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=10">
+</head>
+<body>
+<header class="top">
+  <div class="wrap head">
+    <a class="logo" href="index.html">🛍️ <span id="brand">Ridhyansh Store</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    <nav id="nav">
+      <a href="index.html">Shop</a>
+      <a href="order.html">Order</a>
+      <a href="track-order.html">Track Order</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="head-actions"><button class="cart-btn" id="cartBtn" title="Cart">🛒 <span class="cart-count" id="cartCount">0</span></button></div>
+  </div>
+</header>
+
+<main class="wrap page">
+  <h1>Privacy Policy</h1>
+  <p class="lead">Aapka data simple aur safe rakhte hain — yeh hi rule hai.</p>
+  <h2>Hum kya collect karte hain</h2>
+  <ul>
+    <li>Order ke liye: naam, phone number, delivery address, order details.</li>
+    <li>Browser ke andar (localStorage): aapke browser mein hi products/details store hote hain — humara server unhe nahi rakhta.</li>
+  </ul>
+  <h2>Kahan jaata hai</h2>
+  <ul>
+    <li>Orders cloud (Firebase) mein save hote hain, sirf store owner unhe dekh sakte hain.</li>
+    <li>Phone number WhatsApp order confirmation aur support ke liye use hota hai.</li>
+    <li>Hum aapka data kisi se bechte nahi, share nahi karte.</li>
+  </ul>
+  <h2>Aapke rights</h2>
+  <ul>
+    <li>Kisi bhi time <a href="contact.html">Contact</a> karke apna data delete karne ke liye kah sakte hain.</li>
+  </ul>
+  <div class="note">Yeh policy time ke saath update ho sakti hai. Major changes par site par update kiya jata hai.</div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div><div class="logo">🛍️ <span>Ridhyansh Store</span></div><p class="muted">Simple. Prepaid. Trusted.</p></div>
+    <div class="foot-cols">
+      <div><h4>Shop</h4><a href="index.html">All products</a><a href="order.html">Place order</a><a href="track-order.html">Track order</a></div>
+      <div><h4>Help</h4><a href="faqs.html">FAQs</a><a href="shipping-policy.html">Shipping policy</a><a href="returns.html">Returns &amp; refunds</a><a href="contact.html">Contact</a></div>
+      <div><h4>Company</h4><a href="about.html">About us</a><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms</a></div>
+    </div>
+  </div>
+  <div class="wrap foot-legal">© <span id="yr"></span> Ridhyansh Store · Saare payments UPI se.</div>
+</footer>
+
+<div class="drawer-ov hidden" id="cartOv"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+  <div class="drawer-head"><h3>🛒 Your Cart</h3><button class="drawer-x" id="cartClose" title="Close">✕</button></div>
+  <div class="drawer-body" id="cartItems"></div>
+  <div class="drawer-foot">
+    <div class="srow"><span>Subtotal</span><b id="cartSubtotal">₹0</b></div>
+    <div class="srow" id="cartShipRow"><span>Shipping</span><span id="cartShip">₹0</span></div>
+    <div class="srow sgrand"><span>To pay</span><b id="cartTotal">₹0</b></div>
+    <a class="btn primary full" href="order.html">Checkout →</a>
+  </div>
+</aside>
+
+<script src="js/store.js?v=20"></script>
+<script>
+var s = sett();
+document.title = s.shopName + " — Privacy Policy";
+document.getElementById("brand").textContent = s.shopName;
+document.getElementById("yr").textContent = new Date().getFullYear();
+document.getElementById("navToggle").addEventListener("click", function(){ document.getElementById("nav").classList.toggle("open"); });
+initCartUI();
+</script>
+</body>
+</html>

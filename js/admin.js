@@ -7,9 +7,34 @@ function $(id) { return document.getElementById(id); }
 function docClick(e) {
   var link = e.target.closest("[data-link]");
   if (link) {
+    var id = link.getAttribute("data-link");
     var base = location.href.split("admin.html")[0] || location.href;
-    copyText(base + "order.html?p=" + link.getAttribute("data-link"), link);
-    toast("Product URL copy ho gaya — ad mein paste karo ✔", "ok");
+    var u = base + "product.html?p=" + id;
+    copyText(u, link);
+    toast("Product page URL copy ho gaya — ad mein paste karo ✔", "ok");
+    return;
+  }
+  var reel = e.target.closest("[data-reel]");
+  if (reel) {
+    var id2 = reel.getAttribute("data-reel");
+    var base2 = location.href.split("admin.html")[0] || location.href;
+    var ru = base2 + "reels/" + id2 + "_reel_1080x1920.mp4";
+    copyText(ru, reel);
+    toast("Reel URL copy ho gaya ✔ (reels folder mein file honi chahiye)", "ok");
+    return;
+  }
+  var feat = e.target.closest("[data-feat]");
+  if (feat) {
+    var f = getProds();
+    var fp = f.filter(function (x) { return String(x.id) === String(feat.getAttribute("data-feat")); })[0];
+    if (fp) { fp.featured = !fp.featured; saveProds(f); renderList(); toast(fp.featured ? "⭐ Featured ON" : "⭐ Featured OFF"); publishCloud(); }
+    return;
+  }
+  var trend = e.target.closest("[data-trend]");
+  if (trend) {
+    var t = getProds();
+    var tp = t.filter(function (x) { return String(x.id) === String(trend.getAttribute("data-trend")); })[0];
+    if (tp) { tp.trending = !tp.trending; saveProds(t); renderList(); toast(tp.trending ? "🔥 Trending ON" : "🔥 Trending OFF"); publishCloud(); }
     return;
   }
   var ed = e.target.closest("[data-edit]");
@@ -340,8 +365,22 @@ function addProduct() {
     stock: stock,
     images: imgs,
     img: imgs[0],
-    desc: $("pdesc").value.trim()
+    desc: $("pdesc").value.trim(),
+    sku: $("psku").value.trim() || "",
+    colors: splitList($("pcolors").value),
+    material: $("pmaterial").value.trim() || "",
+    fit: $("pfit").value.trim() || "",
+    video: $("pvideo").value.trim() || "",
+    slug: $("pslug").value.trim() || slugify(n),
+    seoTitle: $("pseotitle").value.trim() || "",
+    seoDesc: $("pseodesc").value.trim() || "",
+    features: splitList($("pfeatures").value),
+    specText: $("pspecText").value.trim() || "",
+    longdesc: $("plongdesc").value.trim() || "",
+    featured: $("pFeatured").checked || false,
+    trending: $("pTrending").checked || false
   };
+  if ($("pSold").checked) prod.stock = 0;
   if (SUBS[prod.cat]) {
     prod.sub = $("psub").value;
     var sz = $("psizes").value.trim();
@@ -350,11 +389,8 @@ function addProduct() {
   if (editId) {
     var ex = p.filter(function (x) { return String(x.id) === String(editId); })[0];
     if (!ex) { toast("Product nahi mila.", "bad"); return; }
-    ex.name = prod.name; ex.cat = prod.cat; ex.price = prod.price; ex.mrp = prod.mrp; ex.desc = prod.desc;
-    ex.stock = prod.stock;
-    if (prod.sub) ex.sub = prod.sub;
-    if (prod.sizes) ex.sizes = prod.sizes;
-    if (prod.images.length) { ex.images = prod.images; ex.img = prod.images[0]; }
+    Object.keys(prod).forEach(function (k) { ex[k] = prod[k]; });
+    if (imgs.length) { ex.images = imgs; ex.img = imgs[0]; }
     if (!saveProds(p)) { toast("Storage full — photos kam karo.", "bad"); return; }
     editId = null;
     $("phead2").textContent = "Add Product";
@@ -373,10 +409,18 @@ $("prodMsg").textContent = "";
   $("cancelEdit") && $("cancelEdit").classList.add("hidden");
   $("pname").value = ""; $("pprice").value = ""; $("pmrp").value = ""; $("pdesc").value = "";
   $("psizes").value = ""; $("pstock").value = "";
+  $("psku").value = ""; $("pslug").value = ""; $("pseotitle").value = ""; $("pseodesc").value = "";
+  $("pcolors").value = ""; $("pmaterial").value = ""; $("pfit").value = ""; $("pvideo").value = "";
+  $("pfeatures").value = ""; $("pspecText").value = ""; $("plongdesc").value = "";
+  $("pFeatured").checked = false; $("pTrending").checked = false; $("pSold").checked = false;
   curImgs = [];
   renderPrev();
   renderList();
   publishCloud();
+}
+
+function splitList(v) {
+  return String(v || "").split(",").map(function (x) { return x.trim(); }).filter(Boolean);
 }
 
 function thumb(p) {
@@ -390,15 +434,22 @@ function renderList() {
   $("pc").textContent = p.length;
   var h = "";
   p.forEach(function (pr) {
+    var fl = [];
+    if (pr.featured) fl.push('<span class="fl-badge feat">⭐</span>');
+    if (pr.trending) fl.push('<span class="fl-badge trend">🔥</span>');
+    if (videoFor(pr)) fl.push('<span class="fl-badge">▶</span>');
     h += '<div class="plist-row">' + thumb(pr) +
-      '<div class="plist-info"><b>' + esc(pr.name) + "</b>" +
+      '<div class="plist-info"><b>' + esc(pr.name) + '</b>' + fl.join("") +
       '<span>' + catIcon(pr.cat) + " " + esc(pr.cat) + (pr.sub ? " · " + esc(pr.sub) : "") + " · " + mrpHtml(pr) + (pr.sizes && pr.sizes.length ? " · Sizes: " + esc(pr.sizes.join(", ")) : "") + ' · Stock: <b>' + getStockOf(pr) + '</b></span></div>' +
       '<div class="plist-actions">' +
+      '<button class="btn sm ghost' + (pr.featured ? " on" : "") + '" data-feat="' + pr.id + '" title="Featured toggle (home par pehle aayega)">⭐</button>' +
+      '<button class="btn sm ghost' + (pr.trending ? " on" : "") + '" data-trend="' + pr.id + '" title="Trending toggle">🔥</button>' +
       '<button class="btn sm ghost" data-inc="' + pr.id + '" title="Stock +1">+</button>' +
       '<button class="btn sm ghost" data-dec="' + pr.id + '" title="Stock −1">−</button>' +
-      '<button class="btn sm link2" data-link="' + pr.id + '" title="Product URL copy karo (ad mein dalna)">🔗 Link</button>' +
-      '<button class="btn sm" data-edit="' + pr.id + '" title="Price/MRP/naam badlo">✏️ Edit</button>' +
-      '<button class="btn danger sm" data-del="' + pr.id + '">Delete</button>' +
+      '<button class="btn sm link2" data-link="' + pr.id + '" title="Product page URL copy karo">🔗</button>' +
+      '<button class="btn sm link2" data-reel="' + pr.id + '" title="Reel URL copy karo (agar reels folder mein hai)">🎬</button>' +
+      '<button class="btn sm" data-edit="' + pr.id + '" title="Edit">✏️</button>' +
+      '<button class="btn danger sm" data-del="' + pr.id + '">Del</button>' +
       "</div></div>";
   });
   $("plist").innerHTML = h || '<div class="plist-empty">📮 Abhi koi product nahi — upar "Add Product" se daalo.</div>';
@@ -413,6 +464,20 @@ function startEdit(id) {
   $("pmrp").value = p.mrp || "";
   $("pstock").value = p.stock != null ? p.stock : "";
   $("pdesc").value = p.desc || "";
+  $("psku").value = p.sku || "";
+  $("pslug").value = p.slug || "";
+  $("pseotitle").value = p.seoTitle || "";
+  $("pseodesc").value = p.seoDesc || "";
+  $("pcolors").value = (p.colors || []).join(", ");
+  $("pmaterial").value = p.material || "";
+  $("pfit").value = p.fit || "";
+  $("pvideo").value = p.video || "";
+  $("pfeatures").value = (p.features || []).join(", ");
+  $("pspecText").value = p.specText || "";
+  $("plongdesc").value = p.longdesc || "";
+  $("pFeatured").checked = !!p.featured;
+  $("pTrending").checked = !!p.trending;
+  $("pSold").checked = getStockOf(p) === 0;
   $("pcat").value = p.cat || "Clothing";
   syncSub();
   if (p.sub) $("psub").value = p.sub;
@@ -430,8 +495,17 @@ function cancelEdit() {
   $("phead2").textContent = "Add Product";
   $("addProd").innerHTML = "＋ Add Product";
   $("cancelEdit").classList.add("hidden");
+  $("pFeatured").checked = false;
+  $("pTrending").checked = false;
+  $("pSold").checked = false;
   toast("Edit cancel ho gaya.");
 }
+
+$("pname").addEventListener("input", function () {
+  if (!editId && !$("pslug").value.trim()) {
+    $("pslug").value = slugify($("pname").value);
+  }
+});
 
 function genLink() {
   var amount = Math.round(parseFloat($("gamt").value || "0"));

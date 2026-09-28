@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Product — Ridhyansh Store</title>
+<meta name="description" content="Ridhyansh Store — UPI prepaid, home delivery, WhatsApp support.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="product">
+<meta property="og:site_name" content="Ridhyansh Store">
+<meta property="og:title" content="Product — Ridhyansh Store">
+<meta property="og:image" content="https://ridhanshstore.online/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=10">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap head">
+    <a class="logo" href="index.html">🛍️ <span id="brand">Ridhyansh Store</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    <nav id="nav">
+      <a href="index.html">Shop</a>
+      <a href="order.html">Order</a>
+      <a href="track-order.html">Track Order</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="head-actions">
+      <button class="cart-btn" id="cartBtn" title="Cart">
+        🛒 <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="pdp" id="pdpWrap">
+  <nav class="crumb hidden" id="crumb" aria-label="Breadcrumb"></nav>
+
+  <section class="pdp-top">
+    <div class="gallery">
+      <div class="gmain" id="gMain">
+        <img id="gMainImg" alt="">
+        <video id="gMainVid" controls playsinline preload="metadata" class="hidden"></video>
+        <div class="g-badges" id="gBadges"></div>
+      </div>
+      <div class="g-thumbs" id="gThumbs"></div>
+    </div>
+
+    <div class="pinfo">
+      <div class="p-tags" id="pTags"></div>
+      <h1 id="pTitle">Loading…</h1>
+      <div class="p-rate" id="pRate"></div>
+      <div class="p-price-row" id="pPrice"></div>
+      <div class="p-save" id="pSave"></div>
+      <div class="p-stock" id="pStock"></div>
+
+      <div class="divider-soft"></div>
+
+      <div class="hidden" id="sizeWrap">
+        <label for="sizeBtns2">Select Size</label>
+        <div class="size-btns" id="sizeBtns2"></div>
+        <button type="button" class="link-btn" id="sizeChartBtn2">📏 Size Chart</button>
+        <div class="size-chart hidden" id="sizeChart2">
+          <table><thead><tr><th>Size</th><th>Chest (in.)</th><th>Shoulder</th><th>Sleeve</th></tr></thead>
+          <tbody>
+            <tr><td>S</td><td>36–38</td><td>16</td><td>24</td></tr>
+            <tr><td>M</td><td>38–40</td><td>17</td><td>25</td></tr>
+            <tr><td>L</td><td>40–42</td><td>18</td><td>25.5</td></tr>
+            <tr><td>XL</td><td>42–44</td><td>19</td><td>26</td></tr>
+            <tr><td>XXL</td><td>44–46</td><td>20</td><td>26.5</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+
+      <label for="pqty">Quantity</label>
+      <div class="qty-group">
+        <button class="qtybtn" data-q="-1">−</button>
+        <input type="number" id="pqty" value="1" min="1">
+        <button class="qtybtn" data-q="1">+</button>
+      </div>
+
+      <div class="cbtn-row pdp-cta">
+        <button class="btn primary" id="pAddCart">🛒 Add to Cart</button>
+        <button class="btn main" id="pBuy">⚡ Buy Now</button>
+      </div>
+
+      <div class="share-row">
+        <button class="btn copy-btn" id="pShare">🔗 Share</button>
+        <a class="btn whatsapp" id="pWa" href="#" target="_blank" rel="noopener">💬 Ask on WhatsApp</a>
+      </div>
+
+      <div class="divider-soft"></div>
+
+      <div class="value-strip" id="valueStrip"></div>
+
+      <div class="p-info-rows" id="pInfoRows"></div>
+    </div>
+  </section>
+
+  <section class="p-body-blocks" id="pBody"></section>
+
+  <section class="sec" id="relSec">
+    <div class="sec-head">
+      <div>
+        <h2>You may also like</h2>
+        <p class="sub">Iske saath yeh bhi aapse sunein</p>
+      </div>
+      <a class="link-more" href="index.html">View all →</a>
+    </div>
+    <div class="grid related-grid" id="relGrid"></div>
+  </section>
+</main>
+
+<div class="empty-box hidden" id="notFound">
+  <div class="empty-art">📦</div>
+  <h3>Product nahi mila</h3>
+  <p>Yeh product hata diya gaya ho sakta hai ya link galat hai.</p>
+  <a class="btn main" href="index.html">Back to shop</a>
+</div>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div>
+      <div class="logo">🛍️ <span id="footName">Ridhyansh Store</span></div>
+      <p class="muted">Simple. Prepaid. Trusted.</p>
+    </div>
+    <div class="foot-cols">
+      <div>
+        <h4>Shop</h4>
+        <a href="index.html">All products</a>
+        <a href="order.html">Place order</a>
+        <a href="track-order.html">Track order</a>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <a href="faqs.html">FAQs</a>
+        <a href="shipping-policy.html">Shipping policy</a>
+        <a href="returns.html">Returns &amp; refunds</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="about.html">About us</a>
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div class="wrap foot-legal">© <span id="yr"></span> Ridhyansh Store · Saare payments UPI se. Prepaid only.</div>
+</footer>
+
+<div class="lb hidden" id="lb">
+  <button class="lb-x" id="lbClose" title="Close">✕</button>
+  <button class="lb-nav" id="lbPrev">‹</button>
+  <img id="lbImg" alt="product photo">
+  <button class="lb-nav" id="lbNext">›</button>
+  <div class="lb-thumbs" id="lbThumbs"></div>
+  <div class="lb-count" id="lbCount"></div>
+</div>
+
+<div class="drawer-ov hidden" id="cartOv"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+  <div class="drawer-head">
+    <h3>🛒 Your Cart</h3>
+    <button class="drawer-x" id="cartClose" title="Close">✕</button>
+  </div>
+  <div class="drawer-body" id="cartItems"></div>
+  <div class="drawer-foot">
+    <div class="srow"><span>Subtotal</span><b id="cartSubtotal">₹0</b></div>
+    <div class="srow" id="cartShipRow"><span>Shipping</span><span id="cartShip">₹0</span></div>
+    <div class="srow sgrand"><span>To pay</span><b id="cartTotal">₹0</b></div>
+    <a class="btn primary full" href="order.html">Checkout →</a>
+    <a class="btn whatsapp full" href="contact.html">WhatsApp se poochho 💬</a>
+  </div>
+</aside>
+
+<script src="js/store.js?v=20"></script>
+<script src="js/product.js?v=20"></script>
+</body>
+</html>
