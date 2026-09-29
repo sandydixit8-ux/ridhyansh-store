@@ -624,6 +624,13 @@ input[type="file"] { padding: 9px; font-size: 14px; cursor: pointer; }
   box-shadow: var(--sh1); transition: all .15s ease;
 }
 .cart-btn:hover { border-color: var(--brand); color: var(--brand); transform: translateY(-1px); }
+.admin-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: 12px; border: 1px solid var(--line);
+  background: #fff; font-size: 15px; cursor: pointer; color: var(--ink);
+  box-shadow: var(--sh1); transition: all .15s ease; text-decoration: none; opacity: .88;
+}
+.admin-btn:hover { border-color: var(--brand); color: var(--brand); opacity: 1; }
 .cart-count {
   position: absolute; top: -5px; right: -5px; min-width: 20px; height: 20px; padding: 0 5px;
   border-radius: 999px; background: linear-gradient(90deg, var(--brand), var(--brand2));
