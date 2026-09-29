@@ -179,11 +179,12 @@ function buildGallery(ims, off) {
   ims.forEach(function (src, i) {
     thumbs.push({ type: "img", src: src, i: i });
   });
-  if (videoSrc) thumbs.unshift({ type: "vid", src: videoSrc });
+  if (videoSrc) thumbs.push({ type: "vid", src: videoSrc });
+  medList = thumbs;
 
   $("gThumbs").innerHTML = thumbs.map(function (t, ix) {
     if (t.type === "vid") {
-      return '<button class="gth" data-med="' + ix + '"><video muted playsinline preload="metadata" src="' + esc(t.src) + '"></video></button>';
+      return '<button class="gth vth" data-med="' + ix + '"><video muted playsinline preload="metadata" src="' + esc(t.src) + '"></video><span class="vply">▶</span></button>';
     }
     return '<button class="gth' + (ix === 0 ? " on" : "") + '" data-med="' + ix + '"><img src="' + esc(t.src) + '" alt=""></button>';
   }).join("");
@@ -202,7 +203,7 @@ function buildGallery(ims, off) {
   };
 }
 
-var galImgs = [], galIdx = 0;
+var galImgs = [], galIdx = 0, medList = [];
 function galIms() { return galImgs; }
 function currentImgIndex() { return galIdx; }
 function showImg(src, i) {
@@ -217,6 +218,7 @@ function showVideo() {
   var vid = $("gMainVid");
   $("gMainImg").classList.add("hidden");
   vid.classList.remove("hidden");
+  if (vid.poster !== firstImg(p)) vid.poster = firstImg(p) || "";
   if (vid.src !== videoSrc) vid.src = videoSrc;
   vid.load();
   vid.play().catch(function () {});
@@ -238,11 +240,10 @@ function markThumb(src) {
 $("gThumbs").addEventListener("click", function (e) {
   var b = e.target.closest(".gth");
   if (!b) return;
-  var med = b.getAttribute("data-med");
-  if (med === "0" && videoSrc) { showVideo(); return; }
-  var i = videoSrc ? +med - 1 : +med;
-  var src = imgsOf(p)[i];
-  if (src) showImg(src, i);
+  var med = +b.getAttribute("data-med");
+  var m = medList[med];
+  if (m && m.type === "vid") { showVideo(); return; }
+  if (m) showImg(m.src, m.i);
 });
 
 // Lightbox helpers (img-only)
