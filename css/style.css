@@ -832,10 +832,14 @@ body.cart-open { overflow: hidden; }
 .pdp-top { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; align-items: start; }
 .gallery { position: relative; }
 .gmain {
-  width: 100%; aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; height: clamp(320px, 68vh, 620px);
+  border-radius: 18px; overflow: hidden; background: #fff;
   border: 1px solid var(--line); box-shadow: var(--sh1); position: relative; cursor: zoom-in;
 }
-.gmain img, .gmain video { width: 100%; height: 100%; object-fit: contain; display: block; background: #fff; }
+.gmain img, .gmain video {
+  display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; background: #fff;
+}
 .g-badges { position: absolute; top: 12px; left: 12px; z-index: 3; display: flex; gap: 7px; flex-wrap: wrap; }
 .g-thumbs { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
 .gth {
