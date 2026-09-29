@@ -468,6 +468,12 @@ function firstImg(p) {
   return p && hasImg(p) ? i[0] : "";
 }
 
+function imgErr(el) {
+  el.onerror = null;
+  el.classList.add("plh");
+  el.src = IMG_PH;
+}
+
 function toast(msg, type) {
   var box = document.getElementById("toasts");
   if (!box) {

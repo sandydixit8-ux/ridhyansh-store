@@ -47,7 +47,7 @@ function tab(b, pid) { trackClk(pid); }
 function card(p) {
   var ims = imgsOf(p);
   var img = ims.length
-    ? '<img class="ti' + (ims.length > 1 ? " multi" : "") + '" src="' + esc(ims[0]) + '" alt="' + esc(p.name) + '" loading="lazy">'
+    ? '<img class="ti' + (ims.length > 1 ? " multi" : "") + '" src="' + esc(ims[0]) + '" alt="' + esc(p.name) + '" loading="lazy" onerror="imgErr(this)">'
     : '<div class="ph">' + esc((p.name || "?").charAt(0).toUpperCase()) + "</div>";
   var badges = "";
   if (videoFor(p)) badges += '<span class="p-badge video">▶ Video</span>';
