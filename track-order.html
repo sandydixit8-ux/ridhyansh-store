@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Track Order — Ridhyansh Store</title>
+<meta name="description" content="Apne Ridhyansh Store order ka status dekhiye — order, payment, dispatch, delivery.">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=11">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap head">
+    <a class="logo" href="index.html">🛍️ <span id="brand">Ridhyansh Store</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    <nav id="nav">
+      <a href="index.html">Shop</a>
+      <a href="order.html">Order</a>
+      <a href="track-order.html" class="active">Track Order</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="head-actions">
+      <button class="cart-btn" id="cartBtn" title="Cart">
+        🛒 <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap page">
+  <h1>📦 Track your order</h1>
+  <p class="lead">Order ref aur phone number daalke status dekhiye. Full confirmation WhatsApp par milti hai.</p>
+
+  <section class="card track-form">
+    <label for="tRef">Order ref <span class="req">(e.g. RID26091341)</span></label>
+    <input type="text" id="tRef" placeholder="RID26091341">
+    <label for="tPhone">Phone number</label>
+    <input type="tel" id="tPhone" placeholder="10 digit mobile number">
+    <button class="btn primary" id="tFind">Track Order →</button>
+    <div class="errbox hidden" id="tErr"></div>
+  </section>
+
+  <section class="card track-result hidden" id="tResult">
+    <div class="tr-head">
+      <div>
+        <div class="ordref">Order: <b id="rRef"></b></div>
+        <div class="muted" id="rTime"></div>
+      </div>
+      <span class="badge pend" id="rBadge">pending</span>
+    </div>
+    <div class="tl" id="rTimeline"></div>
+    <div class="tr-items" id="rItems"></div>
+    <div class="srow sgrand"><span>Total paid</span><b id="rAmt"></b></div>
+    <p class="note" id="rNote"></p>
+  </section>
+
+  <section class="card track-help">
+    <h3>Payment ho gaya hai? Confirm karo</h3>
+    <p>Payment screenshot ya order detail WhatsApp par bhejein — dispatch payment confirm hone ke baad hi hota hai.</p>
+    <a class="btn whatsapp" id="tWa" href="#" target="_blank" rel="noopener">WhatsApp par confirm karein 💬</a>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div>
+      <div class="logo">🛍️ <span id="footName">Ridhyansh Store</span></div>
+      <p class="muted">Simple. Prepaid. Trusted.</p>
+    </div>
+    <div class="foot-cols">
+      <div>
+        <h4>Shop</h4>
+        <a href="index.html">All products</a>
+        <a href="order.html">Place order</a>
+        <a href="track-order.html">Track order</a>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <a href="faqs.html">FAQs</a>
+        <a href="shipping-policy.html">Shipping policy</a>
+        <a href="returns.html">Returns &amp; refunds</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="about.html">About us</a>
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div class="wrap foot-legal">© <span id="yr"></span> Ridhyansh Store · Saare payments UPI se. Prepaid only.</div>
+</footer>
+
+<div class="drawer-ov hidden" id="cartOv"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+  <div class="drawer-head">
+    <h3>🛒 Your Cart</h3>
+    <button class="drawer-x" id="cartClose" title="Close">✕</button>
+  </div>
+  <div class="drawer-body" id="cartItems"></div>
+  <div class="drawer-foot">
+    <div class="srow"><span>Subtotal</span><b id="cartSubtotal">₹0</b></div>
+    <div class="srow" id="cartShipRow"><span>Shipping</span><span id="cartShip">₹0</span></div>
+    <div class="srow sgrand"><span>To pay</span><b id="cartTotal">₹0</b></div>
+    <a class="btn primary full" href="order.html">Checkout →</a>
+    <a class="btn whatsapp full" href="contact.html">WhatsApp se poochho 💬</a>
+  </div>
+</aside>
+
+<script src="js/store.js?v=20"></script>
+<script src="js/track.js?v=20"></script>
+</body>
+</html>
