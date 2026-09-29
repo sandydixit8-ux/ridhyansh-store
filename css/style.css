@@ -833,7 +833,7 @@ body.cart-open { overflow: hidden; }
 .gallery { position: relative; }
 .gmain {
   display: flex; align-items: center; justify-content: center;
-  width: 100%; height: clamp(320px, 68vh, 620px);
+  width: 100%; aspect-ratio: 1 / 1;
   border-radius: 18px; overflow: hidden; background: #fff;
   border: 1px solid var(--line); box-shadow: var(--sh1); position: relative; cursor: zoom-in;
 }
