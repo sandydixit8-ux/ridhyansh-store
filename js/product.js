@@ -372,6 +372,7 @@ $("yr").textContent = new Date().getFullYear();
 $("navToggle").addEventListener("click", function () { $("nav").classList.toggle("open"); });
 
 var qp = new URLSearchParams(location.search).get("p");
+if (!qp && location.hash) qp = location.hash.replace(/[^0-9]/g, ""); // #<id> fallback
 loadProds().then(function (list) {
   PRODS = list;
   p = qp ? prodById(qp) : null;

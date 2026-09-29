@@ -324,3 +324,18 @@ loadProds().then(function (list) {
   updateCartCount();
 });
 waFloat();
+
+// ---- #<product-id> deep links: index.html#1789369544994 -> product.html?p=... ----
+(function () {
+  function pidFromHash() {
+    var m = /^#?p?\d{6,}$/.exec((location.hash || "").trim());
+    return m ? location.hash.replace(/[^0-9]/g, "") : "";
+  }
+  function handleHash() {
+    var pid = pidFromHash();
+    if (!pid) return;
+    location.replace("product.html?p=" + pid);
+  }
+  handleHash();
+  window.addEventListener("hashchange", handleHash);
+})();
