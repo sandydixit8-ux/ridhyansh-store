@@ -261,7 +261,7 @@ function drawGalLb() {
   $("lbPrev").classList.toggle("hidden", gi === 0);
   $("lbNext").classList.toggle("hidden", gi >= lbImgArr.length - 1);
   $("lbThumbs").innerHTML = lbImgArr.map(function (d, i) {
-    return '<img class="lb-th' + (i === gi ? " act" : "") + '" data-go="' + i + '" src="' + d + '" alt="">';
+    return '<img class="lb-th' + (i === gi ? " act" : "") + '" data-go="' + i + '" src="' + esc(d) + '" alt="">';
   }).join("");
 }
 function closeGalLb() {

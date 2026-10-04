@@ -2,7 +2,7 @@
   "rules": {
     "config": {
       ".read": false,
-      ".write": "!data.exists()"
+      ".write": false
     },
     "products": {
       ".read": true,
@@ -11,7 +11,8 @@
     "orders": {
       ".read": "auth.uid != null && auth.uid == root.child('config').child('ownerUid').val()",
       "$ref": {
-        ".write": "auth.uid != null && auth.uid == root.child('config').child('ownerUid').val() ? true : (!data.exists() && newData.hasChildren(['ref','name','phone','amount']))"
+        ".write": "auth.uid != null && auth.uid == root.child('config').child('ownerUid').val() ? true : (!data.exists() && newData.hasChildren(['ref','name','phone','amount','status']))",
+        ".validate": "auth.uid == root.child('config').child('ownerUid').val() ? true : (newData.child('status').val() === 'pending' && newData.child('ref').isString() && newData.child('ref').val().length >= 5 && newData.child('ref').val().length <= 30 && newData.child('name').isString() && newData.child('name').val().length <= 80 && newData.child('phone').isString() && newData.child('phone').val().matches(/^[6-9][0-9]{9}$/) && newData.child('addr').isString() && newData.child('addr').val().length <= 600 && newData.child('amount').isNumber() && newData.child('amount').val() > 0 && newData.child('amount').val() < 1000000)"
       }
     },
     "stats": {
@@ -19,7 +20,8 @@
       "$kind": {
         "$pid": {
           "$key": {
-            ".write": "auth.uid != null && auth.uid == root.child('config').child('ownerUid').val() ? true : (newData.hasChildren(['t']) && !data.exists())"
+            ".write": "auth.uid != null && auth.uid == root.child('config').child('ownerUid').val() ? true : (!data.exists() && newData.hasChildren(['t']))",
+            ".validate": "auth.uid == root.child('config').child('ownerUid').val() ? true : (newData.child('t').isNumber() && newData.child('t').val() > 0)"
           }
         }
       }

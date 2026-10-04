@@ -89,7 +89,7 @@ function init() {
   $("cdb").value = s.rh_cdb || "";
   $("fbkey").value = s.rh_fbkey || "";
   $("fbemail").value = s.rh_fbemail || "";
-  $("fbpass").value = s.rh_fbpass || "";
+  $("fbpass").value = "";
 
   var opts = "";
   CATS.forEach(function (c) { opts += '<option value="' + esc(c) + '">' + catIcon(c) + " " + esc(c) + "</option>"; });
@@ -286,7 +286,7 @@ function saveSettings() {
   s.rh_cdb = $("cdb").value.trim();
   s.rh_fbkey = $("fbkey").value.trim();
   s.rh_fbemail = $("fbemail").value.trim();
-  s.rh_fbpass = $("fbpass").value.trim();
+  if ($("fbpass").value.trim()) s.rh_fbpass = $("fbpass").value.trim();
   saveSett(s);
   lsSet("rh_cred_v", 3);
   $("brand").textContent = s.shopName;

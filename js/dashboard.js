@@ -52,9 +52,9 @@ function kpis() {
   var paidN = orders.filter(function (o) { return o.status === "paid" || o.status === "shipped" || o.status === "delivered"; }).length;
   var pendN = orders.length - paidN;
   var cards = [
-    { icon: "🧾", label: "Total Orders", val: orders.length, sub: "rukhe orders: " + pendN },
-    { icon: "✅", label: "Paid Orders", val: paidN, sub: "payment confirm" },
-    { icon: "⧖", label: "Pending", val: pendN, sub: "payment aana baaki" },
+    { icon: "🧾", label: "Total Orders", val: orders.length, sub: "pending: " + pendN },
+    { icon: "✅", label: "Paid Orders", val: paidN, sub: "payment confirmed" },
+    { icon: "⧖", label: "Pending", val: pendN, sub: "awaiting payment" },
     { icon: "💰", label: "Revenue (paid)", val: inr(paidAmt), sub: "total value: " + inr(totAmt) }
   ];
   $("kpis").innerHTML = cards.map(function (c) {
@@ -74,7 +74,7 @@ function prodTable() {
   });
   var rows = Object.keys(by).map(function (k) { return by[k]; }).sort(function (a, b) { return b.amt - a.amt; });
   $("prodRows").innerHTML = rows.map(function (r) {
-    return '<tr><td><b>' + esc(r.name) + "</b></td><td>" + r.n + "</td><td>" + r.qty + '</td><td><b>' + inr(r.amt) + "</b></td></tr>";
+    return '<tr><td><b>' + esc(r.name) + "</b></td><td>" + r.n + '</td><td>' + esc(String(r.qty)) + '</td><td><b>' + inr(r.amt) + "</b></td></tr>";
   }).join("");
   $("prodEmpty").style.display = rows.length ? "none" : "block";
 }
@@ -89,7 +89,7 @@ function catTable() {
   });
   var rows = Object.keys(by).map(function (k) { return by[k]; }).sort(function (a, b) { return b.amt - a.amt; });
   $("catRows").innerHTML = rows.map(function (r) {
-    return '<tr><td>' + catIcon(r.name) + " " + esc(r.name) + "</td><td>" + r.qty + '</td><td><b>' + inr(r.amt) + "</b></td></tr>";
+    return '<tr><td>' + catIcon(r.name) + " " + esc(r.name) + "</td><td>" + esc(String(r.qty)) + '</td><td><b>' + inr(r.amt) + "</b></td></tr>";
   }).join("");
   $("catEmpty").style.display = rows.length ? "none" : "block";
 }
@@ -132,11 +132,11 @@ function orderTable() {
     else actions = '<button class="btn danger sm ghost" data-delorder="' + o.ref + '">Delete</button>';
     return '<tr><td><b>' + esc(o.ref) + "</b><br><small>" + fmtTime(o.time) + "</small></td>" +
       "<td>" + orderItemsHtml(o) + "</td>" +
-      "<td>" + orderQty(o) + "</td>" +
+      "<td>" + orderQtys(o) + "</td>" +
       "<td><b>" + inr(o.amount) + "</b></td>" +
       "<td><small>" + esc(o.name) + "<br>" + esc(o.phone) + "</small></td>" +
-      "<td>" + badge(o.status) + "</td>" +
-      "<td>" + actions + "</td></tr>";
+      "<td>" + badge(o.status) + "</td>"
+      + "<td>" + actions + "</td></tr>";
   }).join("");
   $("orderEmpty").style.display = list.length ? "none" : "block";
 }
@@ -144,7 +144,7 @@ function orderTable() {
 function orderItemsHtml(o) {
   if (o.items && o.items.length) {
     return o.items.map(function (it) {
-      return '<div>' + esc(it.name) + (it.size ? ' <small>· ' + esc(it.size) : "") + " × " + it.qty + "</small></div>";
+      return '<div>' + esc(it.name) + (it.size ? ' <small>· ' + esc(it.size) : "") + " × " + esc(String(Number(it.qty) || 0)) + "</small></div>";
     }).join("");
   }
   return esc(o.product) + (o.sub ? ' <small>· ' + esc(o.sub) + "</small>" : "") + (o.size ? ' <small>· Size ' + esc(o.size) + "</small>" : "");
@@ -152,9 +152,13 @@ function orderItemsHtml(o) {
 
 function orderQty(o) {
   if (o.items && o.items.length) {
-    return o.items.reduce(function (n, it) { return n + it.qty; }, 0);
+    return o.items.reduce(function (n, it) { return n + Number(it.qty) || 0; }, 0);
   }
-  return o.qty;
+  return Number(o.qty) || 0;
+}
+
+function orderQtys(o) {
+  return esc(String(orderQty(o)));
 }
 
 function filters() {
@@ -182,7 +186,10 @@ function renderAll() { kpis(); statTotals(); statTable(); prodTable(); catTable(
 
 document.addEventListener("click", function (e) {
   var p = e.target.closest("[data-paid]");
-  if (p) { setStatus(p.getAttribute("data-paid"), "paid", p.getAttribute("data-paid") + " marked as PAID ✔"); return; }
+  if (p) {
+    if (!confirm("Mark this order as PAID only after the customer's payment is confirmed on WhatsApp (e.g. UPI transaction screenshot). Continue?")) return;
+    setStatus(p.getAttribute("data-paid"), "paid", p.getAttribute("data-paid") + " marked as PAID ✔"); return;
+  }
   var sh = e.target.closest("[data-ship]");
   if (sh) { setStatus(sh.getAttribute("data-ship"), "shipped", sh.getAttribute("data-ship") + " marked as SHIPPED 🚚"); return; }
   var dl = e.target.closest("[data-deliv]");

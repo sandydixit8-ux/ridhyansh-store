@@ -1,6 +1,10 @@
 User-agent: *
 Allow: /
-Disallow: /order.html
+Disallow: /admin.html
+Disallow: /dashboard.html
 Disallow: /login.html
+Disallow: /reset.html
+Disallow: /order.html
+Disallow: /landing.html
 
 Sitemap: https://ridhanshstore.online/sitemap.xml

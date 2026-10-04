@@ -163,7 +163,7 @@ function drawGal() {
   $("lbPrev").classList.toggle("hidden", gi === 0);
   $("lbNext").classList.toggle("hidden", gi >= galImg.length - 1);
   $("lbThumbs").innerHTML = galImg.map(function (d, i) {
-    return '<img class="lb-th' + (i === gi ? " act" : "") + '" data-go="' + i + '" src="' + d + '" alt="">';
+    return '<img class="lb-th' + (i === gi ? " act" : "") + '" data-go="' + i + '" src="' + esc(d) + '" alt="">';
   }).join("");
 }
 function closeGal() {
@@ -209,27 +209,34 @@ function stkAvailable() {
 }
 
 $("pay").addEventListener("click", function () {
+  var btn = this;
+  if (btn.disabled) return;
   $("err").classList.add("hidden");
   var name = $("name").value.trim();
   var phone = $("phone").value.trim();
   var addr = $("addr").value.trim();
+  var pin = ($("pin") && $("pin").value.trim()) || "";
 
   if (!multi) {
-    if (!picked) { showErr("Pehle product chuniye."); return; }
+    if (!picked) { showErr("Please choose a product first."); return; }
     var stk = getStockOf(picked);
-    if (!stk) { showErr("Yeh product abhi sold out hai."); return; }
-    if (qt() > stk) { showErr("Sirf " + stk + " " + (stk === 1 ? "piece" : "pieces") + " baaki hain — quantity kam karo."); return; }
-    if (picked.sizes && picked.sizes.length && !selSize) { showErr("Pehle size select kijiye."); return; }
+    if (!stk) { showErr("This product is currently sold out."); return; }
+    if (qt() > stk) { showErr("Only " + stk + " " + (stk === 1 ? "piece" : "pieces") + " left — please lower the quantity."); return; }
+    if (picked.sizes && picked.sizes.length && !selSize) { showErr("Please select a size first."); return; }
   } else {
-    if (!ccItems.length) { showErr("Cart khaali hai."); return; }
+    if (!ccItems.length) { showErr("Your cart is empty."); return; }
     var sold = ccItems.filter(function (it) { return !it.stock; });
-    if (sold.length) { showErr(esc(sold[0].name) + " sold out hai — cart se hatao."); return; }
-    if (!stkAvailable()) { showErr("Kisi item ki quantity stock se zyada hai — cart se kam karo."); return; }
+    if (sold.length) { showErr(esc(sold[0].name) + " is sold out — remove it from the cart."); return; }
+    if (!stkAvailable()) { showErr("One item has been ordered beyond stock — reduce the quantity."); return; }
   }
 
-  if (!name || !phone || phone.replace(/\D/g, "").length < 10) { showErr("Naam aur sahi 10-digit phone number likhiye."); return; }
-  if (!addr) { showErr("Delivery address likhiye."); return; }
+  var phDigits = phone.replace(/[^0-9]/g, "");
+  if (name.length < 2 || name.length > 80) { showErr("Please enter a valid name."); return; }
+  if (!/^[6-9]\d{9}$/.test(phDigits)) { showErr("Please enter a valid 10-digit mobile number (starting with 6-9)."); return; }
+  if (addr.length < 10 || addr.length > 500) { showErr("Please enter a complete delivery address."); return; }
+  if (pin && !/^[1-9]\d{5}$/.test(pin)) { showErr("Please enter a valid 6-digit PIN code."); return; }
 
+  btn.disabled = true;
   var o = orderTotal();
   var amount = o.sub + o.ship;
   var code = refCode();
@@ -248,13 +255,16 @@ $("pay").addEventListener("click", function () {
     ship: o.ship,
     items: o.items,
     name: name,
-    phone: phone,
+    phone: phDigits,
+    pin: pin,
     addr: addr,
     status: "pending"
   };
 
   addOrder(order);
-  saveOrderCloud(order).catch(function () {});
+  saveOrderCloud(order).then(function (ok) {
+    if (!ok) toast("Order saved on this device. If payment is completed, please confirm on WhatsApp.", "bad");
+  });
 
   $("ref").textContent = code;
   $("amnt").textContent = inr(amount);
@@ -268,8 +278,8 @@ $("pay").addEventListener("click", function () {
     o.items.map(function (it) { return "• " + it.name + (it.size ? " (" + it.size + ")" : "") + " × " + it.qty + " = " + inr(it.subtotal); }).join("\n") + "\n" +
     "Amount: " + inr(amount) + (o.ship ? " (incl. shipping " + inr(o.ship) + ")" : "") + "\n" +
     "Name: " + name + "\n" +
-    "Phone: " + phone + "\n" +
-    "Address: " + addr + "\n" +
+    "Phone: " + phDigits + "\n" +
+    "Address: " + addr + (pin ? "\nPIN: " + pin : "") + "\n" +
     "Payment link (UPI, prepaid): " + link;
   $("wa").href = "https://wa.me/" + waDigits(s.whatsapp) + "?text=" + encodeURIComponent(msg);
 

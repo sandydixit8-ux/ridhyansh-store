@@ -93,11 +93,13 @@
     <section class="card form-card" id="detailsBlock">
       <h2>Delivery details</h2>
       <label for="name">Full name</label>
-      <input type="text" id="name" placeholder="e.g. Rahul Sharma">
+      <input type="text" id="name" placeholder="e.g. Rahul Sharma" maxlength="80" required>
       <label for="phone">Phone (WhatsApp)</label>
-      <input type="tel" id="phone" placeholder="10 digit mobile number">
+      <input type="tel" id="phone" placeholder="10 digit mobile number" maxlength="15" inputmode="numeric" required>
       <label for="addr">Delivery address</label>
-      <textarea id="addr" rows="3" placeholder="Full address with pincode"></textarea>
+      <textarea id="addr" rows="3" placeholder="House / street / area / landmark" maxlength="500" required></textarea>
+      <label for="pin">PIN code</label>
+      <input type="tel" id="pin" placeholder="6 digit PIN code" maxlength="6" inputmode="numeric">
     </section>
 
     <div class="errbox hidden" id="err"></div>

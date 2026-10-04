@@ -5,14 +5,14 @@ var CATS_ICON = { "Clothing": "👕", "Electronics": "🎧", "Footwear": "👟",
 function catIcon(c) { return CATS_ICON[c] || "🛍️"; }
 
 var SEED = [
-  { id: 1, cat: "Clothing", sub: "Women Top Wear", name: "Chenille Cotton Kurta (Women)", price: 499, mrp: 799, desc: "Soft cotton, breathable, all sizes.", rating: 4.6 },
-  { id: 2, cat: "Clothing", sub: "Men Top Wear", name: "Casual Linen Shirt (Men)", price: 699, mrp: 999, desc: "Premium linen, regular fit, full sleeves.", rating: 4.5 },
-  { id: 3, cat: "Clothing", sub: "Men Bottom Wear", name: "Stretch Joggers (Men)", price: 599, mrp: 899, desc: "Flexible waist, side pockets.", rating: 4.4 },
-  { id: 4, cat: "Clothing", sub: "Women Bottom Wear", name: "Palazzo Pants (Women)", price: 549, mrp: 799, desc: "Flowy fit, elastic waist, all sizes.", rating: 4.7 },
-  { id: 5, cat: "Electronics", name: "20W Type-C Fast Charger", price: 349, mrp: 499, desc: "Fast charging, 2 pin, 1 yr warranty.", rating: 4.7 },
-  { id: 6, cat: "Footwear", name: "Sports Running Shoes", price: 1299, mrp: 1799, desc: "Cushioned sole, size 6-10.", rating: 4.5 },
-  { id: 7, cat: "Accessories", name: "Minimalist Analog Watch", price: 799, mrp: 1199, desc: "Stainless steel, water resistant.", rating: 4.8 },
-  { id: 8, cat: "Home & Kitchen", name: "Non-Stick Frying Pan 26cm", price: 599, mrp: 899, desc: "Even heating, easy clean.", rating: 4.4 }
+  { id: 1, cat: "Clothing", sub: "Women Top Wear", name: "Chenille Cotton Kurta (Women)", price: 499, mrp: 799, stock: 12, desc: "Soft cotton, breathable, all sizes.", rating: 4.6 },
+  { id: 2, cat: "Clothing", sub: "Men Top Wear", name: "Casual Linen Shirt (Men)", price: 699, mrp: 999, stock: 10, desc: "Premium linen, regular fit, full sleeves.", rating: 4.5 },
+  { id: 3, cat: "Clothing", sub: "Men Bottom Wear", name: "Stretch Joggers (Men)", price: 599, mrp: 899, stock: 8, desc: "Flexible waist, side pockets.", rating: 4.4 },
+  { id: 4, cat: "Clothing", sub: "Women Bottom Wear", name: "Palazzo Pants (Women)", price: 549, mrp: 799, stock: 9, desc: "Flowy fit, elastic waist, all sizes.", rating: 4.7 },
+  { id: 5, cat: "Electronics", name: "20W Type-C Fast Charger", price: 349, mrp: 499, stock: 15, desc: "Fast charging, 2 pin, 1 yr warranty.", rating: 4.7 },
+  { id: 6, cat: "Footwear", name: "Sports Running Shoes", price: 1299, mrp: 1799, stock: 6, desc: "Cushioned sole, size 6-10.", rating: 4.5 },
+  { id: 7, cat: "Accessories", name: "Minimalist Analog Watch", price: 799, mrp: 1199, stock: 7, desc: "Stainless steel, water resistant.", rating: 4.8 },
+  { id: 8, cat: "Home & Kitchen", name: "Non-Stick Frying Pan 26cm", price: 599, mrp: 899, stock: 11, desc: "Even heating, easy clean.", rating: 4.4 }
 ];
 
 function lsGet(k, d) {
@@ -26,14 +26,7 @@ function lsSet(k, v) { localStorage.setItem(k, JSON.stringify(v)); }
 
 function sett() {
   var s = lsGet("rh_settings", {});
-  if (Number(lsGet("rh_cred_v", 0)) < 3) {
-    s.rh_user = "ridhyansh007";
-    s.rh_pass = "admin@123";
-    saveSett(s);
-  }
   if (!s.shopName) s.shopName = "Ridhyansh Store";
-  if (!s.rh_user) s.rh_user = "ridhyansh007";
-  if (!s.rh_pass) s.rh_pass = "admin@123";
   if (!s.upiId) s.upiId = "6262072151@ybl";
   if (!s.whatsapp) s.whatsapp = "6262072151";
   if (s.shipFee == null) s.shipFee = "60";
@@ -60,7 +53,7 @@ function saveProds(p) {
 
 function getStockOf(p) {
   var st = Number(p && p.stock);
-  if (isNaN(st)) return 20;
+  if (isNaN(st)) return 0;
   return Math.max(0, Math.floor(st));
 }
 
@@ -404,7 +397,8 @@ function refCode() {
   var y = String(d.getFullYear()).slice(2);
   var m = String(d.getMonth() + 1).padStart(2, "0");
   var dd = String(d.getDate()).padStart(2, "0");
-  return "RID" + y + m + dd + Math.floor(100 + Math.random() * 900);
+  var rnd = (crypto && crypto.getRandomValues) ? String(crypto.getRandomValues(new Uint32Array(1))[0] % 9000 + 1000) : String(Math.floor(1000 + Math.random() * 9000));
+  return "RID" + y + m + dd + rnd;
 }
 
 function upiLink(s, amount, note) {

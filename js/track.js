@@ -75,7 +75,7 @@ function render(o) {
   $("rItems").innerHTML = '<div class="sum-list">' + items.map(function (it) {
     return '<div class="sum-line"><div><b>' + esc(it.name) + "</b>" +
       (it.size ? "<small>Size: " + esc(it.size) + "</small>" : "") +
-      "<small>Qty: " + it.qty + "</small></div><b>" + inr(it.subtotal != null ? it.subtotal : it.price) + "</b></div>";
+      "<small>Qty: " + esc(String(Number(it.qty) || 0)) + "</small></div><b>" + inr(it.subtotal != null ? it.subtotal : it.price) + "</b></div>";
   }).join("") + "</div>";
   $("rAmt").textContent = inr(o.amount || 0);
 

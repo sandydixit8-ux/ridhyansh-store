@@ -1,0 +1,570 @@
+﻿C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\404.html:10:<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\404.html:11:<link rel="stylesheet" href="css/style.css?v=16">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\404.html:15:  <div style="font-size:70px">404</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\404.html:16:  <h1>Oops! Yeh page nahi mila.</h1>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\404.html:17:  <p class="lead">Jo page aap dhoondh rahe the wo haath se nikal gaya. Chaliye wapas shopping karte hain.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\404.html:19:  <div style="margin-top:14px"><a class="link-more" href="track-order.html">Track my order</a></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\404.html:8:<link rel="preconnect" href="https://fonts.googleapis.com">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\404.html:9:<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:10:<link rel="stylesheet" href="css/style.css?v=16">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:20:      <a href="track-order.html">Track Order</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:23:    <div class="head-actions"><a class="admin-btn" href="login.html" title="Admin" aria-label="Admin login">≡ƒöÆ</a><button class="cart-btn" id="cartBtn" title="Cart">≡ƒ¢Æ <span class="cart-count" id="cartCount">0</span></button></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:29:  <p class="lead">Simple shopping ΓÇö prepaid UPI, fast dispatch, ghar par delivery.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:30:  <p>Ridhyansh Store ek chhota aur bharosemand online store hai. Hum chahte hain ki har product ki price bilkul clear ho, order karna easy ho aur customer ko order ke har step ki complete information milti rahe.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:32:  <h2>Kaise order kar sakte hain</h2>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:34:    <li>Product chuniye ΓÇö home page ya product page se.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:35:    <li>Cart mein add karke checkout par jaaiye.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:36:    <li>Naam, phone aur address bhariye.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:37:    <li>UPI payment link se pay kijiye ΓÇö payment prepaid hai.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:38:    <li>Payment screenshot WhatsApp par bhejiye to confirm hone ke baad order dispatch hota hai.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:43:    <li>ΓÜí 24h dispatch ΓÇö order confirm hote hi jaldi bhejte hain.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:44:    <li>≡ƒöÆ 100% prepaid UPI ΓÇö sirf amount jo dikha, wahi.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:45:    <li>≡ƒÆ¼ WhatsApp support ΓÇö koi sawaal ho to seedha baat karein.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:46:    <li>≡ƒÜÜ Home delivery ΓÇö address poora likhiye, delivery wahan hogi.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:48:  <div class="note">Koi bhi query ho to <a href="contact.html">Contact</a> page se WhatsApp karein.</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:55:      <div><h4>Shop</h4><a href="index.html">All products</a><a href="order.html">Place order</a><a href="track-order.html">Track order</a></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:60:  <div class="wrap foot-legal">┬⌐ <span id="yr"></span> Ridhyansh Store ┬╖ Saare payments UPI se. Prepaid only.</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:64:<aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:7:<meta name="description" content="Ridhyansh Store ke baare mein ΓÇö simple prepaid UPI shopping, 24h dispatch, home delivery, WhatsApp support.">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:70:    <div class="srow sgrand"><span>To pay</span><b id="cartTotal">Γé╣0</b></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:8:<link rel="preconnect" href="https://fonts.googleapis.com">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\about.html:9:<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:102:        <label for="pcolors">Colors <span class="req">(optional, comma se)</span></label>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:120:    <label for="pslug">SEO slug <span class="req">(auto-fill hoga name se)</span></label>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:122:    <label for="pseotitle">SEO title <span class="req">(optional ΓÇö Google pe dikhega)</span></label>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:125:    <input type="text" id="pseodesc" placeholder="e.g. Buy Blue Comfort Stretch Jeans online ΓÇö UPI prepaid, home delivery.">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:129:    <textarea id="pspecText" rows="3" placeholder="Machine wash, low tumble dry.&#10;Model height 6ft, wearing size M."></textarea>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:131:    <textarea id="plongdesc" rows="4" placeholder="Product ke baare mein detailed description likho..."></textarea>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:133:      <label class="chk"><input type="checkbox" id="pFeatured"> Γ¡É Featured (homepage par dikhega)</label>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:135:      <label class="chk"><input type="checkbox" id="pSold"> Γ¢ö Sold out (stock 0 ban jayega)</label>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:143:    <div class="phead"><span class="picon">≡ƒôª</span><div><h2>Products <span class="count" id="pc">0</span></h2><p>Storefront par jo dikh raha hai.</p></div></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:148:    <div class="phead"><span class="picon">≡ƒöù</span><div><h2>Payment Link Generator</h2><p>Kisi bhi order ke liye alag se UPI link banao ΓÇö bhejo WhatsApp pe.</p></div></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:161:      <p class="genlabel">Payment link</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:164:        <div class="qrwrap sm"><img id="gqr" alt="QR"></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:166:          <button class="btn copy-btn" id="gcopy">Copy Link</button>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:177:    <p class="muted">Admin ┬╖ Prepaid / UPI only</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:29:    <div class="phead"><span class="picon">ΓÜÖ∩╕Å</span><div><h2>Shop Settings</h2><p>Payment link, WhatsApp aur admin login yahan se set karo.</p></div></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:34:    <label for="upiId">Your UPI ID <span class="req">(payment links isi se banenge)</span></label>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:38:    <label for="addr">Shop address <span class="req">(optional)</span></label>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:39:    <input type="text" id="addr" placeholder="Shop / delivery address">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:50:    <label for="pass">New admin password <span class="req">(khaali chhod do to pehle wala rahega)</span></label>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:52:    <label for="cdb">Cloud DB URL <span class="req">(optional ΓÇö Firebase free RTDB URL, catalog/orders sab jagah share honge)</span></label>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:54:    <label for="fbkey">Firebase Auth API Key <span class="req">(SETTINGS ΓåÆ General ΓåÆ Web API Key ΓÇö products/orders kew tum hi write kar paoge)</span></label>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:56:    <label for="fbemail">Firebase Owner Email <span class="req">(koi bhi email ΓÇö pehli save par account khud ban jayega)</span></label>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:58:    <label for="fbpass">Firebase Owner Password <span class="req">(kam se kam 6 characters)</span></label>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:66:    <div class="phead"><span class="picon">Γ₧ò</span><div><h2 id="phead2">Add Product</h2><p>Naya product storefront par sirf yahin se aata hai.</p></div></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:7:<link rel="preconnect" href="https://fonts.googleapis.com">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:74:        <select id="pcat"></select>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:78:        <select id="psub"></select>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:8:<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:81:        <label for="psizes">Sizes (comma se likho) <span class="req">(optional)</span></label>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:85:    <label for="pprice">Selling Price (Γé╣) <span class="req">(customer yehi pay karega)</span></label>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:87:    <label for="pmrp">MRP (Γé╣) <span class="req">(optional ΓÇö daaloge to discount % dikhega)</span></label>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:89:    <label for="pstock">Stock <span class="req">(kitne pieces bache hain)</span></label>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:9:<link rel="stylesheet" href="css/style.css?v=16">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\admin.html:91:    <label for="pfile">≡ƒô╖ Product photos ΓÇö <b>kam se kam 3</b>, <b>zyada se zyada 5</b> (phone/computer se choose karo)</label>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\contact.html:10:<link rel="stylesheet" href="css/style.css?v=16">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\contact.html:20:      <a href="track-order.html">Track Order</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\contact.html:23:    <div class="head-actions"><a class="admin-btn" href="login.html" title="Admin" aria-label="Admin login">≡ƒöÆ</a><button class="cart-btn" id="cartBtn" title="Cart">≡ƒ¢Æ <span class="cart-count" id="cartCount">0</span></button></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\contact.html:29:  <p class="lead">Koi sawaal, order ya payment ki dikkat ΓÇö hum seedha WhatsApp par available hain.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\contact.html:32:    <h3 style="font-size:16px;margin-bottom:6px">≡ƒÆ¼ WhatsApp ΓÇö sabse fast</h3>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\contact.html:33:    <p class="muted">Order confirm, tracking, payment screenshot ΓÇö sab kuch WhatsApp par.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\contact.html:38:    <h3 style="font-size:16px;margin-bottom:6px">ΓÜí Quick help</h3>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\contact.html:40:      <li><a href="track-order.html">Apna order track karein</a></li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\contact.html:41:      <li><a href="faqs.html">FAQs dekhein</a></li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\contact.html:54:      <div><h4>Shop</h4><a href="index.html">All products</a><a href="order.html">Place order</a><a href="track-order.html">Track order</a></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\contact.html:59:  <div class="wrap foot-legal">┬⌐ <span id="yr"></span> Ridhyansh Store ┬╖ Saare payments UPI se.</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\contact.html:63:<aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\contact.html:69:    <div class="srow sgrand"><span>To pay</span><b id="cartTotal">Γé╣0</b></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\contact.html:7:<meta name="description" content="Ridhyansh Store se baat karein ΓÇö WhatsApp, email. Order support aur queries ke liye.">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\contact.html:8:<link rel="preconnect" href="https://fonts.googleapis.com">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\contact.html:81:document.getElementById("cWa").href = "https://wa.me/" + waDigits(s.whatsapp) + "?text=" + encodeURIComponent("Hi! Ridhyansh Store ke baare mein poochna hai.");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\contact.html:82:document.getElementById("cInfo").textContent = "WhatsApp: +91 " + s.whatsapp + " ┬╖ Response time: usually same day.";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\contact.html:9:<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\dashboard.html:30:    <div class="kpi"><div class="kpi-icon">≡ƒû▒∩╕Å</div><div><div class="kpi-val" id="stClk">ΓÇö</div><div class="kpi-label">Clicks</div><div class="kpi-sub">product pe click</div></div></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\dashboard.html:36:      <div class="phead"><span class="picon">≡ƒôê</span><div><h2>Store Traffic</h2><p>Products dekhe (impressions) aur click stats</p></div></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\dashboard.html:41:      <p class="hint" id="statEmpty" style="display:none">Abhi koi traffic data nahi.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\dashboard.html:50:      <p class="hint" id="prodEmpty" style="display:none">Abhi koi bhi order nahi hua.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\dashboard.html:54:      <div class="phead"><span class="picon">≡ƒùé∩╕Å</span><div><h2>By Category</h2><p>Category ke hisaab se bech</p></div></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\dashboard.html:59:      <p class="hint" id="catEmpty" style="display:none">Abhi koi order nahi.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\dashboard.html:64:    <div class="phead"><span class="picon">≡ƒº╛</span><div><h2>Orders</h2><p>Payment confirm hone par "Mark Paid" dabao ΓÇö revenue usi se banta hai.</p></div></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\dashboard.html:7:<link rel="preconnect" href="https://fonts.googleapis.com">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\dashboard.html:70:    <p class="hint" id="orderEmpty" style="display:none">Abhi koi order nahi hua. Customer se payment link generate karne par yahan aa jayega.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\dashboard.html:77:    <p class="muted">Dashboard ┬╖ Prepaid / UPI only</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\dashboard.html:8:<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\dashboard.html:9:<link rel="stylesheet" href="css/style.css?v=16">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\faqs.html:10:<link rel="stylesheet" href="css/style.css?v=16">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\faqs.html:20:      <a href="track-order.html">Track Order</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\faqs.html:23:    <div class="head-actions"><a class="admin-btn" href="login.html" title="Admin" aria-label="Admin login">≡ƒöÆ</a><button class="cart-btn" id="cartBtn" title="Cart">≡ƒ¢Æ <span class="cart-count" id="cartCount">0</span></button></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\faqs.html:29:  <p class="lead">Aksar pooche jaane wale sawaal ΓÇö seedhe answers.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\faqs.html:38:      <div><h4>Shop</h4><a href="index.html">All products</a><a href="order.html">Place order</a><a href="track-order.html">Track order</a></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\faqs.html:43:  <div class="wrap foot-legal">┬⌐ <span id="yr"></span> Ridhyansh Store ┬╖ Saare payments UPI se.</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\faqs.html:47:<aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\faqs.html:53:    <div class="srow sgrand"><span>To pay</span><b id="cartTotal">Γé╣0</b></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\faqs.html:61:  { q: "Order kaise karein?", a: "Product add karke checkout par jaaiye, naam/phone/address bhariye, phir UPI payment link se pay kijiye. Payment confirm hone par order dispatch hota hai." },
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\faqs.html:62:  { q: "Payment kya UPI hai ΓÇö kya COD bhi hai?", a: "Hum prepaid UPI se chalte hain. Payment link ya QR se pay karte hain, COD available nahi hai." },
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\faqs.html:63:  { q: "Payment link kahan milega?", a: "Checkout ke baad aapko UPI payment link aur QR milta hai. Open button se UPI app khul jayega. Payment screenshot WhatsApp par bhejiye." },
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\faqs.html:64:  { q: "Order track kaise karun?", a: "<a href='track-order.html'>Track Order</a> page par order ref aur phone number daaliye. Full updates WhatsApp par milti hain." },
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\faqs.html:65:  { q: "Shipping kaise aur kitni?", a: "Shipping charges checkout par dikhte hain. <a href='shipping-policy.html'>Shipping policy</a> dekhein. Free shipping qualifying amount par milta hai." },
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\faqs.html:66:  { q: "Dispatch kitni der mein hota hai?", a: "Payment confirm hone par hum 24 ghante ke andar dispatch karne ki koshish karte hain." },
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\faqs.html:67:  { q: "Return / refund ho sakta hai?", a: "Haan ΓÇö <a href='returns.html'>Returns policy</a> dekhein. Requirement: product use na ho aur wapas bheja ja sake." },
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\faqs.html:68:  { q: "Size kaise chuno?", a: "Product page par size options aur Size Chart hai. Chest/shoulder measurements se compare karein." },
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\faqs.html:69:  { q: "Mujhe kyun nahi mila? / Aur sawaal?", a: "<a href='contact.html'>Contact</a> par WhatsApp karein ΓÇö usually same day reply." }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\faqs.html:7:<meta name="description" content="Ridhyansh Store ke aksar pooche jaane wale sawaal ΓÇö order, payment, shipping, returns.">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\faqs.html:8:<link rel="preconnect" href="https://fonts.googleapis.com">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\faqs.html:9:<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:109:        <p class="sub">Woh sab kuch jo aapko chahiye, ek hi jagah</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:119:        <p class="sub">Sabse zyada liked products</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:121:      <a class="link-more" href="#catalog">View all ΓåÆ</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:13:<meta property="og:description" content="Clothing, Electronics, Footwear & more. UPI prepaid, 24h dispatch, home delivery, WhatsApp support.">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:135:        <select id="sortSel" class="sort-sel">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:141:        </select>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:150:      <h3>Kuch nahi mila</h3>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:151:      <p>Search badal ke dobara dekhiye ya saare products dekhiye.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:157:    <h2>Order karna aasan hai</h2>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:158:    <p>Product chuno ΓåÆ UPI link se pay karo ΓåÆ WhatsApp par confirm ΓåÆ ghar par pao.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:176:        <a href="track-order.html">Track order</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:18:<meta name="twitter:description" content="Clothing, Electronics, Footwear & more. UPI prepaid, 24h dispatch, home delivery, WhatsApp support.">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:193:  <div class="wrap foot-legal">┬⌐ <span id="yr"></span> Ridhyansh Store ┬╖ Saare payments UPI se. Prepaid only.</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:20:<link rel="preconnect" href="https://fonts.googleapis.com">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:206:<aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:21:<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:215:    <div class="srow sgrand"><span>To pay</span><b id="cartTotal">Γé╣0</b></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:217:    <a class="btn whatsapp full" href="contact.html">WhatsApp se poochho ≡ƒÆ¼</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:22:<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:23:<link rel="stylesheet" href="css/style.css?v=16">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:30:  "description": "Clothing, Electronics, Footwear & more. UPI prepaid, home delivery.",
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:48:      <a href="track-order.html">Track Order</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:53:      <button class="cart-btn" id="cartBtn" title="Cart">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:54:        ≡ƒ¢Æ <span class="cart-count" id="cartCount">0</span>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:63:      <span class="eyebrow">Γ£¿ UPI Secure ┬╖ Prepaid Only ┬╖ Home Delivery</span>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:65:      <p class="lead">Clothing, Electronics, Footwear &amp; more ΓÇö ek hi jagah. Har order prepaid aur UPI-secure, 24h dispatch.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:7:<meta name="description" content="Ridhyansh Store ΓÇö Clothing, Electronics, Footwear & more. UPI prepaid, 24h dispatch, home delivery, WhatsApp support. Order karo, UPI se pay karo, ghar par pao.">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:72:        <a class="btn sec" href="track-order.html">≡ƒôª Track Order</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:75:        <span>ΓÜí 24h dispatch</span>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:76:        <span>≡ƒ¢í∩╕Å 100% secure UPI</span>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:78:        <span>≡ƒÜÜ Home delivery</span>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:87:      <div class="float f1">ΓÜí 24h dispatch</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:89:      <div class="float f3">UPI Γ£ö</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:9:<link rel="canonical" href="https://ridhanshstore.online/">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:96:    <a class="titem" href="#catalog"><span>≡ƒÆ│</span><div><b>UPI pay</b><small>Prepaid / UPI only</small></div></a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:97:    <a class="titem" href="track-order.html"><span>ΓÜí</span><div><b>24h dispatch</b><small>Fast order bhejana</small></div></a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\index.html:99:    <a class="titem" href="shipping-policy.html"><span>≡ƒÜÜ</span><div><b>Easy tracking</b><small>Order status har step par</small></div></a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:10:    var id = link.getAttribute("data-link");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:105:  $("logout").addEventListener("click", function () { authClear(); location.href = "login.html"; });
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:11:    var base = location.href.split("admin.html")[0] || location.href;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:119:      toast("Cloud products sync ho gaye ΓÇö " + list.length + " product mile.", "ok");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:13:    copyText(u, link);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:131:  if (files.length > room) { toast("Zyada se zyada 5 photos choose kar sakte ho.", "bad"); }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:135:  $("addProd").textContent = "Photos load ho rahi hainΓÇª";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:136:  $("imgCount").textContent = "Γî¢ photos load ho rahi hainΓÇª";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:14:    toast("Product page URL copy ho gaya ΓÇö ad mein paste karo Γ£ö", "ok");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:144:  if (f.size > 8 * 1024 * 1024) { toast("Har photo 8 MB se chhota chahiye.", "bad"); readNext(files, i + 1); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:153:  rd.onerror = function () { toast("Photo " + (f.name || "") + " padhni nahi aayi.", "bad"); readNext(files, i + 1); };
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:162:  if (curImgs.length < 3) toast("Kam se kam 3 photos chunni hain.", "bad");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:168:  if (!curImgs.length) { box.classList.add("hidden"); box.innerHTML = ""; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:176:  if (curImgs.length < 3) { $("imgCount").className = "hint warn"; $("imgCount").textContent += " ΓÇö kam se kam 3 chahiye"; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:20:    var base2 = location.href.split("admin.html")[0] || location.href;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:23:    toast("Reel URL copy ho gaya Γ£ö (reels folder mein file honi chahiye)", "ok");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:279:  s.address = $("addr").value.trim();
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:283:    if ($("pass").value.trim().length < 4) { toast("Password kam se kam 4 characters ka rakho.", "bad"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:294:  toast("Settings save ho gayi Γ£ö");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:299:      else toast("config already set ya owner field check karo.", "bad");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:301:      toast("Firebase setup me galti ΓÇö Email/Password check karo.", "bad");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:304:    toast("Secure publish ke liye Firebase Email + Password bharo.", "bad");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:309:  if (e === "nokey" || e === "nocreds") return "Pehle Firebase Owner Email + Password Settings mein daalo.";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:310:  if (e.message && e.message.indexOf("API key") !== -1) return "Firebase API Key galat hai ΓÇö field KHAALI chhod do (default set hai), phir Save karo.";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:311:  return "Firebase auth fail ΓÇö Email/Password check karo.";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:315:  if (!dbUrl()) { toast("Pehle Cloud DB URL Settings mein daalo.", "bad"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:317:  if (!prods.length) { toast("Pehle products add karo phir publish karo.", "bad"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:341:    if (!fails.length) { toast("Catalog cloud par publish ho gaya ΓÇö sabko dikhega Γ£ö", "ok"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:342:    toast("Publish fail: " + fails.map(function (f) { return f.name; }).join(", ") + " ΓÇö photos bahut badi hain. Un product ko dubara (kam resolution) photos ke saath add karo.", "bad");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:347:  if (busy) { toast("Ruko, photos load ho rahi hainΓÇª", "bad"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:351:  if (!n || !price || price < 1) { toast("Naam aur sahi price dono chahiye.", "bad"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:352:  if (mrp && mrp <= price) { toast("MRP selling price se bada hona chahiye.", "bad"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:353:  if (curImgs.length < 3 && !editId) { toast("Kam se kam 3 photos choose karo.", "bad"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:354:  if (curImgs.length > 5) { toast("Zyada se zyada 5 photos ho sakti hain.", "bad"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:357:  var stock = parseInt($("pstock").value, 10);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:358:  if (isNaN(stock) || stock < 0) stock = 20;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:365:    stock: stock,
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:383:  if ($("pSold").checked) prod.stock = 0;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:391:    if (!ex) { toast("Product nahi mila.", "bad"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:394:    if (!saveProds(p)) { toast("Storage full ΓÇö photos kam karo.", "bad"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:398:    toast("Product update ho gaya Γ£ö");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:402:      $("prodMsg").textContent = "Storage bhar gaya hai ΓÇö purane products delete karo ya photos kam karo (chhoti photos milegi).";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:406:    toast("Product " + imgs.length + " photos ke saath add ho gaya Γ£ö");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:409:  $("cancelEdit") && $("cancelEdit").classList.add("hidden");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:445:      '<button class="btn sm ghost' + (pr.featured ? " on" : "") + '" data-feat="' + pr.id + '" title="Featured toggle (home par pehle aayega)">Γ¡É</button>' +
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:449:      '<button class="btn sm link2" data-link="' + pr.id + '" title="Product page URL copy karo">≡ƒöù</button>' +
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:450:      '<button class="btn sm link2" data-reel="' + pr.id + '" title="Reel URL copy karo (agar reels folder mein hai)">≡ƒÄ¼</button>' +
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:455:  $("plist").innerHTML = h || '<div class="plist-empty">≡ƒô« Abhi koi product nahi ΓÇö upar "Add Product" se daalo.</div>';
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:46:    if (!confirm("Yeh product delete karna hai?")) return;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:460:  if (!p) { toast("Product nahi mila.", "bad"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:465:  $("pstock").value = p.stock != null ? p.stock : "";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:488:  $("imgCount").textContent = "Photos wahi rahenge (nayi choose karoge to badal jayengi).";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:489:  toast("Γ£Å∩╕Å Edit mode ON ΓÇö save karne ke liye 'Save Changes' dabao");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:497:  $("cancelEdit").classList.add("hidden");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:50:    toast("Product delete ho gaya.");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:501:  toast("Edit cancel ho gaya.");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:511:  var amount = Math.round(parseFloat($("gamt").value || "0"));
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:512:  if (!amount || amount < 1) { toast("Pehle amount likhiye.", "bad"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:514:  var link = upiLink(s, amount, note);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:515:  $("gline").textContent = link;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:516:  $("gline").title = link;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:517:  $("gqr").src = "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent(link);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:518:  $("gcopy").onclick = function () { copyText(link, this); };
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:519:  var msg = "*" + s.shopName + "* ΓÇö Payment due\nAmount: " + inr(amount) + "\nNote: " + note +
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:520:    "\nPayment link (UPI, prepaid): " + link;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:521:  $("gsend").href = "https://wa.me/" + waDigits(s.whatsapp) + "?text=" + encodeURIComponent(msg);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:60:    if (!pr) { toast("Product nahi mila.", "bad"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:61:    pr.stock = Math.max(0, getStockOf(pr) + (inc ? 1 : -1));
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:64:    toast((inc ? "+1" : "ΓêÆ1") + " stock ΓåÆ " + pr.stock);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:72:  location.href = "login.html";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:8:  var link = e.target.closest("[data-link]");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:86:  $("addr").value = s.address || "";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\admin.js:9:  if (link) {
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\dashboard.js:12:$("logout").addEventListener("click", function () { authClear(); location.href = "login.html"; });
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\dashboard.js:125:    return filter === "all" || o.status === filter;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\dashboard.js:129:    if (o.status === "pending") actions = '<button class="btn green sm" data-paid="' + o.ref + '">Mark Paid</button>';
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\dashboard.js:130:    else if (o.status === "paid") actions = '<button class="btn blue sm" data-ship="' + o.ref + '">Mark Shipped</button>';
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\dashboard.js:131:    else if (o.status === "shipped") actions = '<button class="btn green sm" data-deliv="' + o.ref + '">Mark Delivered</button>';
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\dashboard.js:136:      "<td><b>" + inr(o.amount) + "</b></td>" +
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\dashboard.js:138:      "<td>" + badge(o.status) + "</td>" +
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\dashboard.js:147:      return '<div>' + esc(it.name) + (it.size ? ' <small>┬╖ ' + esc(it.size) : "") + " ├ù " + it.qty + "</small></div>";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\dashboard.js:150:  return esc(o.product) + (o.sub ? ' <small>┬╖ ' + esc(o.sub) + "</small>" : "") + (o.size ? ' <small>┬╖ Size ' + esc(o.size) + "</small>" : "");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\dashboard.js:173:  orders.forEach(function (x) { if (x.ref === r) x.status = st; });
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\dashboard.js:192:    if (!confirm("Yeh order delete karna hai?")) return;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\dashboard.js:50:  var paidAmt = orders.filter(function (o) { return o.status === "paid" || o.status === "shipped" || o.status === "delivered"; }).reduce(function (a, o) { return a + o.amount; }, 0);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\dashboard.js:51:  var totAmt = orders.reduce(function (a, o) { return a + o.amount; }, 0);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\dashboard.js:52:  var paidN = orders.filter(function (o) { return o.status === "paid" || o.status === "shipped" || o.status === "delivered"; }).length;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\dashboard.js:56:    { icon: "Γ£à", label: "Paid Orders", val: paidN, sub: "payment confirm" },
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\dashboard.js:57:    { icon: "Γºû", label: "Pending", val: pendN, sub: "payment aana baaki" },
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\dashboard.js:73:    by[k].amt += o.amount;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\dashboard.js:8:if (!authOk()) { location.href = "login.html"; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\dashboard.js:88:    by[k].amt += o.amount;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\index.js:114:  if (!list.length) { $("trendSec").classList.add("hidden"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\index.js:142:  if (!PRODS.length) $("catCards").innerHTML = '<div class="empty-box">≡ƒôª Products add hone ke baad categories yahan dikhengi.</div>';
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\index.js:178:  a.href = "https://wa.me/" + waDigits(s.whatsapp) + "?text=" + encodeURIComponent("Hi! Mujhe Ridhyansh Store par order karna hai.");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\index.js:182:  a.title = "WhatsApp se poochho";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\index.js:194:  document.body.classList.add("lb-open");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\index.js:208:  $("lb").classList.add("hidden");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\index.js:23:  if (!items) { el.classList.add("hidden"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\index.js:236:  var clr = e.target.closest("[data-clear]");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\index.js:238:    var k = clr.getAttribute("data-clear");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\index.js:34:  if (q) chips.push('<button class="af-chip" data-clear="q">≡ƒöì "' + esc(q) + '" Γ£ò</button>');
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\index.js:35:  if (cat !== "All") chips.push('<button class="af-chip" data-clear="cat">' + catIcon(cat) + " " + esc(cat) + " Γ£ò</button>");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\index.js:36:  if (sub !== "All") chips.push('<button class="af-chip" data-clear="sub">' + esc(sub) + " Γ£ò</button>");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\index.js:81:  if (stk <= low) return '<span class="off low-stock">Only ' + stk + " left</span>";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\login.js:25:    location.href = "admin.html";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\login.js:3:if (authOk()) { location.href = "admin.html"; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:107:      freeRow.classList.add("hidden");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:109:      shipRow.classList.add("hidden");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:113:    shipRow.classList.add("hidden");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:114:    freeRow.classList.add("hidden");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:123:  if (!ims.length) { gal.classList.add("hidden"); strip.innerHTML = ""; return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:132:  if (!picked || !picked.sizes || !picked.sizes.length) { sw.classList.add("hidden"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:135:    return '<button type="button" class="size-btn" data-sz="' + esc(sz) + '">' + esc(sz) + '</button>';
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:14:  var qp = new URLSearchParams(location.search).get("p");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:140:  var b = e.target.closest(".size-btn");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:142:  document.querySelectorAll("#sizeBtns .size-btn").forEach(function (x) { x.classList.remove("on"); });
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:143:  b.classList.add("on");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:158:  document.body.classList.add("lb-open");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:170:  $("lb").classList.add("hidden");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:20:    $("singleWrap").classList.add("hidden");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:207:  if (multi) return ccItems.every(function (it) { return it.qty <= it.stock; });
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:211:$("pay").addEventListener("click", function () {
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:212:  $("err").classList.add("hidden");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:220:    if (!stk) { showErr("Yeh product abhi sold out hai."); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:221:    if (qt() > stk) { showErr("Sirf " + stk + " " + (stk === 1 ? "piece" : "pieces") + " baaki hain ΓÇö quantity kam karo."); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:222:    if (picked.sizes && picked.sizes.length && !selSize) { showErr("Pehle size select kijiye."); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:225:    var sold = ccItems.filter(function (it) { return !it.stock; });
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:226:    if (sold.length) { showErr(esc(sold[0].name) + " sold out hai ΓÇö cart se hatao."); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:227:    if (!stkAvailable()) { showErr("Kisi item ki quantity stock se zyada hai ΓÇö cart se kam karo."); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:230:  if (!name || !phone || phone.replace(/\D/g, "").length < 10) { showErr("Naam aur sahi 10-digit phone number likhiye."); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:231:  if (!addr) { showErr("Delivery address likhiye."); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:234:  var amount = o.sub + o.ship;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:237:  var link = upiLink(s, amount, note);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:24:    $("multiWrap").classList.add("hidden");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:245:    size: o.items[0] ? o.items[0].size : "",
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:247:    amount: amount,
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:253:    status: "pending"
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:260:  $("amnt").textContent = inr(amount);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:261:  $("uplink").href = link;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:262:  $("qr").src = "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent(link);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:263:  $("copy").onclick = function () { copyText(link, this); };
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:268:    o.items.map(function (it) { return "ΓÇó " + it.name + (it.size ? " (" + it.size + ")" : "") + " ├ù " + it.qty + " = " + inr(it.subtotal); }).join("\n") + "\n" +
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:269:    "Amount: " + inr(amount) + (o.ship ? " (incl. shipping " + inr(o.ship) + ")" : "") + "\n" +
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:273:    "Payment link (UPI, prepaid): " + link;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:274:  $("wa").href = "https://wa.me/" + waDigits(s.whatsapp) + "?text=" + encodeURIComponent(msg);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:278:  $("st3").classList.add("active");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:282:  toast("Payment link ready Γ£ö", "ok");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:36:      (it.size ? "<small>Size: " + esc(it.size) + "</small>" : "") +
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:47:      return { id: it.id, name: it.name, cat: it.cat, sub: it.sub, size: it.size, qty: it.qty, price: it.price, subtotal: it.subtotal, img: it.img };
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:52:  return [{ id: picked.id, name: picked.name, cat: picked.cat, sub: picked.sub || "", size: selSize, qty: qt(), price: picked.price || 0, subtotal: sub }];
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:69:  var qp = new URLSearchParams(location.search).get("p");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:8:var multi = false;      // cart checkout mode
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:9:var ccItems = [];       // multi mode items (derived from cart ΓåÆ catalog)
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\order.js:94:        (it.size ? "<small>Size: " + esc(it.size) + "</small>" : "") +
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:118:  var link = location.href.split("#")[0];
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:12:  $("pdpWrap").classList.add("hidden");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:121:      navigator.share({ title: p.name, text: s.shopName + " ΓÇö " + p.name, url: link }).catch(function () {});
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:123:      copyText(link, this);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:126:  var waMsg = "*" + s.shopName + "* ΓÇö " + p.name + "\nPrice: " + inr(d.price) + (d.off ? " (MRP " + inr(d.mrp) + ")" : "") + "\nLink: " + link;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:127:  $("pWa").href = "https://wa.me/" + waDigits(s.whatsapp) + "?text=" + encodeURIComponent(waMsg);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:14:  $("relSec").classList.add("hidden");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:148:    "description": p.desc || (s.shopName + " product ΓÇö UPI prepaid, home delivery."),
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:157:      "url": location.href.split("#")[0],
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:219:  $("gMainImg").classList.add("hidden");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:230:  vid.classList.add("hidden");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:256:  document.body.classList.add("lb-open");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:26:  setMeta("og:description", (p.desc || "Shop at " + s.shopName + ". UPI prepaid, home delivery."));
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:268:  $("lb").classList.add("hidden");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:28:  setMeta("twitter:description", (p.desc || "Shop at " + s.shopName + ". UPI prepaid, home delivery."));
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:283:  var b = e.target.closest(".size-btn");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:285:  document.querySelectorAll("#sizeBtns2 .size-btn").forEach(function (x) { x.classList.remove("on"); });
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:286:  b.classList.add("on");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:29:  setMeta("og:url", location.href.split("#")[0]);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:306:  if (inCart + q > stk) { toast("Cart + is quantity se stock nikal raha hai (baaki: " + (stk - Math.max(0, inCart)) + ").", "bad"); return false; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:314:  if (needSize()) { toast("Pehle size select kijiye.", "bad"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:319:  if (needSize()) { toast("Pehle size select kijiye.", "bad"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:322:  location.href = "order.html";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:330:  if (!rel.length) { $("relSec").classList.add("hidden"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:346:// Breadcrumb category link
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:374:var qp = new URLSearchParams(location.search).get("p");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:64:  if (!stk) { stEl.className = "p-stock out"; stEl.textContent = "Γ¢ö Sold out ΓÇö stock aane par update kiya jayega"; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:65:  else if (stk <= low) { stEl.className = "p-stock low"; stEl.textContent = "ΓÜí Sirf " + stk + " " + (stk === 1 ? "piece" : "pieces") + " baaki hain"; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:66:  else { stEl.className = "p-stock in"; stEl.textContent = "Γ£ö In stock ΓÇö 24h dispatch"; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:73:      return '<button type="button" class="size-btn" data-sz="' + esc(sz) + '">' + esc(sz) + "</button>";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:76:    sw.classList.add("hidden");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:85:    '<div class="value"><span>≡ƒÜÜ</span>Free shipping<br>Γé╣' + (fs || "0") + " par</div>" +
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:86:    '<div class="value"><span>ΓÜí</span>24h dispatch</div>' +
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\product.js:87:    '<div class="value"><span>≡ƒöÆ</span>UPI prepaid</div>' +
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\reset.js:10:  setTimeout(function () { location.href = "login.html"; }, 2000);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\reset.js:2:  if (!confirm("Sach me reset karna hai? Is browser ka saara store data clear ho jayega.")) return;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\reset.js:6:  sessionStorage.clear();
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\reset.js:9:  document.getElementById("rstMsg").textContent = s.shopName + " reset ho gaya Γ£ö Login: " + s.rh_user + " / " + s.rh_pass;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:13:  { id: 6, cat: "Footwear", name: "Sports Running Shoes", price: 1299, mrp: 1799, desc: "Cushioned sole, size 6-10.", rating: 4.5 },
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:15:  { id: 8, cat: "Home & Kitchen", name: "Non-Stick Frying Pan 26cm", price: 599, mrp: 899, desc: "Even heating, easy clean.", rating: 4.4 }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:239:      size: line.size || "", qty: qty, price: price, img: firstImg(p),
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:240:      subtotal: sub, stock: stk
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:246:function addToCart(id, size, qty) {
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:248:  size = size || ""; qty = Math.max(1, Number(qty) || 1);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:251:    if (String(i.id) === String(id) && String(i.size || "") === String(size)) { i.qty = (Number(i.qty) || 1) + qty; found = true; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:253:  if (!found) c.push({ id: String(id), size: size, qty: qty });
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:257:function setCartQty(id, size, qty) {
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:261:    c = c.filter(function (i) { return !(String(i.id) === String(id) && String(i.size || "") === String(size || "")); });
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:263:    c.forEach(function (i) { if (String(i.id) === String(id) && String(i.size || "") === String(size || "")) i.qty = qty; });
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:288:  dr.classList.add("open");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:290:  document.body.classList.add("cart-open");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:296:  ov && ov.classList.add("hidden");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:299:  document.body.classList.remove("cart-open");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:305:function cartQtyOf(id, size) {
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:308:    if (String(i.id) === String(id) && String(i.size || "") === String(size || "")) n += (Number(i.qty) || 1);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:317:    box.innerHTML = '<div class="cart-empty"><div>≡ƒ¢Æ</div><p>Cart khaali hai.</p><a class="btn main sm" href="index.html" onclick="closeCart()">Shop now</a></div>';
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:323:        (it.size ? "<small>Size: " + esc(it.size) + "</small>" : "") +
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:325:        '<div class="cqty"><button class="qtybtn" data-q="' + it.id + '" data-qs="' + esc(it.size) + '" data-qv="-1">ΓêÆ</button>' +
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:327:        '<button class="qtybtn" data-q="' + it.id + '" data-qs="' + esc(it.size) + '" data-qv="1">+</button>' +
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:328:        '<button class="crm" data-q="' + it.id + '" data-qs="' + esc(it.size) + '" data-qv="rm" title="Remove">≡ƒùæ∩╕Å</button></div></div></div>';
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:338:function addCartUI(id, size, qty) {
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:340:  if (!p) { toast("Product nahi mila.", "bad"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:341:  if (p.sizes && p.sizes.length && !size) { toast("Pehle size select kijiye.", "bad"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:343:  if (cartQtyOf(id, size) + (qty || 1) > stk) { toast("Sirf " + stk + " piece baaki hain.", "bad"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:344:  addToCart(id, size, qty);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:347:  toast("Cart mein add ho gaya ≡ƒ¢Æ", "ok");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:368:      if (cur + 1 > stk2) { toast("Sirf " + stk2 + " piece baaki hain.", "bad"); return; }
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:410:function upiLink(s, amount, note) {
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:414:    "am=" + amount,
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:418:  return "upi://pay?" + q.join("&");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:433:  ta.select();
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:434:  try { document.execCommand("copy"); } catch (e) {}
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:452:  "<text x='200' y='240' font-family='Arial' font-size='22' fill='#b0b0aa' text-anchor='middle'>No image</text>" +
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:453:  "<text x='200' y='270' font-family='Arial' font-size='14' fill='#ccc' text-anchor='middle'>Ridhyansh Store</text></svg>"
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:473:  el.classList.add("plh");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:489:  setTimeout(function () { t.classList.add("out"); }, 2400);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:62:  var st = Number(p && p.stock);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:67:function shipFeeFor(amount) {
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\store.js:72:  if (free && amount >= free) return 0;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:10:  { key: "dispatch", label: "Dispatched", icon: "≡ƒôª", note: "Order dispatch ho gaya ΓÇö tracking WhatsApp par milega." },
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:104:$("tWa").href = "https://wa.me/" + waDigits(s.whatsapp) + "?text=" + encodeURIComponent("Hi! Mujhe apna order track karna hai. Order ref: ");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:27:  $("tErr").classList.add("hidden");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:31:  if (ref.indexOf("RID") !== 0 || ref.length < 9) msg.push("Order ref RID se shuru hota hai ΓÇö e.g. RID26091341");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:47:    $("tErr").textContent = "Yeh order is device nahi mila. Agar aapne order isi phone/browser se kiya tha to yahan aana chahiye tha. Payment confirm hone par WhatsApp par update milega ΓÇö otherwise seller se poochhiye.";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:60:  var label = { pending: "Pending payment", paid: "Paid", shipped: "Dispatched", delivered: "Delivered" };
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:62:  b.textContent = label[o.status] || o.status;
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:63:  b.className = "badge " + (cls[o.status] || "pend");
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:65:  var si = statusIndex(o.status);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:67:    var done = i < si || (i === si && (o.status === "paid" || o.status === "shipped" || o.status === "delivered"));
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:68:    var cur = i === si && o.status !== "placed";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:69:    return '<div class="tl-step' + (done ? " done" : "") + (cur && o.status === "paid" ? " cur" : "") + '">' +
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:74:  var items = o.items && o.items.length ? o.items : [{ name: o.product, size: o.size, qty: o.qty, price: o.amount, subtotal: o.amount }];
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:77:      (it.size ? "<small>Size: " + esc(it.size) + "</small>" : "") +
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:8:  { key: "placed", label: "Order placed", icon: "≡ƒº╛", note: "Order hamare paas aa gaya." },
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:80:  $("rAmt").textContent = inr(o.amount || 0);
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:82:  if (o.status === "pending" || !o.status) {
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:83:    $("rNote").textContent = "Payment abhi pending hai ΓÇö UPI payment karke WhatsApp par screenshot bhejein.";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:84:  } else if (o.status === "paid") {
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:85:    $("rNote").textContent = "Payment confirm ho gayi. Dispatch WhatsApp par update karenge.";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:86:  } else if (o.status === "shipped") {
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:87:    $("rNote").textContent = "Order dispatch par hai. Delivery details WhatsApp par milengi.";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:89:    $("rNote").textContent = "Order deliver ho chuka hai. Thank you for shopping!";
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\js\track.js:9:  { key: "payment", label: "Payment confirmed", icon: "≡ƒÆ│", note: "UPI payment mil gayi." },
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\landing.html:8:<script>location.replace("index.html");</script>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\login.html:16:    <p class="login-sub">Admin se login karo ΓÇö sirf aap.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\login.html:7:<link rel="preconnect" href="https://fonts.googleapis.com">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\login.html:8:<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\login.html:9:<link rel="stylesheet" href="css/style.css?v=16">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:10:<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:100:      <textarea id="addr" rows="3" placeholder="Full address with pincode"></textarea>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:11:<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:113:      <div class="srow sgrand"><span>To pay</span><b id="grand"></b></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:114:      <div class="prepaid-badge">≡ƒöÆ 100% Prepaid</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:115:      <button class="btn primary full" id="pay">Generate UPI Payment Link ΓåÆ</button>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:12:<link rel="stylesheet" href="css/style.css?v=16">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:122:    <div class="suc-head">Γ£à Payment link ready!</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:127:        <p class="hint">Yeh UPI link sirf ek baar ka hai ΓÇö apne order ke liye:</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:128:        <div class="qrwrap"><img id="qr" alt="Payment QR"></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:129:        <button class="btn copy-btn" id="copy">Copy Payment Link</button>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:130:        <a class="btn primary full" id="uplink" href="#" target="_blank" rel="noopener">Open in UPI App ΓåÆ</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:136:          <li><b>Link ya QR scan</b> karo ΓÇö UPI app khulega</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:137:          <li><b>Amount verify</b> karo ΓÇö sirf apna amount dekho</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:139:          <li><b>WhatsApp</b> pe seller ko screenshot ya order detail bhejo</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:141:        <p class="warn">ΓÜá∩╕Å Dispatch sirf payment confirm hone ke baad hoga.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:142:        <a class="btn sec full" href="track-order.html">Track this order ΓåÆ</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:151:    <p class="muted">Prepaid / UPI only.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:16:<div class="banner-prepaid">≡ƒöÆ 100% Prepaid ΓÇö Payment UPI link se, dispatch sirf payment confirm hone ke baad.</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:165:<aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:174:    <div class="srow sgrand"><span>To pay</span><b id="cartTotal">Γé╣0</b></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:176:    <a class="btn whatsapp full" href="contact.html">WhatsApp se poochho ≡ƒÆ¼</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:25:      <a href="track-order.html">Track Order</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:30:      <button class="cart-btn" id="cartBtn" title="Cart">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:31:        ≡ƒ¢Æ <span class="cart-count" id="cartCount">0</span>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:41:    <div class="step" id="st3"><span class="sn">3</span> Pay via UPI</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:51:      <p class="hint">Cart se items yahan checkout ho rahe hain.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:52:      <div class="cart-list" id="ccList"></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:59:      <div class="select-wrap"><select id="product"></select></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:66:        <div class="size-btns" id="sizeBtns"></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:67:        <button type="button" class="link-btn" id="sizeChartBtn">≡ƒôÅ Size Chart</button>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:68:        <div class="size-chart hidden" id="sizeChart">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:7:<meta name="description" content="Ridhyansh Store checkout ΓÇö UPI prepaid, home delivery.">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:9:<link rel="preconnect" href="https://fonts.googleapis.com">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\order.html:99:      <label for="addr">Delivery address</label>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\privacy.html:10:<link rel="stylesheet" href="css/style.css?v=16">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\privacy.html:20:      <a href="track-order.html">Track Order</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\privacy.html:23:    <div class="head-actions"><a class="admin-btn" href="login.html" title="Admin" aria-label="Admin login">≡ƒöÆ</a><button class="cart-btn" id="cartBtn" title="Cart">≡ƒ¢Æ <span class="cart-count" id="cartCount">0</span></button></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\privacy.html:29:  <p class="lead">Aapka data simple aur safe rakhte hain ΓÇö yeh hi rule hai.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\privacy.html:30:  <h2>Hum kya collect karte hain</h2>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\privacy.html:32:    <li>Order ke liye: naam, phone number, delivery address, order details.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\privacy.html:33:    <li>Browser ke andar (localStorage): aapke browser mein hi products/details store hote hain ΓÇö humara server unhe nahi rakhta.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\privacy.html:37:    <li>Orders cloud (Firebase) mein save hote hain, sirf store owner unhe dekh sakte hain.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\privacy.html:38:    <li>Phone number WhatsApp order confirmation aur support ke liye use hota hai.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\privacy.html:39:    <li>Hum aapka data kisi se bechte nahi, share nahi karte.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\privacy.html:43:    <li>Kisi bhi time <a href="contact.html">Contact</a> karke apna data delete karne ke liye kah sakte hain.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\privacy.html:45:  <div class="note">Yeh policy time ke saath update ho sakti hai. Major changes par site par update kiya jata hai.</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\privacy.html:52:      <div><h4>Shop</h4><a href="index.html">All products</a><a href="order.html">Place order</a><a href="track-order.html">Track order</a></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\privacy.html:57:  <div class="wrap foot-legal">┬⌐ <span id="yr"></span> Ridhyansh Store ┬╖ Saare payments UPI se.</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\privacy.html:61:<aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\privacy.html:67:    <div class="srow sgrand"><span>To pay</span><b id="cartTotal">Γé╣0</b></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\privacy.html:7:<meta name="description" content="Ridhyansh Store privacy policy ΓÇö aapka data kaise use hota hai.">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\privacy.html:8:<link rel="preconnect" href="https://fonts.googleapis.com">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\privacy.html:9:<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:109:        <p class="sub">Iske saath yeh bhi aapse sunein</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:111:      <a class="link-more" href="index.html">View all ΓåÆ</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:119:  <h3>Product nahi mila</h3>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:120:  <p>Yeh product hata diya gaya ho sakta hai ya link galat hai.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:13:<link rel="preconnect" href="https://fonts.googleapis.com">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:135:        <a href="track-order.html">Track order</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:14:<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:15:<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:152:  <div class="wrap foot-legal">┬⌐ <span id="yr"></span> Ridhyansh Store ┬╖ Saare payments UPI se. Prepaid only.</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:16:<link rel="stylesheet" href="css/style.css?v=16">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:165:<aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:174:    <div class="srow sgrand"><span>To pay</span><b id="cartTotal">Γé╣0</b></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:176:    <a class="btn whatsapp full" href="contact.html">WhatsApp se poochho ≡ƒÆ¼</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:27:      <a href="track-order.html">Track Order</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:32:      <button class="cart-btn" id="cartBtn" title="Cart">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:33:        ≡ƒ¢Æ <span class="cart-count" id="cartCount">0</span>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:58:      <div class="p-stock" id="pStock"></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:64:        <div class="size-btns" id="sizeBtns2"></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:65:        <button type="button" class="link-btn" id="sizeChartBtn2">≡ƒôÅ Size Chart</button>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:66:        <div class="size-chart hidden" id="sizeChart2">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:7:<meta name="description" content="Ridhyansh Store ΓÇö UPI prepaid, home delivery, WhatsApp support.">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\product.html:91:        <button class="btn copy-btn" id="pShare">≡ƒöù Share</button>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\reset.html:16:    <p class="login-sub">Reset se is browser ka saara data clear ho jayega:</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\reset.html:22:      <div class="rrow">ΓÜÖ∩╕Å <span>Settings (UPI, WhatsApp) ΓåÆ default</span></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\reset.html:7:<link rel="preconnect" href="https://fonts.googleapis.com">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\reset.html:8:<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\reset.html:9:<link rel="stylesheet" href="css/style.css?v=16">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\returns.html:10:<link rel="stylesheet" href="css/style.css?v=16">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\returns.html:20:      <a href="track-order.html">Track Order</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\returns.html:23:    <div class="head-actions"><a class="admin-btn" href="login.html" title="Admin" aria-label="Admin login">≡ƒöÆ</a><button class="cart-btn" id="cartBtn" title="Cart">≡ƒ¢Æ <span class="cart-count" id="cartCount">0</span></button></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\returns.html:29:  <p class="lead">Agar product galat ya damaged ho, to hum help karenge.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\returns.html:31:    <li><b>7-day window:</b> Delivery ke 7 din ke andar issue WhatsApp par bataiye.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\returns.html:32:    <li><b>Kya return ho sakta hai:</b> Damaged / galat product, ya condition jaisi nahi ho. Product unused aur original packaging mein ho.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\returns.html:33:    <li><b>Kya nahi:</b> Use kiye hue ya tailoring/harness ke baad ke products.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\returns.html:34:    <li><b>Refund:</b> Approve hone par refund UPI se wapas kiya jata hai (age nahi).</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\returns.html:35:    <li><b>Process:</b> WhatsApp par order ref aur photo bhejiye ΓÇö hum 24-48 ghante mein reply karte hain.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\returns.html:37:  <div class="note">Return/refund ke liye <a href="contact.html">Contact</a> page se WhatsApp karein. Product photos aur order ref zaroor bhejein.</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\returns.html:44:      <div><h4>Shop</h4><a href="index.html">All products</a><a href="order.html">Place order</a><a href="track-order.html">Track order</a></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\returns.html:49:  <div class="wrap foot-legal">┬⌐ <span id="yr"></span> Ridhyansh Store ┬╖ Saare payments UPI se.</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\returns.html:53:<aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\returns.html:59:    <div class="srow sgrand"><span>To pay</span><b id="cartTotal">Γé╣0</b></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\returns.html:7:<meta name="description" content="Ridhyansh Store returns aur refund policy ΓÇö kya return ho sakta hai, kya nahi.">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\returns.html:8:<link rel="preconnect" href="https://fonts.googleapis.com">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\returns.html:9:<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\shipping-policy.html:10:<link rel="stylesheet" href="css/style.css?v=16">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\shipping-policy.html:20:      <a href="track-order.html">Track Order</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\shipping-policy.html:23:    <div class="head-actions"><a class="admin-btn" href="login.html" title="Admin" aria-label="Admin login">≡ƒöÆ</a><button class="cart-btn" id="cartBtn" title="Cart">≡ƒ¢Æ <span class="cart-count" id="cartCount">0</span></button></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\shipping-policy.html:29:  <p class="lead">Order kya hoga, kab bheja jayega ΓÇö sab kuch transparent.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\shipping-policy.html:31:    <li><b>Prepaid only:</b> Saare orders UPI prepaid hain. Dispatch sirf payment confirm hone ke baad.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\shipping-policy.html:32:    <li><b>Dispatch:</b> Payment confirm hone ke baad 24 ghante ke andar dispatch karne ki koshish.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\shipping-policy.html:33:    <li><b>Shipping charges:</b> Checkout par saaf dikhte hain. Free shipping qualifying amount (usually Γé╣999+) par available.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\shipping-policy.html:34:    <li><b>Delivery:</b> Dispatch ke baad delivery time location par depend karta hai ΓÇö WhatsApp par updates milti hain.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\shipping-policy.html:35:    <li><b>Address:</b> Delivery address mein pincode zaroor likhiye; galat address se delay ho sakta hai.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\shipping-policy.html:36:    <li><b>Tracking:</b> <a href="track-order.html">Track Order</a> page aur WhatsApp ΓÇö dono se status milta hai.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\shipping-policy.html:38:  <div class="note">Payment confirm hone par hi order confirm hota hai. Payment screenshot WhatsApp par bhejiye agar support chahiye.</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\shipping-policy.html:45:      <div><h4>Shop</h4><a href="index.html">All products</a><a href="order.html">Place order</a><a href="track-order.html">Track order</a></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\shipping-policy.html:50:  <div class="wrap foot-legal">┬⌐ <span id="yr"></span> Ridhyansh Store ┬╖ Saare payments UPI se.</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\shipping-policy.html:54:<aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\shipping-policy.html:60:    <div class="srow sgrand"><span>To pay</span><b id="cartTotal">Γé╣0</b></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\shipping-policy.html:7:<meta name="description" content="Ridhyansh Store shipping policy ΓÇö dispatch 24h, delivery time, shipping charges, free shipping.">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\shipping-policy.html:8:<link rel="preconnect" href="https://fonts.googleapis.com">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\shipping-policy.html:9:<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\terms.html:10:<link rel="stylesheet" href="css/style.css?v=16">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\terms.html:20:      <a href="track-order.html">Track Order</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\terms.html:23:    <div class="head-actions"><a class="admin-btn" href="login.html" title="Admin" aria-label="Admin login">≡ƒöÆ</a><button class="cart-btn" id="cartBtn" title="Cart">≡ƒ¢Æ <span class="cart-count" id="cartCount">0</span></button></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\terms.html:29:  <p class="lead">Shopping karte hi in terms se aap sahmat maane jaate hain.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\terms.html:31:    <li><b>Payment:</b> Saare orders prepaid UPI hain. Order tab tak confirm nahi hota jab tak payment confirm na ho.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\terms.html:32:    <li><b>Prices:</b> Product page par jo price dikhti hai, wahi final hai. Discount MRP par calculated hota hai.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\terms.html:33:    <li><b>Stock:</b> Stock limited hai; cart mein quantity stock se zyada nahi ho sakti.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\terms.html:34:    <li><b>Delivery:</b> Delivery address aap provide karte hain; galat address ka koi bhi loss humari zimmedari nahi.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\terms.html:35:    <li><b>Returns:</b> <a href="returns.html">Returns &amp; refunds</a> policy ke hizab se strictly.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\terms.html:36:    <li><b>Content:</b> Site par saari photos, text aur prices store ke hain ΓÇö bina permission copy na karein.</li>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\terms.html:38:  <div class="note">Koi bhi issue ho to <a href="contact.html">Contact</a> page se WhatsApp karein.</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\terms.html:45:      <div><h4>Shop</h4><a href="index.html">All products</a><a href="order.html">Place order</a><a href="track-order.html">Track order</a></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\terms.html:50:  <div class="wrap foot-legal">┬⌐ <span id="yr"></span> Ridhyansh Store ┬╖ Saare payments UPI se.</div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\terms.html:54:<aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\terms.html:60:    <div class="srow sgrand"><span>To pay</span><b id="cartTotal">Γé╣0</b></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\terms.html:7:<meta name="description" content="Ridhyansh Store terms ΓÇö shopping ke niyam saaf aur aasaan.">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\terms.html:8:<link rel="preconnect" href="https://fonts.googleapis.com">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\terms.html:9:<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:10:<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:101:<aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:11:<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:110:    <div class="srow sgrand"><span>To pay</span><b id="cartTotal">Γé╣0</b></div>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:112:    <a class="btn whatsapp full" href="contact.html">WhatsApp se poochho ≡ƒÆ¼</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:117:<script src="js/track.js?v=20"></script>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:12:<link rel="stylesheet" href="css/style.css?v=16">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:23:      <a href="track-order.html" class="active">Track Order</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:28:      <button class="cart-btn" id="cartBtn" title="Cart">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:29:        ≡ƒ¢Æ <span class="cart-count" id="cartCount">0</span>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:37:  <p class="lead">Order ref aur phone number daalke status dekhiye. Full confirmation WhatsApp par milti hai.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:39:  <section class="card track-form">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:48:  <section class="card track-result hidden" id="tResult">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:62:  <section class="card track-help">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:63:    <h3>Payment ho gaya hai? Confirm karo</h3>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:64:    <p>Payment screenshot ya order detail WhatsApp par bhejein ΓÇö dispatch payment confirm hone ke baad hi hota hai.</p>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:65:    <a class="btn whatsapp" id="tWa" href="#" target="_blank" rel="noopener">WhatsApp par confirm karein ≡ƒÆ¼</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:7:<meta name="description" content="Apne Ridhyansh Store order ka status dekhiye ΓÇö order, payment, dispatch, delivery.">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:80:        <a href="track-order.html">Track order</a>
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:9:<link rel="preconnect" href="https://fonts.googleapis.com">
+C:\Users\Ats\OneDrive\Documents\Default Project\ridhyansh\track-order.html:97:  <div class="wrap foot-legal">┬⌐ <span id="yr"></span> Ridhyansh Store ┬╖ Saare payments UPI se. Prepaid only.</div>

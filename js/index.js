@@ -199,7 +199,7 @@ function drawGal() {
   $("lbPrev").classList.toggle("hidden", gi === 0);
   $("lbNext").classList.toggle("hidden", gi >= galImg.length - 1);
   $("lbThumbs").innerHTML = galImg.map(function (d, i) {
-    return '<img class="lb-th' + (i === gi ? " act" : "") + '" data-go="' + i + '" src="' + d + '" alt="">';
+    return '<img class="lb-th' + (i === gi ? " act" : "") + '" data-go="' + i + '" src="' + esc(d) + '" alt="">';
   }).join("");
   var act = $("lbThumbs").querySelector(".lb-th.act");
   if (act) act.scrollIntoView({ block: "nearest", inline: "center" });
