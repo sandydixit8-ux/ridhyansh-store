@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ridhyansh Store — Dashboard</title>
+<meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=16">
+<link rel="stylesheet" href="css/style.css?v=18">
 </head>
 <body>
 
@@ -26,48 +27,49 @@
 <main class="wrap dash">
   <div class="kpis" id="kpis"></div>
   <div class="kpis">
-    <div class="kpi"><div class="kpi-icon">👁️</div><div><div class="kpi-val" id="stImp">—</div><div class="kpi-label">Impressions</div><div class="kpi-sub">products dekhe</div></div></div>
+    <div class="kpi"><div class="kpi-icon">👁️</div><div><div class="kpi-val" id="stImp">—</div><div class="kpi-label">Impressions</div><div class="kpi-sub">products viewed</div></div></div>
     <div class="kpi"><div class="kpi-icon">🖱️</div><div><div class="kpi-val" id="stClk">—</div><div class="kpi-label">Clicks</div><div class="kpi-sub">product pe click</div></div></div>
     <div class="kpi"><div class="kpi-icon">📊</div><div><div class="kpi-val" id="stCtr">—</div><div class="kpi-label">CTR</div><div class="kpi-sub">click / impression</div></div></div>
   </div>
 
   <div class="dash-grid">
     <section class="panel">
-      <div class="phead"><span class="picon">📈</span><div><h2>Store Traffic</h2><p>Products dekhe (impressions) aur click stats</p></div></div>
+      <div class="phead"><span class="picon">📈</span><div><h2>Store Traffic</h2><p>Products viewed (impressions) and click stats</p></div></div>
       <div class="tbl-wrap"><table class="tbl">
         <thead><tr><th>Product</th><th>Impressions</th><th>Clicks</th><th>CTR</th></tr></thead>
         <tbody id="statRows"></tbody>
       </table></div>
-      <p class="hint" id="statEmpty" style="display:none">Abhi koi traffic data nahi.</p>
+      <p class="hint" id="statEmpty" style="display:none">No traffic data yet.</p>
     </section>
 
     <section class="panel">
-      <div class="phead"><span class="picon">🏆</span><div><h2>Top Products</h2><p>Kaunse product kitne bhe.</p></div></div>
+      <div class="phead"><span class="picon">🏆</span><div><h2>Top Products</h2><p>Which products sold the most.</p></div></div>
       <div class="tbl-wrap"><table class="tbl">
         <thead><tr><th>Product</th><th>Orders</th><th>Qty</th><th>Revenue</th></tr></thead>
         <tbody id="prodRows"></tbody>
       </table></div>
-      <p class="hint" id="prodEmpty" style="display:none">Abhi koi bhi order nahi hua.</p>
+      <p class="hint" id="prodEmpty" style="display:none">No orders yet.</p>
     </section>
 
     <section class="panel">
-      <div class="phead"><span class="picon">🗂️</span><div><h2>By Category</h2><p>Category ke hisaab se bech</p></div></div>
+      <div class="phead"><span class="picon">🗂️</span><div><h2>By Category</h2><p>Sales by category</p></div></div>
       <div class="tbl-wrap"><table class="tbl">
         <thead><tr><th>Category</th><th>Qty</th><th>Revenue</th></tr></thead>
         <tbody id="catRows"></tbody>
       </table></div>
-      <p class="hint" id="catEmpty" style="display:none">Abhi koi order nahi.</p>
+      <p class="hint" id="catEmpty" style="display:none">No orders yet.</p>
     </section>
   </div>
 
   <section class="panel">
-    <div class="phead"><span class="picon">🧾</span><div><h2>Orders</h2><p>Payment confirm hone par "Mark Paid" dabao — revenue usi se banta hai.</p></div></div>
+    <div class="phead"><span class="picon">🧾</span><div><h2>Orders</h2><p>When payment is confirmed, press "Mark Paid" — revenue is counted from there.</p></div></div>
     <div class="filters" id="filters"></div>
+    <input type="search" id="orderSearch" class="search-mini" placeholder="Search by order ref, name or phone…">
     <div class="tbl-wrap"><table class="tbl">
       <thead><tr><th>Order</th><th>Product</th><th>Qty</th><th>Amount</th><th>Customer</th><th>Status</th><th></th></tr></thead>
       <tbody id="orderRows"></tbody>
     </table></div>
-    <p class="hint" id="orderEmpty" style="display:none">Abhi koi order nahi hua. Customer se payment link generate karne par yahan aa jayega.</p>
+    <p class="hint" id="orderEmpty" style="display:none">No orders yet. This list fills up when customers generate a payment link.</p>
   </section>
 </main>
 
@@ -78,7 +80,7 @@
   </div>
 </footer>
 
-<script src="js/store.js?v=21"></script>
-<script src="js/dashboard.js?v=20"></script>
+<script src="js/store.js?v=23"></script>
+<script src="js/dashboard.js?v=22"></script>
 </body>
 </html>

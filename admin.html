@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ridhyansh Store — Admin</title>
+<meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=16">
+<link rel="stylesheet" href="css/style.css?v=18">
 </head>
 <body>
 
@@ -26,14 +27,14 @@
 
 <main class="wrap admin">
   <section class="panel">
-    <div class="phead"><span class="picon">⚙️</span><div><h2>Shop Settings</h2><p>Payment link, WhatsApp aur admin login yahan se set karo.</p></div></div>
+    <div class="phead"><span class="picon">⚙️</span><div><h2>Shop Settings</h2><p>Set the payment link, WhatsApp and admin login here.</p></div></div>
     <label for="shopName">Shop name</label>
     <input type="text" id="shopName" placeholder="Ridhyansh Store">
     <label for="user">Admin username</label>
     <input type="text" id="user" placeholder="admin">
-    <label for="upiId">Your UPI ID <span class="req">(payment links isi se banenge)</span></label>
+    <label for="upiId">Your UPI ID <span class="req">(payment links are created from this)</span></label>
     <input type="text" id="upiId" placeholder="e.g. yourname@okhdfcbank">
-    <label for="whatsapp">WhatsApp number <span class="req">(orders yahan aayenge)</span></label>
+    <label for="whatsapp">WhatsApp number <span class="req">(orders come here)</span></label>
     <input type="tel" id="whatsapp" placeholder="10 digit number">
     <label for="addr">Shop address <span class="req">(optional)</span></label>
     <input type="text" id="addr" placeholder="Shop / delivery address">
@@ -49,21 +50,23 @@
     </div>
     <label for="pass">New admin password <span class="req">(leave empty to keep the current one)</span></label>
     <input type="password" id="pass" placeholder="Set a strong password">
-    <label for="cdb">Cloud DB URL <span class="req">(optional — Firebase free RTDB URL, catalog/orders sab jagah share honge)</span></label>
+    <label for="cdb">Cloud DB URL <span class="req">(optional — Firebase free RTDB URL, catalog/orders are shared everywhere)</span></label>
     <input type="text" id="cdb" placeholder="https://myapp-default-rtdb.firebaseio.com">
-    <label for="fbkey">Firebase Auth API Key <span class="req">(SETTINGS → General → Web API Key — products/orders kew tum hi write kar paoge)</span></label>
+    <label for="fbkey">Firebase Auth API Key <span class="req">(SETTINGS → General → Web API Key — only you can write products/orders)</span></label>
     <input type="text" id="fbkey" placeholder="AIzaSy...">
-    <label for="fbemail">Firebase Owner Email <span class="req">(koi bhi email — pehli save par account khud ban jayega)</span></label>
+    <label for="fbemail">Firebase Owner Email <span class="req">(any email — the account is created automatically on first save)</span></label>
     <input type="email" id="fbemail" placeholder="your@gmail.com">
-    <label for="fbpass">Firebase Owner Password <span class="req">(kam se kam 6 characters)</span></label>
+    <label for="fbpass">Firebase Owner Password <span class="req">(at least 6 characters)</span></label>
     <input type="password" id="fbpass" placeholder="••••••••">
+    <label for="ga">Google Analytics ID <span class="req">(optional — GA4 Measurement ID like G-XXXXXXX)</span></label>
+    <input type="text" id="ga" placeholder="G-XXXXXXX">
     <button class="btn primary" id="saveSett">💾 Save Settings</button>
     <button class="btn secondary" id="pubCloud">⬆️ Publish catalog to cloud</button>
     <p class="hint" id="settMsg"></p>
   </section>
 
   <section class="panel">
-    <div class="phead"><span class="picon">➕</span><div><h2 id="phead2">Add Product</h2><p>Naya product storefront par sirf yahin se aata hai.</p></div></div>
+    <div class="phead"><span class="picon">➕</span><div><h2 id="phead2">Add Product</h2><p>New products appear on the storefront only from here.</p></div></div>
     <div class="grid2f">
       <div>
         <label for="pname">Product name</label>
@@ -78,17 +81,17 @@
         <select id="psub"></select>
       </div>
       <div class="hidden" id="psizesWrap">
-        <label for="psizes">Sizes (comma se likho) <span class="req">(optional)</span></label>
+        <label for="psizes">Sizes (separated by commas) <span class="req">(optional)</span></label>
         <input type="text" id="psizes" placeholder="e.g. 39,40,42,44 ya S,M,L,XL">
       </div>
     </div>
     <label for="pprice">Selling Price (₹) <span class="req">(customer yehi pay karega)</span></label>
     <input type="number" id="pprice" min="1" placeholder="e.g. 899">
-    <label for="pmrp">MRP (₹) <span class="req">(optional — daaloge to discount % dikhega)</span></label>
+    <label for="pmrp">MRP (₹) <span class="req">(optional — — enter to see the discount %)</span></label>
     <input type="number" id="pmrp" min="1" placeholder="e.g. 1299">
-    <label for="pstock">Stock <span class="req">(kitne pieces bache hain)</span></label>
+    <label for="pstock">Stock <span class="req">(pieces in stock)</span></label>
     <input type="number" id="pstock" min="0" placeholder="e.g. 20">
-    <label for="pfile">📷 Product photos — <b>kam se kam 3</b>, <b>zyada se zyada 5</b> (phone/computer se choose karo)</label>
+    <label for="pfile">📷 Product photos — <b>minimum 3</b>, <b>maximum 5</b> (choose from phone/computer)</label>
     <input type="file" id="pfile" accept="image/*" multiple>
     <div class="imgprevs hidden" id="imgPrevs"></div>
     <p class="hint" id="imgCount"></p>
@@ -117,9 +120,9 @@
         <input type="text" id="pvideo" placeholder="e.g. reels/17893_reel_1080x1920.mp4 ya full URL">
       </div>
     </div>
-    <label for="pslug">SEO slug <span class="req">(auto-fill hoga name se)</span></label>
+    <label for="pslug">SEO slug <span class="req">(auto-filled from the name)</span></label>
     <input type="text" id="pslug" placeholder="e.g. blue-comfort-stretch-jeans">
-    <label for="pseotitle">SEO title <span class="req">(optional — Google pe dikhega)</span></label>
+    <label for="pseotitle">SEO title <span class="req">(optional — shown on Google)</span></label>
     <input type="text" id="pseotitle" placeholder="e.g. Blue Comfort Stretch Jeans | Ridhyansh Store">
     <label for="pseodesc">SEO description <span class="req">(optional — search result summary)</span></label>
     <input type="text" id="pseodesc" placeholder="e.g. Buy Blue Comfort Stretch Jeans online — UPI prepaid, home delivery.">
@@ -128,24 +131,24 @@
     <label for="pspecText">Specifications <span class="req">(optional — heavy text detail)</span></label>
     <textarea id="pspecText" rows="3" placeholder="Machine wash, low tumble dry.&#10;Model height 6ft, wearing size M."></textarea>
     <label for="plongdesc">Long description <span class="req">(optional — detailed paragraph)</span></label>
-    <textarea id="plongdesc" rows="4" placeholder="Product ke baare mein detailed description likho..."></textarea>
+    <textarea id="plongdesc" rows="4" placeholder="Write a detailed description about the product..."></textarea>
     <div class="toggle-row">
-      <label class="chk"><input type="checkbox" id="pFeatured"> ⭐ Featured (homepage par dikhega)</label>
+      <label class="chk"><input type="checkbox" id="pFeatured"> ⭐ Featured (shown on homepage)</label>
       <label class="chk"><input type="checkbox" id="pTrending"> 🔥 Trending tag</label>
-      <label class="chk"><input type="checkbox" id="pSold"> ⛔ Sold out (stock 0 ban jayega)</label>
+      <label class="chk"><input type="checkbox" id="pSold"> ⛔ Sold out (sets stock to 0)</label>
     </div>
     <button class="btn primary" id="addProd">＋ Add Product</button>
-    <button class="btn sm ghost hidden" id="cancelEdit" data-cedit title="Edit mode band karo">❌ Cancel Edit</button>
+    <button class="btn sm ghost hidden" id="cancelEdit" data-cedit title="Turn off edit mode">❌ Cancel Edit</button>
     <p class="hint" id="prodMsg"></p>
   </section>
 
   <section class="panel">
-    <div class="phead"><span class="picon">📦</span><div><h2>Products <span class="count" id="pc">0</span></h2><p>Storefront par jo dikh raha hai.</p></div></div>
+    <div class="phead"><span class="picon">📦</span><div><h2>Products <span class="count" id="pc">0</span></h2><p>What is shown on the storefront.</p></div></div>
     <div id="plist"></div>
   </section>
 
   <section class="panel">
-    <div class="phead"><span class="picon">🔗</span><div><h2>Payment Link Generator</h2><p>Kisi bhi order ke liye alag se UPI link banao — bhejo WhatsApp pe.</p></div></div>
+    <div class="phead"><span class="picon">🔗</span><div><h2>Payment Link Generator</h2><p>Create a separate UPI link for any order — and send it on WhatsApp.</p></div></div>
     <div class="grid2f">
       <div>
         <label for="gamt">Amount (₹)</label>
@@ -178,7 +181,7 @@
   </div>
 </footer>
 
-<script src="js/store.js?v=21"></script>
-<script src="js/admin.js?v=20"></script>
+<script src="js/store.js?v=23"></script>
+<script src="js/admin.js?v=22"></script>
 </body>
 </html>

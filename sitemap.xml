@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://ridhanshstore.online/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
-  <url><loc>https://ridhanshstore.online/about.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://ridhanshstore.online/contact.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ridhanshstore.online/faqs.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://ridhanshstore.online/shipping-policy.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://ridhanshstore.online/returns.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://ridhanshstore.online/privacy.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://ridhanshstore.online/terms.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://ridhanshstore.online/track-order.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ridhanshstore.online/product.html?p=1789369290550</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ridhanshstore.online/product.html?p=1789369544994</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ridhanshstore.online/product.html?p=1789395234519</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ridhanshstore.online/product.html?p=1789398652120</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ridhanshstore.online/product.html?p=1790587303357</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ridhanshstore.online/</loc><lastmod>2026-10-04</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://ridhanshstore.online/product.html?p=1789369290550</loc><lastmod>2026-10-04</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ridhanshstore.online/product.html?p=1789369544994</loc><lastmod>2026-10-04</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ridhanshstore.online/product.html?p=1789395234519</loc><lastmod>2026-10-04</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ridhanshstore.online/product.html?p=1789398652120</loc><lastmod>2026-10-04</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ridhanshstore.online/product.html?p=1790587303357</loc><lastmod>2026-10-04</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ridhanshstore.online/product.html?p=1791125586491</loc><lastmod>2026-10-04</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ridhanshstore.online/product.html?p=1791132817051</loc><lastmod>2026-10-04</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ridhanshstore.online/about.html</loc><lastmod>2026-10-04</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://ridhanshstore.online/contact.html</loc><lastmod>2026-10-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ridhanshstore.online/faqs.html</loc><lastmod>2026-10-04</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://ridhanshstore.online/shipping-policy.html</loc><lastmod>2026-10-04</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://ridhanshstore.online/returns.html</loc><lastmod>2026-10-04</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://ridhanshstore.online/privacy.html</loc><lastmod>2026-10-04</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://ridhanshstore.online/terms.html</loc><lastmod>2026-10-04</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://ridhanshstore.online/track-order.html</loc><lastmod>2026-10-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>

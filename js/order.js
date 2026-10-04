@@ -217,6 +217,8 @@ $("pay").addEventListener("click", function () {
   var addr = $("addr").value.trim();
   var pin = ($("pin") && $("pin").value.trim()) || "";
 
+  if (!$("prepaidOK").checked) { showErr("Please confirm that this is a 100% prepaid order."); return; }
+
   if (!multi) {
     if (!picked) { showErr("Please choose a product first."); return; }
     var stk = getStockOf(picked);
@@ -290,6 +292,7 @@ $("pay").addEventListener("click", function () {
   $("result").classList.remove("hidden");
   $("result").scrollIntoView({ behavior: "smooth", block: "start" });
   toast("Payment link ready ✔", "ok");
+  trackEvent("begin_checkout", { currency: "INR", value: amount, items: o.items.map(function (it) { return { item_id: String(it.id), item_name: it.name, item_category: it.cat || "", quantity: it.qty, price: it.price }; }) });
 });
 
 function showErr(t) {

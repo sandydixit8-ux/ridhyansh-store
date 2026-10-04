@@ -14,6 +14,15 @@ $("logout").addEventListener("click", function () { authClear(); location.href =
 var orders = [];
 var stats = {};
 var fbTok = null;
+var q = "";
+
+function searchable(o) {
+  var l = q.toLowerCase();
+  if (!l) return true;
+  return [o.ref, o.name, o.phone, o.product].some(function (v) {
+    return String(v || "").toLowerCase().indexOf(l) !== -1;
+  });
+}
 
 function getFbTok() {
   if (fbTok) return Promise.resolve(fbTok);
@@ -24,6 +33,7 @@ getFbTok().then(function (tok) {
   return Promise.all([loadOrders(tok), loadStats(tok), loadProds()]);
 }).then(function (res) {
   orders = res[0];
+  orders.sort(function (a, b) { return String(b.time || "").localeCompare(String(a.time || "")); });
   stats = res[1];
   renderAll();
 });
@@ -122,7 +132,7 @@ function statTable() {
 
 function orderTable() {
   var list = orders.filter(function (o) {
-    return filter === "all" || o.status === filter;
+    return (filter === "all" || o.status === filter) && searchable(o);
   });
   $("orderRows").innerHTML = list.map(function (o) {
     var actions = "";
@@ -196,7 +206,7 @@ document.addEventListener("click", function (e) {
   if (dl) { setStatus(dl.getAttribute("data-deliv"), "delivered", dl.getAttribute("data-deliv") + " marked as DELIVERED 📦"); return; }
   var d = e.target.closest("[data-delorder]");
   if (d) {
-    if (!confirm("Yeh order delete karna hai?")) return;
+    if (!confirm("Delete this order?")) return;
     var r2 = d.getAttribute("data-delorder");
     saveOrders(orders.filter(function (x) { return x.ref !== r2; }));
     getFbTok().then(function (tok) {
@@ -207,4 +217,5 @@ document.addEventListener("click", function (e) {
 });
 
 filters();
+$("orderSearch").addEventListener("input", function () { q = ($("orderSearch").value || "").trim(); orderTable(); });
 renderAll();

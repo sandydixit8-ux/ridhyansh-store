@@ -4,16 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ridhyansh Store — Checkout</title>
-<meta name="description" content="Ridhyansh Store checkout — UPI prepaid, home delivery.">
+<meta name="description" content="Ridhyansh Store secure checkout — prepaid UPI payment and home delivery.">
 <meta name="robots" content="noindex">
+<link rel="canonical" href="https://ridhanshstore.online/order.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=16">
+<link rel="stylesheet" href="css/style.css?v=18">
 </head>
 <body>
 
-<div class="banner-prepaid">🔒 100% Prepaid — Payment UPI link se, dispatch sirf payment confirm hone ke baad.</div>
+<div class="banner-prepaid">🔒 100% Prepaid — Pay via UPI link; orders are dispatched only after payment is confirmed.</div>
 
 <header class="top">
   <div class="wrap head">
@@ -48,7 +49,7 @@
 
     <section class="card form-card hidden" id="multiWrap">
       <h2>Your order</h2>
-      <p class="hint">Cart se items yahan checkout ho rahe hain.</p>
+      <p class="hint">Your cart items are being checked out here.</p>
       <div class="cart-list" id="ccList"></div>
       <a class="btn sec sm" href="index.html">＋ Add more products</a>
     </section>
@@ -58,7 +59,7 @@
       <label for="product">Product</label>
       <div class="select-wrap"><select id="product"></select></div>
       <div class="order-gal hidden" id="orderGal">
-        <label class="label">Photos <span class="req">(tap karke bada dekho)</span></label>
+        <label class="label">Photos <span class="req">(tap to enlarge)</span></label>
         <div class="order-gal-strip" id="orderGalStrip"></div>
       </div>
       <div class="hidden" id="sizeWrap">
@@ -114,7 +115,8 @@
       <div class="divider"></div>
       <div class="srow sgrand"><span>To pay</span><b id="grand"></b></div>
       <div class="prepaid-badge">🔒 100% Prepaid</div>
-      <button class="btn primary full" id="pay">Generate UPI Payment Link →</button>
+      <label class="chk"><input type="checkbox" id="prepaidOK"> I understand this is a <b>prepaid order</b> — no Cash on Delivery.</label>
+      <button class="btn primary full" id="pay">Continue to Payment →</button>
     </div>
   </aside>
 </main>
@@ -126,7 +128,7 @@
       <div class="suc-left">
         <div class="ordref">Order: <b id="ref"></b></div>
         <div class="bigamnt" id="amnt">₹0</div>
-        <p class="hint">Yeh UPI link sirf ek baar ka hai — apne order ke liye:</p>
+        <p class="hint">This UPI link is for your order only:</p>
         <div class="qrwrap"><img id="qr" alt="Payment QR"></div>
         <button class="btn copy-btn" id="copy">Copy Payment Link</button>
         <a class="btn primary full" id="uplink" href="#" target="_blank" rel="noopener">Open in UPI App →</a>
@@ -135,12 +137,12 @@
       <div class="suc-right">
         <h4>Payment steps</h4>
         <ol class="paysteps">
-          <li><b>Link ya QR scan</b> karo — UPI app khulega</li>
-          <li><b>Amount verify</b> karo — sirf apna amount dekho</li>
-          <li><b>Pay</b> karo — PIN daalo</li>
-          <li><b>WhatsApp</b> pe seller ko screenshot ya order detail bhejo</li>
+          <li><b>Scan the link or QR</b> — your UPI app will open</li>
+          <li><b>Verify the amount</b> — check that it matches your order</li>
+          <li><b>Pay</b> — enter your UPI PIN</li>
+          <li><b>Send the screenshot / order details on WhatsApp</b> to the store</li>
         </ol>
-        <p class="warn">⚠️ Dispatch sirf payment confirm hone ke baad hoga.</p>
+        <p class="warn">⚠️ Dispatch happens only after payment is confirmed.</p>
         <a class="btn sec full" href="track-order.html">Track this order →</a>
       </div>
     </div>
@@ -175,11 +177,11 @@
     <div class="srow" id="cartShipRow"><span>Shipping</span><span id="cartShip">₹0</span></div>
     <div class="srow sgrand"><span>To pay</span><b id="cartTotal">₹0</b></div>
     <a class="btn primary full" href="order.html">Checkout →</a>
-    <a class="btn whatsapp full" href="contact.html">WhatsApp se poochho 💬</a>
+    <a class="btn whatsapp full" href="contact.html">Ask us on WhatsApp 💬</a>
   </div>
 </aside>
 
-<script src="js/store.js?v=21"></script>
-<script src="js/order.js?v=20"></script>
+<script src="js/store.js?v=23"></script>
+<script src="js/order.js?v=22"></script>
 </body>
 </html>

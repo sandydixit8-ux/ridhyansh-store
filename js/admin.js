@@ -11,7 +11,7 @@ function docClick(e) {
     var base = location.href.split("admin.html")[0] || location.href;
     var u = base + "product.html?p=" + id;
     copyText(u, link);
-    toast("Product page URL copy ho gaya — ad mein paste karo ✔", "ok");
+    toast("Product page URL copied — — paste it in the ad. ✔", "ok");
     return;
   }
   var reel = e.target.closest("[data-reel]");
@@ -20,7 +20,7 @@ function docClick(e) {
     var base2 = location.href.split("admin.html")[0] || location.href;
     var ru = base2 + "reels/" + id2 + "_reel_1080x1920.mp4";
     copyText(ru, reel);
-    toast("Reel URL copy ho gaya ✔ (reels folder mein file honi chahiye)", "ok");
+    toast("Reel URL copied ✔ (the file must be present in the reels folder)", "ok");
     return;
   }
   var feat = e.target.closest("[data-feat]");
@@ -43,11 +43,11 @@ function docClick(e) {
   if (ce) { cancelEdit(); return; }
   var d = e.target.closest("[data-del]");
   if (d) {
-    if (!confirm("Yeh product delete karna hai?")) return;
+    if (!confirm("Delete this product?")) return;
     var p = getProds().filter(function (pr) { return String(pr.id) !== d.getAttribute("data-del"); });
     saveProds(p);
     renderList();
-    toast("Product delete ho gaya.");
+    toast("Product deleted.");
     publishCloud();
     return;
   }
@@ -57,7 +57,7 @@ function docClick(e) {
     var id = (inc || dec).getAttribute("data-inc") || (inc || dec).getAttribute("data-dec");
     var ps = getProds();
     var pr = ps.filter(function (x) { return String(x.id) === String(id); })[0];
-    if (!pr) { toast("Product nahi mila.", "bad"); return; }
+    if (!pr) { toast("Product not found.", "bad"); return; }
     pr.stock = Math.max(0, getStockOf(pr) + (inc ? 1 : -1));
     saveProds(ps);
     renderList();
@@ -90,6 +90,7 @@ function init() {
   $("fbkey").value = s.rh_fbkey || "";
   $("fbemail").value = s.rh_fbemail || "";
   $("fbpass").value = "";
+  $("ga").value = s.ga || "";
 
   var opts = "";
   CATS.forEach(function (c) { opts += '<option value="' + esc(c) + '">' + catIcon(c) + " " + esc(c) + "</option>"; });
@@ -116,7 +117,7 @@ function init() {
     if (list && list.length) {
       renderList();
       showStorage();
-      toast("Cloud products sync ho gaye — " + list.length + " product mile.", "ok");
+      toast("Cloud products synced — " + list.length + " products loaded.", "ok");
     }
   });
 }
@@ -128,12 +129,12 @@ var editId = null;
 function onPickPhoto() {
   var files = Array.prototype.slice.call($("pfile").files);
   var room = 5 - curImgs.length;
-  if (files.length > room) { toast("Zyada se zyada 5 photos choose kar sakte ho.", "bad"); }
+  if (files.length > room) { toast("You can choose up to 5 photos.", "bad"); }
   files = files.slice(0, room);
   busy = true;
   $("addProd").disabled = true;
-  $("addProd").textContent = "Photos load ho rahi hain…";
-  $("imgCount").textContent = "⌛ photos load ho rahi hain…";
+  $("addProd").textContent = "Photos loading…";
+  $("imgCount").textContent = "⌛ photos loading…";
   $("imgCount").className = "hint warn";
   readNext(files, 0);
 }
@@ -141,7 +142,7 @@ function onPickPhoto() {
 function readNext(files, i) {
   if (i >= files.length) { finishPick(); return; }
   var f = files[i];
-  if (f.size > 8 * 1024 * 1024) { toast("Har photo 8 MB se chhota chahiye.", "bad"); readNext(files, i + 1); return; }
+  if (f.size > 8 * 1024 * 1024) { toast("Each photo must be under 8 MB.", "bad"); readNext(files, i + 1); return; }
   var rd = new FileReader();
   rd.onload = function () {
     resizeImage(rd.result, 640, function (small) {
@@ -150,7 +151,7 @@ function readNext(files, i) {
       readNext(files, i + 1);
     });
   };
-  rd.onerror = function () { toast("Photo " + (f.name || "") + " padhni nahi aayi.", "bad"); readNext(files, i + 1); };
+  rd.onerror = function () { toast("Photo " + (f.name || "") + " could not be read.", "bad"); readNext(files, i + 1); };
   rd.readAsDataURL(f);
 }
 
@@ -159,7 +160,7 @@ function finishPick() {
   $("addProd").disabled = false;
   $("addProd").textContent = "＋ Add Product";
   renderPrev();
-  if (curImgs.length < 3) toast("Kam se kam 3 photos chunni hain.", "bad");
+  if (curImgs.length < 3) toast("Please choose at least 3 photos.", "bad");
   else toast(curImgs.length + " photos ready ✔", "ok");
 }
 
@@ -173,7 +174,7 @@ function renderPrev() {
     }).join("");
   }
   $("imgCount").textContent = curImgs.length + " / 5 photos";
-  if (curImgs.length < 3) { $("imgCount").className = "hint warn"; $("imgCount").textContent += " — kam se kam 3 chahiye"; }
+  if (curImgs.length < 3) { $("imgCount").className = "hint warn"; $("imgCount").textContent += " — — at least 3 required"; }
   else { $("imgCount").className = "hint ok"; }
 }
 
@@ -280,41 +281,42 @@ function saveSettings() {
   s.shipFee = $("shipFee").value.trim() || "0";
   s.freeShipAbove = $("freeShipAbove").value.trim() || "0";
   if ($("pass").value.trim()) {
-    if ($("pass").value.trim().length < 4) { toast("Password kam se kam 4 characters ka rakho.", "bad"); return; }
+    if ($("pass").value.trim().length < 4) { toast("Please keep the password at least 4 characters long.", "bad"); return; }
     s.rh_pass = $("pass").value.trim();
   }
   s.rh_cdb = $("cdb").value.trim();
   s.rh_fbkey = $("fbkey").value.trim();
   s.rh_fbemail = $("fbemail").value.trim();
   if ($("fbpass").value.trim()) s.rh_fbpass = $("fbpass").value.trim();
+  s.ga = $("ga").value.trim();
   saveSett(s);
   lsSet("rh_cred_v", 3);
   $("brand").textContent = s.shopName;
   $("pass").value = "";
-  toast("Settings save ho gayi ✔");
+  toast("Settings saved ✔");
   setTimeout(function () { $("settMsg").textContent = ""; }, 500);
   if (s.rh_cdb && s.rh_fbemail && s.rh_fbpass) {
     fbBootstrap().then(function (r) {
       if (r.ok) { toast("Firebase auth connected — owner verified ✔", "ok"); s.rh_fbuid = r.au.localId; saveSett(s); }
-      else toast("config already set ya owner field check karo.", "bad");
+      else toast("config is already set, or check the owner field.", "bad");
     }).catch(function () {
-      toast("Firebase setup me galti — Email/Password check karo.", "bad");
+      toast("Firebase setup error — check the Email/Password.", "bad");
     });
   } else if (s.rh_cdb) {
-    toast("Secure publish ke liye Firebase Email + Password bharo.", "bad");
+    toast("Enter Firebase Email + Password in Settings to publish securely.", "bad");
   }
 }
 
 function fbErrMsg(e) {
-  if (e === "nokey" || e === "nocreds") return "Pehle Firebase Owner Email + Password Settings mein daalo.";
-  if (e.message && e.message.indexOf("API key") !== -1) return "Firebase API Key galat hai — field KHAALI chhod do (default set hai), phir Save karo.";
-  return "Firebase auth fail — Email/Password check karo.";
+  if (e === "nokey" || e === "nocreds") return "First enter the Firebase Owner Email + Password in Settings.";
+  if (e.message && e.message.indexOf("API key") !== -1) return "Invalid Firebase API Key — — leave the field EMPTY (the default is set), then Save.";
+  return "Firebase auth failed — check the Email/Password.";
 }
 
 function publishCloud() {
-  if (!dbUrl()) { toast("Pehle Cloud DB URL Settings mein daalo.", "bad"); return; }
+  if (!dbUrl()) { toast("First enter the Cloud DB URL in Settings.", "bad"); return; }
   var prods = getProds();
-  if (!prods.length) { toast("Pehle products add karo phir publish karo.", "bad"); return; }
+  if (!prods.length) { toast("First add products, then publish.", "bad"); return; }
   fbLogin().then(function (au) {
     return new Promise(function (resolve) {
       var slimmed = [];
@@ -338,20 +340,20 @@ function publishCloud() {
     });
   }).then(function (oks) {
     var fails = oks.filter(function (x) { return !x.ok; });
-    if (!fails.length) { toast("Catalog cloud par publish ho gaya — sabko dikhega ✔", "ok"); return; }
-    toast("Publish fail: " + fails.map(function (f) { return f.name; }).join(", ") + " — photos bahut badi hain. Un product ko dubara (kam resolution) photos ke saath add karo.", "bad");
+    if (!fails.length) { toast("Catalog published to the cloud — now visible to everyone ✔", "ok"); return; }
+    toast("Publish failed: " + fails.map(function (f) { return f.name; }).join(", ") + " — The photos are too large. Re-add those products with smaller-resolution photos.", "bad");
   }).catch(function (e) { toast(fbErrMsg(e), "bad"); });
 }
 
 function addProduct() {
-  if (busy) { toast("Ruko, photos load ho rahi hain…", "bad"); return; }
+  if (busy) { toast("Ruko, photos loading…", "bad"); return; }
   var n = $("pname").value.trim();
   var price = parseInt($("pprice").value, 10);
   var mrp = parseInt($("pmrp").value, 10) || 0;
-  if (!n || !price || price < 1) { toast("Naam aur sahi price dono chahiye.", "bad"); return; }
-  if (mrp && mrp <= price) { toast("MRP selling price se bada hona chahiye.", "bad"); return; }
-  if (curImgs.length < 3 && !editId) { toast("Kam se kam 3 photos choose karo.", "bad"); return; }
-  if (curImgs.length > 5) { toast("Zyada se zyada 5 photos ho sakti hain.", "bad"); return; }
+  if (!n || !price || price < 1) { toast("Both a product name and a valid price are required.", "bad"); return; }
+  if (mrp && mrp <= price) { toast("MRP must be greater than the selling price.", "bad"); return; }
+  if (curImgs.length < 3 && !editId) { toast("Please choose at least 3 photos.", "bad"); return; }
+  if (curImgs.length > 5) { toast("A maximum of 5 photos is allowed.", "bad"); return; }
   var p = getProds();
   var imgs = curImgs.slice();
   var stock = parseInt($("pstock").value, 10);
@@ -388,22 +390,22 @@ function addProduct() {
   }
   if (editId) {
     var ex = p.filter(function (x) { return String(x.id) === String(editId); })[0];
-    if (!ex) { toast("Product nahi mila.", "bad"); return; }
+    if (!ex) { toast("Product not found.", "bad"); return; }
     Object.keys(prod).forEach(function (k) { ex[k] = prod[k]; });
     if (imgs.length) { ex.images = imgs; ex.img = imgs[0]; }
-    if (!saveProds(p)) { toast("Storage full — photos kam karo.", "bad"); return; }
+    if (!saveProds(p)) { toast("Storage full — — remove some photos.", "bad"); return; }
     editId = null;
     $("phead2").textContent = "Add Product";
     $("addProd").innerHTML = "＋ Add Product";
-    toast("Product update ho gaya ✔");
+    toast("Product updated ✔");
   } else {
     p.push(prod);
     if (!saveProds(p)) {
-      $("prodMsg").textContent = "Storage bhar gaya hai — purane products delete karo ya photos kam karo (chhoti photos milegi).";
+      $("prodMsg").textContent = "Storage is full — — delete old products or use fewer/smaller photos.";
       p.pop();
       return;
     }
-    toast("Product " + imgs.length + " photos ke saath add ho gaya ✔");
+    toast("Product " + imgs.length + " photos added ✔");
   }
 $("prodMsg").textContent = "";
   $("cancelEdit") && $("cancelEdit").classList.add("hidden");
@@ -442,22 +444,22 @@ function renderList() {
       '<div class="plist-info"><b>' + esc(pr.name) + '</b>' + fl.join("") +
       '<span>' + catIcon(pr.cat) + " " + esc(pr.cat) + (pr.sub ? " · " + esc(pr.sub) : "") + " · " + mrpHtml(pr) + (pr.sizes && pr.sizes.length ? " · Sizes: " + esc(pr.sizes.join(", ")) : "") + ' · Stock: <b>' + getStockOf(pr) + '</b></span></div>' +
       '<div class="plist-actions">' +
-      '<button class="btn sm ghost' + (pr.featured ? " on" : "") + '" data-feat="' + pr.id + '" title="Featured toggle (home par pehle aayega)">⭐</button>' +
+      '<button class="btn sm ghost' + (pr.featured ? " on" : "") + '" data-feat="' + pr.id + '" title="Featured toggle (shown first on home page)">⭐</button>' +
       '<button class="btn sm ghost' + (pr.trending ? " on" : "") + '" data-trend="' + pr.id + '" title="Trending toggle">🔥</button>' +
       '<button class="btn sm ghost" data-inc="' + pr.id + '" title="Stock +1">+</button>' +
       '<button class="btn sm ghost" data-dec="' + pr.id + '" title="Stock −1">−</button>' +
-      '<button class="btn sm link2" data-link="' + pr.id + '" title="Product page URL copy karo">🔗</button>' +
-      '<button class="btn sm link2" data-reel="' + pr.id + '" title="Reel URL copy karo (agar reels folder mein hai)">🎬</button>' +
+      '<button class="btn sm link2" data-link="' + pr.id + '" title="Copy product page URL">🔗</button>' +
+      '<button class="btn sm link2" data-reel="' + pr.id + '" title="Copy reel URL (if present in the reels folder)">🎬</button>' +
       '<button class="btn sm" data-edit="' + pr.id + '" title="Edit">✏️</button>' +
       '<button class="btn danger sm" data-del="' + pr.id + '">Del</button>' +
       "</div></div>";
   });
-  $("plist").innerHTML = h || '<div class="plist-empty">📮 Abhi koi product nahi — upar "Add Product" se daalo.</div>';
+  $("plist").innerHTML = h || '<div class="plist-empty">📮 No products yet — Add them using "Add Product" above.</div>';
 }
 
 function startEdit(id) {
   var p = getProds().filter(function (x) { return String(x.id) === String(id); })[0];
-  if (!p) { toast("Product nahi mila.", "bad"); return; }
+  if (!p) { toast("Product not found.", "bad"); return; }
   editId = id;
   $("pname").value = p.name || "";
   $("pprice").value = p.price || "";
@@ -485,7 +487,7 @@ function startEdit(id) {
   $("phead2").textContent = "✏️ Edit Product — " + (p.name || "");
   $("addProd").innerHTML = "💾 Save Changes";
   $("cancelEdit").classList.remove("hidden");
-  $("imgCount").textContent = "Photos wahi rahenge (nayi choose karoge to badal jayengi).";
+  $("imgCount").textContent = "Photos will remain unchanged (choose new ones to replace them).";
   toast("✏️ Edit mode ON — save karne ke liye 'Save Changes' dabao");
   $("pname").scrollIntoView({ behavior: "smooth", block: "center" });
 }
@@ -498,7 +500,7 @@ function cancelEdit() {
   $("pFeatured").checked = false;
   $("pTrending").checked = false;
   $("pSold").checked = false;
-  toast("Edit cancel ho gaya.");
+  toast("Edit cancelled.");
 }
 
 $("pname").addEventListener("input", function () {

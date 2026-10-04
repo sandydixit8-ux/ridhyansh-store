@@ -27,6 +27,12 @@ function render() {
   setMeta("twitter:title", p.name + " — " + s.shopName);
   setMeta("twitter:description", (p.desc || "Shop at " + s.shopName + ". UPI prepaid, home delivery."));
   setMeta("og:url", location.href.split("#")[0]);
+  setCanonical(location.href.split("#")[0]);
+  trackEvent("view_item", {
+    currency: "INR",
+    value: d.price,
+    items: [{ item_id: String(p.id), item_name: p.name, item_category: p.cat || "", quantity: 1, price: d.price }]
+  });
   var ogImg = firstImg(p);
   if (ogImg) { setMeta("og:image", ogImg); setMeta("twitter:image", ogImg); }
 
@@ -61,8 +67,8 @@ function render() {
 
   // Stock
   var stEl = $("pStock");
-  if (!stk) { stEl.className = "p-stock out"; stEl.textContent = "⛔ Sold out — stock aane par update kiya jayega"; }
-  else if (stk <= low) { stEl.className = "p-stock low"; stEl.textContent = "⚡ Sirf " + stk + " " + (stk === 1 ? "piece" : "pieces") + " baaki hain"; }
+  if (!stk) { stEl.className = "p-stock out"; stEl.textContent = "⛔ Sold out — will be updated when stock arrives"; }
+  else if (stk <= low) { stEl.className = "p-stock low"; stEl.textContent = "⚡ Only " + stk + " " + (stk === 1 ? "piece" : "pieces") + " left"; }
   else { stEl.className = "p-stock in"; stEl.textContent = "✔ In stock — 24h dispatch"; }
 
   // Sizes
@@ -138,6 +144,12 @@ function setMeta(prop, content) {
   el.setAttribute("content", content);
 }
 
+function setCanonical(href) {
+  var el = document.querySelector('link[rel="canonical"]');
+  if (!el) { el = document.createElement("link"); el.setAttribute("rel", "canonical"); document.head.appendChild(el); }
+  el.setAttribute("href", href);
+}
+
 function injectJsonLd() {
   var d = discInfo(p);
   var ims = hasImg(p) ? imgsOf(p) : [];
@@ -149,17 +161,19 @@ function injectJsonLd() {
     "sku": p.sku || String(p.id),
     "image": ims.length ? (ims.length === 1 ? ims[0] : ims) : undefined,
     "brand": { "@type": "Brand", "name": s.shopName },
+    "category": p.cat || undefined,
     "offers": {
       "@type": "Offer",
       "priceCurrency": "INR",
       "price": d.price,
+      "itemCondition": "https://schema.org/NewCondition",
       "availability": getStockOf(p) > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
       "url": location.href.split("#")[0],
       "seller": { "@type": "Organization", "name": s.shopName }
     },
     "aggregateRating": p.rating ? { "@type": "AggregateRating", "ratingValue": p.rating, "reviewCount": p.ratingCount || 1 } : undefined
   };
-  ["image", "aggregateRating", "sku"].forEach(function (k) { if (ld[k] === undefined) delete ld[k]; });
+  ["image", "aggregateRating", "sku", "category"].forEach(function (k) { if (ld[k] === undefined) delete ld[k]; });
   var el = document.createElement("script");
   el.type = "application/ld+json";
   el.textContent = JSON.stringify(ld);
@@ -303,7 +317,7 @@ function validateBuy() {
   var stk = getStockOf(p);
   var q = pq();
   var inCart = cartQtyOf(p.id, selSize);
-  if (inCart + q > stk) { toast("Cart + is quantity se stock nikal raha hai (baaki: " + (stk - Math.max(0, inCart)) + ").", "bad"); return false; }
+  if (inCart + q > stk) { toast("Only " + (stk - Math.max(0, inCart)) + " " + (stk - Math.max(0, inCart) === 1 ? "piece" : "pieces") + " left in stock.", "bad"); return false; }
   return true;
 }
 function needSize() {
@@ -311,12 +325,12 @@ function needSize() {
 }
 
 $("pAddCart").addEventListener("click", function () {
-  if (needSize()) { toast("Pehle size select kijiye.", "bad"); return; }
+  if (needSize()) { toast("Please select a size first.", "bad"); return; }
   if (!validateBuy()) return;
   addCartUI(p.id, selSize, pq());
 });
 $("pBuy").addEventListener("click", function () {
-  if (needSize()) { toast("Pehle size select kijiye.", "bad"); return; }
+  if (needSize()) { toast("Please select a size first.", "bad"); return; }
   if (!validateBuy()) return;
   addToCart(p.id, selSize, pq());
   location.href = "order.html";

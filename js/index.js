@@ -179,7 +179,7 @@ function waFloat() {
   a.target = "_blank";
   a.rel = "noopener";
   a.innerHTML = "💬";
-  a.title = "WhatsApp se poochho";
+  a.title = "Ask us on WhatsApp";
   document.body.appendChild(a);
 }
 

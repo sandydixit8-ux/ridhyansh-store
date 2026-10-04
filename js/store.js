@@ -307,7 +307,7 @@ function renderCart() {
   var box = cartEl("cartItems");
   if (!box) return;
   if (!d.items.length) {
-    box.innerHTML = '<div class="cart-empty"><div>🛒</div><p>Cart khaali hai.</p><a class="btn main sm" href="index.html" onclick="closeCart()">Shop now</a></div>';
+    box.innerHTML = '<div class="cart-empty"><div>🛒</div><p>Your cart is empty.</p><a class="btn main sm" href="index.html" onclick="closeCart()">Shop now</a></div>';
   } else {
     box.innerHTML = d.items.map(function (it) {
       return '<div class="citem">' +
@@ -330,14 +330,19 @@ function renderCart() {
 }
 function addCartUI(id, size, qty) {
   var p = prodById(id);
-  if (!p) { toast("Product nahi mila.", "bad"); return; }
-  if (p.sizes && p.sizes.length && !size) { toast("Pehle size select kijiye.", "bad"); return; }
+  if (!p) { toast("Product not found.", "bad"); return; }
+  if (p.sizes && p.sizes.length && !size) { toast("Please select a size first.", "bad"); return; }
   var stk = getStockOf(p);
-  if (cartQtyOf(id, size) + (qty || 1) > stk) { toast("Sirf " + stk + " piece baaki hain.", "bad"); return; }
+  if (cartQtyOf(id, size) + (qty || 1) > stk) { toast("Only " + stk + " " + (stk === 1 ? "piece" : "pieces") + " left.", "bad"); return; }
   addToCart(id, size, qty);
   renderCart();
   openCart();
-  toast("Cart mein add ho gaya 🛒", "ok");
+  toast("Added to cart 🛒", "ok");
+  trackEvent("add_to_cart", {
+    currency: "INR",
+    value: (p.price || 0) * (qty || 1),
+    items: [{ item_id: String(id), item_name: p.name, item_category: p.cat || "", quantity: qty || 1, price: p.price || 0 }]
+  });
 }
 function initCartUI() {
   var btn = cartEl("cartBtn");
@@ -358,7 +363,7 @@ function initCartUI() {
     else if (Number(qv) === 1) {
       var pp = prodById(id2);
       var stk2 = pp ? getStockOf(pp) : 1;
-      if (cur + 1 > stk2) { toast("Sirf " + stk2 + " piece baaki hain.", "bad"); return; }
+      if (cur + 1 > stk2) { toast("Only " + stk2 + " " + (stk2 === 1 ? "piece" : "pieces") + " left.", "bad"); return; }
       setCartQty(id2, sz2, cur + 1);
     } else { setCartQty(id2, sz2, cur - 1); }
     renderCart();
@@ -483,3 +488,28 @@ function toast(msg, type) {
   setTimeout(function () { t.classList.add("out"); }, 2400);
   setTimeout(function () { if (t.parentNode) box.removeChild(t); }, 2800);
 }
+
+// ---- Analytics readiness (GA4) ----
+function gaId() { return (sett().ga || "").trim(); }
+
+function initAnalytics() {
+  var id = gaId();
+  if (!id || typeof window === "undefined" || window.__gaLoaded) return;
+  window.__gaLoaded = true;
+  if (window.gtag) return;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  window.gtag("js", new Date());
+  window.gtag("config", id);
+}
+
+function trackEvent(name, params) {
+  initAnalytics();
+  if (window.gtag) window.gtag("event", name, params || {});
+}
+
+initAnalytics();

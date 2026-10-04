@@ -5,9 +5,9 @@ var s = sett();
 function $(id) { return document.getElementById(id); }
 
 var ORDER_FLOW = [
-  { key: "placed", label: "Order placed", icon: "🧾", note: "Order hamare paas aa gaya." },
-  { key: "payment", label: "Payment confirmed", icon: "💳", note: "UPI payment mil gayi." },
-  { key: "dispatch", label: "Dispatched", icon: "📦", note: "Order dispatch ho gaya — tracking WhatsApp par milega." },
+  { key: "placed", label: "Order placed", icon: "🧾", note: "Your order has reached us." },
+  { key: "payment", label: "Payment confirmed", icon: "💳", note: "Your UPI payment has been received." },
+  { key: "dispatch", label: "Dispatched", icon: "📦", note: "Order has been dispatched — tracking will be shared on WhatsApp." },
   { key: "delivered", label: "Delivered", icon: "✅", note: "Order delivered. Enjoy!" }
 ];
 
@@ -28,8 +28,8 @@ function doTrack() {
   var ref = $("tRef").value.trim().toUpperCase();
   var phone = $("tPhone").value.trim().replace(/\D/g, "");
   var msg = [];
-  if (ref.indexOf("RID") !== 0 || ref.length < 9) msg.push("Order ref RID se shuru hota hai — e.g. RID26091341");
-  if (phone.length !== 10) msg.push("10-digit phone number daaliye.");
+  if (ref.indexOf("RID") !== 0 || ref.length < 9) msg.push("Order ref must start with RID — e.g. RID26091341");
+  if (phone.length !== 10) msg.push("Please enter a 10-digit phone number.");
   if (msg.length) {
     $("tErr").textContent = msg.join(" — ");
     $("tErr").classList.remove("hidden");
@@ -44,7 +44,7 @@ function doTrack() {
   });
 
   if (!hit) {
-    $("tErr").textContent = "Yeh order is device nahi mila. Agar aapne order isi phone/browser se kiya tha to yahan aana chahiye tha. Payment confirm hone par WhatsApp par update milega — otherwise seller se poochhiye.";
+    $("tErr").textContent = "This order was not found on this device. If you placed it from this phone/browser, it should be here. Once payment is confirmed, you will get an update on WhatsApp — otherwise please contact the seller.";
     $("tErr").classList.remove("hidden");
     return;
   }
@@ -80,13 +80,13 @@ function render(o) {
   $("rAmt").textContent = inr(o.amount || 0);
 
   if (o.status === "pending" || !o.status) {
-    $("rNote").textContent = "Payment abhi pending hai — UPI payment karke WhatsApp par screenshot bhejein.";
+    $("rNote").textContent = "Payment is still pending — please make the UPI payment and send the screenshot on WhatsApp.";
   } else if (o.status === "paid") {
-    $("rNote").textContent = "Payment confirm ho gayi. Dispatch WhatsApp par update karenge.";
+    $("rNote").textContent = "Payment confirmed. We will share the dispatch update on WhatsApp.";
   } else if (o.status === "shipped") {
-    $("rNote").textContent = "Order dispatch par hai. Delivery details WhatsApp par milengi.";
+    $("rNote").textContent = "Order is on its way. Delivery details will be shared on WhatsApp.";
   } else {
-    $("rNote").textContent = "Order deliver ho chuka hai. Thank you for shopping!";
+    $("rNote").textContent = "Order delivered. Thank you for shopping!";
   }
 
   $("tResult").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -101,6 +101,6 @@ $("brand").textContent = s.shopName;
 $("footName").textContent = s.shopName;
 $("yr").textContent = new Date().getFullYear();
 $("navToggle").addEventListener("click", function () { $("nav").classList.toggle("open"); });
-$("tWa").href = "https://wa.me/" + waDigits(s.whatsapp) + "?text=" + encodeURIComponent("Hi! Mujhe apna order track karna hai. Order ref: ");
+$("tWa").href = "https://wa.me/" + waDigits(s.whatsapp) + "?text=" + encodeURIComponent("Hi! I would like to track my order. Order ref: ");
 
 initCartUI();

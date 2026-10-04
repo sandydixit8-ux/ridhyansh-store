@@ -4,10 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Contact — Ridhyansh Store</title>
-<meta name="description" content="Ridhyansh Store se baat karein — WhatsApp, email. Order support aur queries ke liye.">
+<meta name="description" content="Contact Ridhyansh Store on WhatsApp for order support, payment help and delivery queries.">
+<link rel="canonical" href="https://ridhanshstore.online/contact.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=16">
+<link rel="stylesheet" href="css/style.css?v=18">
 </head>
 <body>
 <header class="top">
@@ -26,19 +27,19 @@
 
 <main class="wrap page">
   <h1>Contact us</h1>
-  <p class="lead">Koi sawaal, order ya payment ki dikkat — hum seedha WhatsApp par available hain.</p>
+  <p class="lead">Have a question or an issue with an order or payment? Chat with us directly on WhatsApp.</p>
 
   <section class="card" style="margin-bottom:16px">
-    <h3 style="font-size:16px;margin-bottom:6px">💬 WhatsApp — sabse fast</h3>
-    <p class="muted">Order confirm, tracking, payment screenshot — sab kuch WhatsApp par.</p>
+    <h3 style="font-size:16px;margin-bottom:6px">💬 WhatsApp — fastest support</h3>
+    <p class="muted">Order confirmation, tracking, payment details — all handled over WhatsApp.</p>
     <a class="btn whatsapp" id="cWa" href="#" target="_blank" rel="noopener">Chat on WhatsApp</a>
   </section>
 
   <section class="card">
     <h3 style="font-size:16px;margin-bottom:6px">⚡ Quick help</h3>
     <ul>
-      <li><a href="track-order.html">Apna order track karein</a></li>
-      <li><a href="faqs.html">FAQs dekhein</a></li>
+      <li><a href="track-order.html">Track your order</a></li>
+      <li><a href="faqs.html">Read the FAQs</a></li>
       <li><a href="shipping-policy.html">Shipping policy</a></li>
       <li><a href="returns.html">Returns &amp; refunds</a></li>
     </ul>
@@ -56,7 +57,7 @@
       <div><h4>Company</h4><a href="about.html">About us</a><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms</a></div>
     </div>
   </div>
-  <div class="wrap foot-legal">© <span id="yr"></span> Ridhyansh Store · Saare payments UPI se.</div>
+  <div class="wrap foot-legal">© <span id="yr"></span> Ridhyansh Store · All orders are prepaid.</div>
 </footer>
 
 <div class="drawer-ov hidden" id="cartOv"></div>
@@ -71,14 +72,14 @@
   </div>
 </aside>
 
-<script src="js/store.js?v=21"></script>
+<script src="js/store.js?v=23"></script>
 <script>
 var s = sett();
 document.title = s.shopName + " — Contact";
 document.getElementById("brand").textContent = s.shopName;
 document.getElementById("yr").textContent = new Date().getFullYear();
 document.getElementById("navToggle").addEventListener("click", function(){ document.getElementById("nav").classList.toggle("open"); });
-document.getElementById("cWa").href = "https://wa.me/" + waDigits(s.whatsapp) + "?text=" + encodeURIComponent("Hi! Ridhyansh Store ke baare mein poochna hai.");
+document.getElementById("cWa").href = "https://wa.me/" + waDigits(s.whatsapp) + "?text=" + encodeURIComponent("Hi Ridhyansh Store, I have a question.");
 document.getElementById("cInfo").textContent = "WhatsApp: +91 " + s.whatsapp + " · Response time: usually same day.";
 initCartUI();
 </script>
