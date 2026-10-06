@@ -1,0 +1,8 @@
+{
+  "_comment": "Reference list of runtime variables. Secrets are NOT to be committed - load with: firebase functions:secrets:set NAME",
+  "razorpay_key_id": "rzp_live_xxxxxxxxxxxxxx",
+  "razorpay_key_secret": "whsec_xxxxxxxx",
+  "razorpay_webhook_secret": "whsec_yyyyyyyyyyyy",
+  "admin_notify_whatsapp_id": "...",
+  "admin_notify_whatsapp_token": "..."
+}

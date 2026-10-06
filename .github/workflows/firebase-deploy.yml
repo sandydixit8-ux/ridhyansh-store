@@ -1,0 +1,49 @@
+name: Deploy to Firebase
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "functions/**"
+      - "firebase.json"
+      - "firestore.rules"
+      - "firestore.indexes.json"
+      - ".firebaserc"
+  workflow_dispatch: {}
+
+jobs:
+  test-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: functions/package-lock.json
+
+      - name: Install
+        working-directory: functions
+        run: npm ci
+
+      - name: Tests
+        working-directory: functions
+        run: npm test
+
+      - name: Deploy to Firebase
+        if: env.FIREBASE_TOKEN != '' && env.FIREBASE_PROJECT_ID != ''
+        run: |
+          npx --yes firebase-tools@latest deploy \
+            --only functions,firestore:rules,firestore:indexes,hosting,database \
+            --project "$FIREBASE_PROJECT_ID" \
+            --non-interactive
+
+      - name: Deploy skipped (secrets not configured)
+        if: env.FIREBASE_TOKEN == '' || env.FIREBASE_PROJECT_ID == ''
+        run: echo "FIREBASE_TOKEN/FIREBASE_PROJECT_ID missing - deploy skipped. Tests passed."

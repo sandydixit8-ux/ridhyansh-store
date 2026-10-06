@@ -1,0 +1,22 @@
+{
+  "name": "ridhyansh-v2-functions",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Ridhyansh Store v2 backend: catalog API, order placement, Razorpay webhooks, admin API",
+  "main": "src/index.js",
+  "engines": {
+    "node": "20"
+  },
+  "scripts": {
+    "test": "node --test",
+    "serve": "firebase emulators:start --only functions,firestore",
+    "migrate": "node src/legacy/migrateFromRtdb.js",
+    "migrate:dry": "node src/legacy/migrateFromRtdb.js --dry-run"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "firebase-admin": "^13.0.2",
+    "firebase-functions": "^6.3.1"
+  }
+}

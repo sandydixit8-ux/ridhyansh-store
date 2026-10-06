@@ -1,0 +1,11 @@
+node_modules/
+functions/node_modules/
+firebase-debug.log
+firebase-debug.*.log
+.runtimeconfig.json
+.env
+.env.local
+functions/serviceAccount*.json
+functions/*.key
+*.pem
+!.runtimeconfig.example.json
