@@ -13,6 +13,7 @@ const cors = require("cors");
 const { REGION, RUNTIME_OPTS } = require("./config");
 const health = require("./routes/health");
 const catalog = require("./routes/catalog");
+const orders = require("./routes/orders");
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(express.json({ limit: "100kb", type: "application/json" }));
 
 app.use("/health", health);
 app.use("/catalog", catalog);
+app.use("/orders", orders);
 
 app.use(function (req, res) {
   res.status(404).json({ error: "not_found" });
