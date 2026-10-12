@@ -57,9 +57,10 @@ nav a:hover { transform: translateY(-1px); }
 .grid { perspective: var(--perspective); }
 [data-tilt] {
   transform-style: preserve-3d;
-  will-change: transform;
   transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
+/* Promote to its own layer only while hovered (avoid promoting large grids). */
+[data-tilt]:hover { will-change: transform; }
 
 /* ===================================================================
    P4 — PDP, cart drawer & checkout polish (visual only)
