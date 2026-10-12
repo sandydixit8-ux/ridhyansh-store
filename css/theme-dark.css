@@ -1,0 +1,120 @@
+/* Ridhyansh Store v2 — Dark premium theme layer.
+   Loaded AFTER tokens.css + ui.css. Overrides the v1 components that used
+   hardcoded light backgrounds so the whole site reads as one dark surface. */
+
+/* ---------- Ambient backdrop ---------- */
+body {
+  background:
+    radial-gradient(900px 520px at 78% -8%, rgba(124, 108, 255, .16), transparent 60%),
+    radial-gradient(760px 460px at -6% 4%, rgba(168, 85, 247, .12), transparent 55%),
+    var(--bg);
+  background-attachment: fixed;
+  color: var(--ink);
+}
+
+/* ---------- Header / nav ---------- */
+.top { background: rgba(10, 12, 18, .72); border-bottom-color: var(--line); }
+nav a.active { background: var(--brand); color: #fff; }
+.nav-toggle { background: var(--surface-2); color: var(--ink); border-color: var(--line); }
+.cart-btn, .admin-btn { background: var(--surface-2); color: var(--ink); border-color: var(--line); }
+
+/* ---------- Hero bits ---------- */
+.imgcard { border-color: var(--surface-2); background: var(--surface-2); }
+.float { background: var(--surface); border-color: var(--line); }
+.hero-card { background: var(--surface); }
+
+/* ---------- Chips / pills ---------- */
+.chip { background: var(--surface-2); color: var(--muted); border-color: var(--line); }
+.chip.on { background: var(--brand); border-color: var(--brand); color: #fff; }
+.chip.sub.on { background: var(--brand2); color: #fff; }
+.af-chip { background: var(--brand-soft); color: var(--brand); }
+.af-chip:hover { background: #241F45; }
+
+/* ---------- Buttons ---------- */
+.btn.main { background: var(--ink); color: #0A0C12; }
+.btn.sec { background: var(--surface-2); color: var(--ink); border-color: var(--line); }
+.btn.ghost { background: transparent; color: var(--red); border-color: #5A2A2A; }
+.btn.copy-btn { background: var(--brand-soft); color: var(--brand); }
+.btn.copy-btn:hover { background: #241F45; }
+.btn.link2 { background: var(--brand-soft); color: var(--brand); border-color: transparent; }
+
+/* ---------- Forms ---------- */
+input, select, textarea {
+  background: var(--surface-2);
+  color: var(--ink);
+  border-color: var(--line);
+}
+input::placeholder, textarea::placeholder { color: var(--muted); }
+select option { background: var(--surface); color: var(--ink); }
+.searchbox input, .searchbox { background: var(--surface-2); }
+.sort-sel { background: var(--surface-2); color: var(--ink); border-color: var(--line); }
+.qtybtn { background: var(--surface-2); color: var(--ink); }
+
+/* ---------- Cards / product / sections ---------- */
+.card, .step, .step-card, .why-card, .acc, .kpi, .empty-box, .login-card { background: var(--surface); }
+.value { background: var(--surface); }
+.specs { background: var(--surface); }
+.specs th { background: var(--surface-2); color: var(--brand2); }
+.size-chart { background: var(--surface-2); }
+.size-chart th { background: var(--surface); color: var(--brand2); }
+.size-btn { background: var(--surface-2); color: var(--ink); border-color: var(--line); }
+.size-btn.on { color: #fff; }
+.trust { background: var(--surface); }
+.gmain { background: var(--surface); border-color: var(--line); }
+.gth { background: var(--surface); border-color: var(--line); }
+.card-strip .gthumb { background: var(--surface-2); }
+.page .note { background: var(--brand-soft); border-color: transparent; }
+
+/* ---------- Text tones ---------- */
+.paysteps li, .feat-list li, .page p, .page li, .long-desc, .acc-body, .genline { color: var(--ink-2); }
+
+/* ---------- Order / checkout ---------- */
+.order-gal-strip .og-th { background: var(--surface); border-color: var(--line); }
+.summary-product { background: var(--surface); }
+.simg { background: var(--surface-2); }
+.banner-prepaid { background: linear-gradient(90deg, #2A1416, #241318); color: var(--red); border-color: #4A2A2A; }
+.prepaid-badge { background: #0E2A20; border-color: #1E4A34; color: var(--green); }
+.successbox { background: linear-gradient(180deg, #131735 0%, var(--bg) 100%); }
+.suc-left, .suc-right { background: var(--surface); }
+.sum-line, .sum-empty, .plist-row, .genout, .toggle-row { background: var(--surface-2); border-color: var(--line); }
+.th { background-color: var(--surface-2); }
+.pvx { background: var(--surface-2); border-color: var(--line); }
+
+/* ---------- Feedback ---------- */
+.errbox, .login-err { background: #2A1416; border-color: #5A2A2A; color: var(--red); }
+.warn { background: #2A2210; border-color: #5A4A1E; color: var(--gold); }
+
+/* ---------- Cart drawer ---------- */
+.cart-drawer { background: var(--bg-2); }
+.drawer-head { background: rgba(20, 24, 36, .88); border-bottom-color: var(--line); }
+.drawer-foot { background: rgba(20, 24, 36, .92); border-top-color: var(--line); }
+.citem { background: var(--surface); }
+.cc-item { background: var(--surface); }
+.cc-tot { background: var(--surface-2); border-color: var(--line); }
+
+/* ---------- Track order ---------- */
+.tl-ico { background: var(--surface-2); border-color: var(--line); }
+.tl-step.done .tl-ico { background: var(--green-soft); border-color: var(--green); }
+.tl-step.cur .tl-ico { background: var(--gold-soft); border-color: var(--gold); }
+
+/* ---------- Footer ---------- */
+.foot { background: #05070B; }
+
+/* ---------- Admin / dashboard ---------- */
+.tbl td { border-bottom-color: var(--line); }
+.tbl tr:hover td { background: var(--surface-2); }
+.badge.paid { background: var(--green-soft); color: var(--green); }
+.badge.pend { background: var(--gold-soft); color: var(--gold); }
+.badge.ship { background: #0F1B2E; color: #7FA6FF; }
+.badge.del { background: #1A1430; color: #C4B5FD; }
+
+/* ---------- Auth ---------- */
+.login-body { background: linear-gradient(140deg, #0A0C12 0%, #12162A 55%, #0A0C12 100%); }
+
+/* ---------- Mobile nav panel ---------- */
+@media (max-width: 620px) {
+  nav {
+    background: var(--surface);
+    border-bottom-color: var(--line);
+  }
+}
