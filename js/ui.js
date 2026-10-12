@@ -60,17 +60,36 @@
   }
 
   function revealOne(el) {
-    if (el.classList.contains("in")) return;
+    if (el.classList.contains("in") || el.dataset.rvBound) return;
+    el.dataset.rvBound = "1";
     if (reduce) { el.classList.add("in"); return; }
     if (M && M.inView) {
-      try { M.inView(el, function () { el.classList.add("in"); }, { amount: 0.2 }); return; } catch (e) {}
+      try { M.inView(el, function () { el.classList.add("in"); }, { amount: 0.1 }); return; } catch (e) {}
     }
     if (io) { io.observe(el); return; }
     el.classList.add("in");
   }
 
+  function nodes(sel, root) {
+    var scope = root || document;
+    var out = [];
+    if (scope.nodeType === 1 && scope.matches && scope.matches(sel)) out.push(scope);
+    Array.prototype.push.apply(out, $$(sel, scope));
+    return out;
+  }
+
   function reveal(root) {
-    $$(".reveal, .reveal-stagger", root || document).forEach(revealOne);
+    nodes(".reveal, .reveal-stagger", root).forEach(revealOne);
+  }
+
+  /* Fail-safe: never leave above-the-fold content hidden if an observer
+     misses a late-injected node (e.g. async product grids). */
+  function revealAboveFold() {
+    var h = (window.innerHeight || 0) + 140;
+    nodes(".reveal:not(.in), .reveal-stagger:not(.in)").forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < h) el.classList.add("in");
+    });
   }
 
   /* 4) 3D tilt for [data-tilt] (fine pointers only) — element tilts itself,
@@ -95,7 +114,7 @@
   }
 
   function tilt(root) {
-    $$("[data-tilt]", root || document).forEach(tiltOne);
+    nodes("[data-tilt]", root).forEach(tiltOne);
   }
 
   /* 5) Hero parallax (guarded, scroll-linked) */
@@ -110,23 +129,27 @@
     } catch (e) {}
   }
 
-  /* 6) Keep late-injected nodes wired */
+  /* 6) Keep late-injected nodes wired (full re-scan, self-matching). */
   function observeDOM() {
     if (!("MutationObserver" in window)) return;
     var mo = new MutationObserver(function (muts) {
+      var hit = false;
       muts.forEach(function (m) {
         Array.prototype.forEach.call(m.addedNodes, function (n) {
           if (n.nodeType !== 1) return;
-          if (n.matches && (n.matches(".reveal, .reveal-stagger") || n.querySelector(".reveal, .reveal-stagger"))) reveal(n);
-          if (n.matches && (n.matches("[data-tilt]") || n.querySelector("[data-tilt]"))) tilt(n);
+          if ((n.matches && n.matches(".reveal, [data-tilt]")) ||
+              (n.querySelector && n.querySelector(".reveal, [data-tilt]"))) hit = true;
         });
       });
+      if (hit) { reveal(); tilt(); revealAboveFold(); }
     });
     mo.observe(document.body, { childList: true, subtree: true });
   }
 
   function boot() {
     initNav(); initScrollState(); reveal(); tilt(); heroParallax(); observeDOM();
+    setTimeout(revealAboveFold, 1000);
+    window.addEventListener("load", revealAboveFold, { once: true });
   }
 
   if (document.readyState === "loading") {
