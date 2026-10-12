@@ -1,12 +1,16 @@
-/* Ridhyansh Store v2 — shared UI behaviors (P2)
+/* Ridhyansh Store v2 — shared UI behaviors (P3)
    Progressive enhancement. Uses Motion (window.Motion) when present,
-   otherwise plain CSS / IntersectionObserver. Never throws. */
+   otherwise plain CSS / IntersectionObserver. Never throws.
+   Cards are injected asynchronously (index.js / product.js), so a
+   MutationObserver keeps late-arriving .reveal / [data-tilt] nodes wired. */
 (function () {
   "use strict";
 
   var reduce = false;
   try { reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
   var M = window.Motion || null;
+  var fine = false;
+  try { fine = !!(window.matchMedia && window.matchMedia("(pointer:fine)").matches); } catch (e) {}
 
   function $$(s, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(s)); }
 
@@ -45,55 +49,85 @@
     window.addEventListener("scroll", on, { passive: true });
   }
 
-  /* 3) Reveal on scroll */
-  function reveal() {
-    var els = $$(".reveal, .reveal-stagger");
-    if (!els.length) return;
-    if (reduce) { els.forEach(function (el) { el.classList.add("in"); }); return; }
+  /* 3) Reveal on scroll (shared IntersectionObserver) */
+  var io = null;
+  if (!M && "IntersectionObserver" in window) {
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.15 });
+  }
 
+  function revealOne(el) {
+    if (el.classList.contains("in")) return;
+    if (reduce) { el.classList.add("in"); return; }
     if (M && M.inView) {
-      els.forEach(function (el) {
-        if (el.classList.contains("in")) return;
-        try { M.inView(el, function () { el.classList.add("in"); }, { amount: 0.2 }); }
-        catch (e) { el.classList.add("in"); }
-      });
-    } else if ("IntersectionObserver" in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
-        });
-      }, { threshold: 0.15 });
-      els.forEach(function (el) { if (!el.classList.contains("in")) io.observe(el); });
-    } else {
-      els.forEach(function (el) { el.classList.add("in"); });
+      try { M.inView(el, function () { el.classList.add("in"); }, { amount: 0.2 }); return; } catch (e) {}
     }
+    if (io) { io.observe(el); return; }
+    el.classList.add("in");
   }
 
-  /* 4) 3D tilt for [data-tilt] (fine pointers only) */
-  function tilt() {
-    if (reduce) return;
-    if (!(window.matchMedia && window.matchMedia("(pointer:fine)").matches)) return;
-    $$("[data-tilt]").forEach(function (w) {
-      if (w.dataset.tiltBound) return;
-      w.dataset.tiltBound = "1";
-      var inner = w.firstElementChild || w;
-      var raf = 0;
-      w.addEventListener("pointermove", function (e) {
-        if (raf) return;
-        raf = requestAnimationFrame(function () {
-          raf = 0;
-          var r = w.getBoundingClientRect();
-          if (!r.width || !r.height) return;
-          var x = ((e.clientX - r.left) / r.width - 0.5) * 2;
-          var y = (0.5 - (e.clientY - r.top) / r.height) * 2;
-          inner.style.transform = "rotateY(" + (x * 7).toFixed(2) + "deg) rotateX(" + (y * 7).toFixed(2) + "deg) translateZ(18px)";
+  function reveal(root) {
+    $$(".reveal, .reveal-stagger", root || document).forEach(revealOne);
+  }
+
+  /* 4) 3D tilt for [data-tilt] (fine pointers only) — element tilts itself,
+   *    its grid container supplies perspective (see ui.css .grid). */
+  function tiltOne(w) {
+    if (w.dataset.tiltBound) return;
+    if (reduce || !fine) return;
+    w.dataset.tiltBound = "1";
+    var raf = 0;
+    w.addEventListener("pointermove", function (e) {
+      if (raf) return;
+      raf = requestAnimationFrame(function () {
+        raf = 0;
+        var r = w.getBoundingClientRect();
+        if (!r.width || !r.height) return;
+        var x = ((e.clientX - r.left) / r.width - 0.5) * 2;
+        var y = (0.5 - (e.clientY - r.top) / r.height) * 2;
+        w.style.transform = "rotateY(" + (x * 7).toFixed(2) + "deg) rotateX(" + (y * 7).toFixed(2) + "deg) translateZ(10px)";
+      });
+    });
+    w.addEventListener("pointerleave", function () { w.style.transform = ""; });
+  }
+
+  function tilt(root) {
+    $$("[data-tilt]", root || document).forEach(tiltOne);
+  }
+
+  /* 5) Hero parallax (guarded, scroll-linked) */
+  function heroParallax() {
+    if (reduce || !(M && M.scroll && M.animate)) return;
+    var art = document.querySelector(".hero-art");
+    if (!art) return;
+    try {
+      var b1 = art.querySelector(".b1"), b2 = art.querySelector(".b2");
+      if (b1) M.scroll(M.animate(b1, { y: [-10, 22] }, { ease: "linear" }));
+      if (b2) M.scroll(M.animate(b2, { y: [10, -26] }, { ease: "linear" }));
+    } catch (e) {}
+  }
+
+  /* 6) Keep late-injected nodes wired */
+  function observeDOM() {
+    if (!("MutationObserver" in window)) return;
+    var mo = new MutationObserver(function (muts) {
+      muts.forEach(function (m) {
+        Array.prototype.forEach.call(m.addedNodes, function (n) {
+          if (n.nodeType !== 1) return;
+          if (n.matches && (n.matches(".reveal, .reveal-stagger") || n.querySelector(".reveal, .reveal-stagger"))) reveal(n);
+          if (n.matches && (n.matches("[data-tilt]") || n.querySelector("[data-tilt]"))) tilt(n);
         });
       });
-      w.addEventListener("pointerleave", function () { inner.style.transform = ""; });
     });
+    mo.observe(document.body, { childList: true, subtree: true });
   }
 
-  function boot() { initNav(); initScrollState(); reveal(); tilt(); }
+  function boot() {
+    initNav(); initScrollState(); reveal(); tilt(); heroParallax(); observeDOM();
+  }
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", boot);
@@ -101,5 +135,8 @@
     boot();
   }
 
-  window.RUI = { refresh: function () { reveal(); tilt(); }, reduce: reduce };
+  window.RUI = {
+    refresh: function () { reveal(); tilt(); heroParallax(); },
+    reduce: reduce
+  };
 })();

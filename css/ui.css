@@ -33,6 +33,9 @@ nav a:hover { transform: translateY(-1px); }
 }
 
 /* ---------- Reveal utilities (opacity/transform only → no CLS) ---------- */
+/* The .reveal system (driven by ui.js) replaces the legacy per-card fadeUp,
+   which pinned transform via animation-fill and blocked 3D tilt. */
+.product { animation: none; }
 .js .reveal { opacity: 0; transform: translateY(16px); }
 .reveal.in {
   opacity: 1; transform: none;
@@ -50,17 +53,19 @@ nav a:hover { transform: translateY(-1px); }
 .reveal-stagger.in > *:nth-child(6) { transition-delay: .30s; }
 
 /* ---------- 3D tilt scaffolding ---------- */
-[data-tilt] { perspective: var(--perspective); }
-[data-tilt] > * {
+/* Perspective lives on the grid container; each [data-tilt] card tilts itself. */
+.grid { perspective: var(--perspective); }
+[data-tilt] {
   transform-style: preserve-3d;
-  transition: transform var(--dur) var(--ease);
+  will-change: transform;
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
 
 /* ---------- Reduced motion off-switch ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .js .reveal, .js .reveal-stagger > * { opacity: 1 !important; transform: none !important; }
-  [data-tilt] > * { transition: none !important; transform: none !important; }
+  [data-tilt] { transition: none !important; transform: none !important; }
   .float { animation: none !important; }
   *, *::before, *::after {
     animation-duration: .001ms !important;

@@ -349,7 +349,7 @@ function relCard(x) {
   var ims = imgsOf(x);
   var img = ims.length ? '<img class="ti' + (ims.length > 1 ? " multi" : "") + '" src="' + esc(ims[0]) + '" alt="' + esc(x.name) + '" loading="lazy" onerror="imgErr(this)">' : "";
   var d = discInfo(x);
-  return '<div class="product reveal">' +
+  return '<div class="product reveal" data-tilt>' +
     '<a class="med imgbox" href="' + pUrl(x) + '">' + img +
     (d.off ? '<span class="p-badge deal">' + d.off + "% OFF</span>" : "") +
     "</a>" +
