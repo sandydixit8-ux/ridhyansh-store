@@ -17,7 +17,7 @@ body { font-family: var(--font-body); }
 
 /* ---------- Header polish ---------- */
 .top {
-  background: rgba(251, 249, 244, .82);
+  background: rgba(255, 255, 255, .82);
   transition: box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);
 }
 .top.scrolled { box-shadow: var(--sh1); }
@@ -27,8 +27,8 @@ nav a:hover { transform: translateY(-1px); }
 /* ---------- Hero refresh ---------- */
 .hero {
   background:
-    radial-gradient(900px 420px at 85% -10%, rgba(106, 76, 246, .16), transparent 60%),
-    radial-gradient(700px 380px at -10% 0%, rgba(51, 88, 255, .12), transparent 55%),
+    radial-gradient(900px 420px at 85% -10%, rgba(124, 58, 237, .16), transparent 60%),
+    radial-gradient(700px 380px at -10% 0%, rgba(79, 70, 229, .12), transparent 55%),
     linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 100%);
 }
 

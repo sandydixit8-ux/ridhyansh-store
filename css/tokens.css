@@ -1,36 +1,36 @@
 /* Ridhyansh Store v2 — Design tokens (P2)
    Loaded AFTER style.css so these remap the whole palette in one place.
-   Warm ivory + charcoal base, electric-violet / cobalt accents. */
+   Crisp near-white base + indigo/violet accents. */
 
 :root {
   color-scheme: light;
 
   /* base */
-  --bg: #F5F1EA;          /* warm ivory */
-  --bg-2: #FBF9F4;
+  --bg: #F6F7FB;          /* crisp near-white */
+  --bg-2: #FFFFFF;
   --surface: #FFFFFF;
-  --surface-2: #FBF8F2;
-  --ink: #1B1812;         /* charcoal */
-  --ink-2: #39342B;
-  --muted: #6E6659;
-  --line: #E8E1D4;
-  --line-2: #DCD3C2;
+  --surface-2: #FAFBFF;
+  --ink: #131722;         /* deep cool near-black */
+  --ink-2: #2C3242;
+  --muted: #5A6273;
+  --line: #E7EAF3;
+  --line-2: #DCE0EE;
 
   /* accents */
-  --brand: #6A4CF6;       /* electric violet */
-  --brand2: #3358FF;      /* cobalt */
-  --brand-soft: #EFEBFF;
+  --brand: #4F46E5;       /* indigo */
+  --brand2: #7C3AED;      /* violet */
+  --brand-soft: #EEF0FE;
   --brand-ink: #FFFFFF;
 
   /* semantic */
-  --green: #0F9D6E; --green-soft: #E7F7F0;
-  --gold: #C98A12;  --gold-soft: #FBF3E2;
-  --red: #CB3B3B;   --red-soft: #FBECEC;
+  --green: #12B76A; --green-soft: #E7F8F0;
+  --gold: #D99414;  --gold-soft: #FCF3E1;
+  --red: #E5484D;   --red-soft: #FDECEC;
 
-  /* elevation (warm-tinted) */
-  --sh1: 0 1px 2px rgba(27, 24, 18, .05), 0 8px 24px rgba(27, 24, 18, .07);
-  --sh2: 0 14px 36px rgba(27, 24, 18, .14);
-  --sh3: 0 28px 60px rgba(27, 24, 18, .20);
+  /* elevation (cool-tinted) */
+  --sh1: 0 1px 2px rgba(16, 24, 40, .05), 0 8px 24px rgba(16, 24, 40, .06);
+  --sh2: 0 14px 36px rgba(16, 24, 40, .12);
+  --sh3: 0 28px 60px rgba(16, 24, 40, .16);
 
   /* shape */
   --r: 18px;  --r-sm: 12px;  --r-lg: 24px;  --r-pill: 999px;
