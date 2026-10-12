@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add('js');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F5F1EA">
 <title>Ridhyansh Store — Dashboard</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=18">
+<link rel="stylesheet" href="css/tokens.css?v=1">
+<link rel="stylesheet" href="css/ui.css?v=4">
 </head>
 <body>
 
@@ -25,6 +31,7 @@
 </header>
 
 <main class="wrap dash">
+  <h1 class="sr-only">Dashboard — store analytics and orders</h1>
   <div class="kpis" id="kpis"></div>
   <div class="kpis">
     <div class="kpi"><div class="kpi-icon">👁️</div><div><div class="kpi-val" id="stImp">—</div><div class="kpi-label">Impressions</div><div class="kpi-sub">products viewed</div></div></div>
@@ -82,5 +89,7 @@
 
 <script src="js/store.js?v=23"></script>
 <script src="js/dashboard.js?v=22"></script>
+<script src="https://cdn.jsdelivr.net/npm/motion@14.1.0/dist/motion.js" defer></script>
+<script src="js/ui.js?v=2" defer></script>
 </body>
 </html>

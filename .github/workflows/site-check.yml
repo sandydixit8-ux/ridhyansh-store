@@ -1,0 +1,33 @@
+name: Site Check
+
+on:
+  push:
+    branches: [ main, facelift ]
+    paths:
+      - "*.html"
+      - "css/**"
+      - "js/**"
+      - "tools/**"
+      - ".github/workflows/site-check.yml"
+  pull_request:
+    paths:
+      - "*.html"
+      - "css/**"
+      - "js/**"
+      - "tools/**"
+  workflow_dispatch: {}
+
+jobs:
+  site-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Static site checks
+        run: node tools/check-site.js

@@ -58,7 +58,7 @@ function card(p) {
   if (!stk) badges += '<span class="p-badge sold">Sold out</span>';
   else if (stk <= Number(sett().lowStock) + 1) badges += '<span class="p-badge low">Only ' + stk + " left</span>";
   return (
-    '<div class="product reveal">' +
+    '<div class="product reveal" data-tilt>' +
     '<a class="med imgbox" href="' + pUrl(p) + '" data-plink="' + p.id + '">' + img + badges + shot + "</a>" +
     '<div class="pbody">' +
     '<a class="ptag" href="javascript:void(0)" data-cg="' + esc(p.cat) + '" title="' + esc(p.cat) + '">' + catIcon(p.cat) + " " + esc(p.cat) + "</a>" +
