@@ -24,7 +24,8 @@
 
   /* semantic */
   --green: #34D399; --green-soft: #0E2A20;
-  --gold: #FBBF24;  --gold-soft: #2A2210;
+  --gold: #EAC46B;  --gold-2: #D9A83A; --gold-soft: #2A2210; --gold-ink: #241B08;
+  --gold-grad: linear-gradient(120deg, #F7DA8B 0%, #D9A83A 100%);
   --red: #F87171;   --red-soft: #2A1416;
 
   /* elevation (deep) */
