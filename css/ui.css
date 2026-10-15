@@ -140,3 +140,54 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--brand); }
     transition-duration: .001ms !important;
   }
 }
+
+/* ===================================================================
+   P7 — Pointer parallax, cinematic entrance, card depth & cart feedback
+   Additive, progressive enhancement (Motion / pointer events). No
+   layout restructuring; all effects are opacity/transform only (no CLS).
+   =================================================================== */
+
+/* ---- Hero: pointer-driven parallax + depth ---- */
+.hero-in { perspective: 1200px; }
+.hero-art {
+  transform-style: preserve-3d;
+  transform:
+    translate3d(calc(var(--px, 0) * 12px), calc(var(--py, 0) * 12px), 0)
+    rotateX(calc(var(--py, 0) * -4deg))
+    rotateY(calc(var(--px, 0) * 4deg));
+  transition: transform .35s cubic-bezier(.22, .61, .36, 1);
+}
+
+/* ---- Cinematic hero entrance (CSS-only, safe if JS is off) ---- */
+@keyframes heroIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes heroArtIn { from { opacity: 0; transform: translateY(18px) scale(.985); } to { opacity: 1; transform: none; } }
+.js .hero-txt > * { animation: heroIn .55s cubic-bezier(.22, .61, .36, 1) both; }
+.js .hero-txt > *:nth-child(2) { animation-delay: .06s; }
+.js .hero-txt > *:nth-child(3) { animation-delay: .12s; }
+.js .hero-txt > *:nth-child(4) { animation-delay: .18s; }
+.js .hero-txt > *:nth-child(5) { animation-delay: .24s; }
+.js .hero-txt > *:nth-child(6) { animation-delay: .30s; }
+.js .hero-art { animation: heroArtIn .65s cubic-bezier(.22, .61, .36, 1) both .1s; }
+
+/* ---- Product card: image depth on tilt + sheen sweep ---- */
+.imgbox::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, .26) 50%, transparent 62%);
+  opacity: 0; transform: translateX(-40%);
+  transition: opacity var(--dur) var(--ease), transform var(--dur-slow) var(--ease);
+}
+.product:hover .imgbox::after { opacity: 1; transform: translateX(40%); }
+.product .ti { will-change: transform; transition: transform var(--dur-fast) var(--ease); }
+
+/* ---- Cart add feedback ---- */
+@keyframes cartBump { 0% { transform: scale(1); } 30% { transform: scale(1.26); } 60% { transform: scale(.9); } 100% { transform: scale(1); } }
+.cart-btn.bump, .cart-count.bump { animation: cartBump .45s ease; }
+
+/* ---- Page fade-in ---- */
+@keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
+.js body { animation: pageIn .3s ease both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-art { transform: none !important; }
+  .js body { animation: none !important; }
+}

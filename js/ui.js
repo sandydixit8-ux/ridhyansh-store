@@ -98,6 +98,7 @@
     if (w.dataset.tiltBound) return;
     if (reduce || !fine) return;
     w.dataset.tiltBound = "1";
+    var isCard = w.classList.contains("product");
     var raf = 0;
     w.addEventListener("pointermove", function (e) {
       if (raf) return;
@@ -108,9 +109,19 @@
         var x = ((e.clientX - r.left) / r.width - 0.5) * 2;
         var y = (0.5 - (e.clientY - r.top) / r.height) * 2;
         w.style.transform = "rotateY(" + (x * 7).toFixed(2) + "deg) rotateX(" + (y * 7).toFixed(2) + "deg) translateZ(10px)";
+        if (isCard) {
+          var img = w.querySelector(".ti");
+          if (img) img.style.transform = "translate3d(" + (x * -7).toFixed(2) + "px," + (y * -7).toFixed(2) + "px,0) scale(1.06)";
+        }
       });
     });
-    w.addEventListener("pointerleave", function () { w.style.transform = ""; });
+    w.addEventListener("pointerleave", function () {
+      w.style.transform = "";
+      if (isCard) {
+        var img = w.querySelector(".ti");
+        if (img) img.style.transform = "";
+      }
+    });
   }
 
   function tilt(root) {
@@ -129,7 +140,48 @@
     } catch (e) {}
   }
 
-  /* 6) Keep late-injected nodes wired (full re-scan, self-matching). */
+  /* 6) Keystroke-free hero pointer parallax (fine pointers only) */
+  function heroPointer() {
+    if (reduce || !fine) return;
+    var hero = document.querySelector(".hero");
+    var art = document.querySelector(".hero-art");
+    if (!hero || !art) return;
+    var raf = 0, nx = 0, ny = 0;
+    hero.addEventListener("pointermove", function (e) {
+      var r = hero.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      nx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+      ny = ((e.clientY - r.top) / r.height - 0.5) * 2;
+      if (raf) return;
+      raf = requestAnimationFrame(function () {
+        raf = 0;
+        art.style.setProperty("--px", nx.toFixed(3));
+        art.style.setProperty("--py", ny.toFixed(3));
+      });
+    });
+    hero.addEventListener("pointerleave", function () {
+      art.style.setProperty("--px", "0");
+      art.style.setProperty("--py", "0");
+    });
+  }
+
+  /* 7) Cart add feedback — bump the cart button when the count changes. */
+  function cartFeedback() {
+    var count = document.getElementById("cartCount");
+    var btn = document.getElementById("cartBtn");
+    if (!count || !btn || !("MutationObserver" in window)) return;
+    var t = 0;
+    function bump() {
+      btn.classList.remove("bump"); count.classList.remove("bump");
+      void btn.offsetWidth;
+      btn.classList.add("bump"); count.classList.add("bump");
+      clearTimeout(t);
+      t = setTimeout(function () { btn.classList.remove("bump"); count.classList.remove("bump"); }, 520);
+    }
+    new MutationObserver(bump).observe(count, { childList: true, characterData: true, subtree: true });
+  }
+
+  /* 8) Keep late-injected nodes wired (full re-scan, self-matching). */
   function observeDOM() {
     if (!("MutationObserver" in window)) return;
     var mo = new MutationObserver(function (muts) {
@@ -147,7 +199,7 @@
   }
 
   function boot() {
-    initNav(); initScrollState(); reveal(); tilt(); heroParallax(); observeDOM();
+    initNav(); initScrollState(); reveal(); tilt(); heroParallax(); heroPointer(); cartFeedback(); observeDOM();
     setTimeout(revealAboveFold, 1000);
     window.addEventListener("load", revealAboveFold, { once: true });
   }
